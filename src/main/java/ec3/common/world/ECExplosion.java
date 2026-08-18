@@ -10,7 +10,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -19,7 +21,7 @@ public class ECExplosion extends Explosion
 {
     private int field_77289_h = 16;
     private World worldObj;
-    private Map<Object, Object> field_77288_k = new HashMap<Object, Object>();
+    private Map<EntityPlayer, Vec3> field_77288_k = new HashMap<EntityPlayer, Vec3>();
     public ECExplosion(World p_i1948_1_, Entity p_i1948_2_, double p_i1948_3_, double p_i1948_5_, double p_i1948_7_, float p_i1948_9_)
     {
     	super(p_i1948_1_, p_i1948_2_, p_i1948_3_, p_i1948_5_, p_i1948_7_, p_i1948_9_);
@@ -134,7 +136,7 @@ public class ECExplosion extends Explosion
         }
     }
 
-    public Map<Object, Object> func_77277_b()
+    public Map<EntityPlayer, Vec3> func_77277_b()
     {
         return this.field_77288_k;
     }

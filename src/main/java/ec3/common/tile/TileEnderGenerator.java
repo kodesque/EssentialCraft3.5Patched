@@ -12,24 +12,24 @@ import net.minecraftforge.common.config.Configuration;
 import ec3.api.ApiCore;
 
 public class TileEnderGenerator extends TileMRUGeneric{
-	
+
 	public static float cfgMaxMRU = ApiCore.GENERATOR_MAX_MRU_GENERIC;
 	public static float cfgBalance = -1F;
 	public static float mruGenerated = 500;
 	public static int endermenCatchRadius = 8;
-	
+
 	public TileEnderGenerator()
 	{
 		 super();
 		this.maxMRU = (int)cfgMaxMRU;
 		this.balance = cfgBalance;
 	}
-	
+
 	public boolean canGenerateMRU()
 	{
 		return false;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void updateEntity()
@@ -47,11 +47,12 @@ public class TileEnderGenerator extends TileMRUGeneric{
 			{
 				try
 				{
-					l.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobAngryEnderman"), endermenTPRadius));
-					l.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobBabyEnderman"), endermenTPRadius));
-					l.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEndermage"), endermenTPRadius));
-					l.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEnderman"), endermenTPRadius));
-					l.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobParalyzedEnderman"), endermenTPRadius));
+
+					l.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobAngryEnderman"), endermenTPRadius));
+					l.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobBabyEnderman"), endermenTPRadius));
+					l.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEndermage"), endermenTPRadius));
+					l.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEnderman"), endermenTPRadius));
+					l.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobParalyzedEnderman"), endermenTPRadius));
 				}
 				catch(ClassNotFoundException e)
 				{
@@ -71,11 +72,11 @@ public class TileEnderGenerator extends TileMRUGeneric{
 			{
 				try
 				{
-					l1.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobAngryEnderman"), endermanAttackRad));
-					l1.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobBabyEnderman"), endermanAttackRad));
-					l1.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEndermage"), endermanAttackRad));
-					l1.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEnderman"), endermanAttackRad));
-					l1.addAll(this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobParalyzedEnderman"), endermanAttackRad));
+					l1.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobAngryEnderman"), endermanAttackRad));
+					l1.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobBabyEnderman"), endermanAttackRad));
+					l1.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEndermage"), endermanAttackRad));
+					l1.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobEnderman"), endermanAttackRad));
+					l1.addAll((List<EntityEnderman>)this.worldObj.getEntitiesWithinAABB(Class.forName("chylex.hee.entity.mob.EntityMobParalyzedEnderman"), endermanAttackRad));
 				}
 				catch(ClassNotFoundException e)
 				{
@@ -99,7 +100,7 @@ public class TileEnderGenerator extends TileMRUGeneric{
 			}
 		}
 	}
-	
+
     public static void setupConfig(Configuration cfg)
     {
     	try
@@ -112,17 +113,17 @@ public class TileEnderGenerator extends TileMRUGeneric{
 	    			"Radius of Endermen detection:8"
 	    			},"");
 	    	String dataString="";
-	    	
+
 	    	for(int i = 0; i < cfgArrayString.length; ++i)
 	    		dataString+="||"+cfgArrayString[i];
-	    	
+
 	    	DummyData[] data = DataStorage.parseData(dataString);
-	    	
+
 	    	cfgMaxMRU = Float.parseFloat(data[0].fieldValue);
 	    	cfgBalance = Float.parseFloat(data[1].fieldValue);
 	    	mruGenerated = Float.parseFloat(data[2].fieldValue);
 	    	endermenCatchRadius = Integer.parseInt(data[3].fieldValue);
-	    	
+
 	    	cfg.save();
     	}catch(Exception e)
     	{

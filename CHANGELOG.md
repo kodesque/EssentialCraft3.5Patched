@@ -2,16 +2,14 @@
 ## v4.6.7
 
 ---
-### Added:
-- X
 ### Changed:
-- Mod versioning convention: v4.6.1710.67 -> v4.6.7
-- Mod change logging convention: more concise; only gameplay-relevant changes
+- Mod versioning convention: v4.6.1710.67 -> 4.6.7
+- Mod change logging convention: txt -> md; improved readability; only gameplay-relevant changes
+- Updated en_US.lang (courtesy of @RaidhoSketch)
 ### Fixed:
-- X
-### Removed:
-- X
-
+- (Crash) EnderGenerator not recognizing mobs from Hardcore Ender Expansion
+- (Crash) ECExplosion type weakening
+- (Crash) RenderMagicalBook referencing a non-existent model
 ---
 ## Original log start
 

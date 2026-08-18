@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="essential craft:test" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="ec3" external.system.module.type="sourceSet" external.system.module.version="543b259-main+543b259523-dirty" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="essential craft:test" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="ec3" external.system.module.type="sourceSet" external.system.module.version="09d1466-main+09d146692f-dirty" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>
@@ -76,29 +76,37 @@
     <orderEntry type="module" module-name="essential_craft.patchedMc" />
     <orderEntry type="module" module-name="essential_craft.injectedTags" />
     <orderEntry type="module-library" scope="RUNTIME">
-      <library>
+      <library name="Gradle: BaublesExpanded-2.2.21-GTNH-deobf.jar">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/libs/DummyCore1.13" />
+          <root url="jar://$USER_HOME$/.gradle/caches/9.4.0/transforms/fe78fbe26fbdaeb44b76c4e7af66fc98/transformed/BaublesExpanded-2.2.21-GTNH-deobf.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library name="Gradle: Thaumcraft-1.7.10-4.2.3.5-deobf.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/9.4.0/transforms/1e1b020d6a55ef25189c199c05568c51/transformed/Thaumcraft-1.7.10-4.2.3.5-deobf.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:NotEnoughItems:dev:2.7.69-GTNH" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: curse.maven:dummycore-230103:2244260" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: curse.maven:waila-73488:2230518" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:worldedit-gtnh:dev:v0.0.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: curse.maven:archaicfix-677782:8125364" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.java.jinput:jinput-platform:natives-linux:2.0.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.java.jinput:jinput-platform:natives-osx:2.0.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:CodeChickenCore:dev:1.4.7" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:GTNHLib:dev:0.11.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:GTNHLib:dev:0.11.37" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: de.schlichtherle:truezip:6.8.3" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: rhino:js:1.7R2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.yaml:snakeyaml:1.9" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.legacymoddingmc:unimixins:dev:0.2.1" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: it.unimi.dsi:fastutil:8.5.15" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.joml:joml:1.10.8" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.mojang:brigadier:1.0.18" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:GTNHExtLib:1.0.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.legacymoddingmc:unimixins:dev:0.3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.GTNewHorizons:GTNHExtLib:1.0.4" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="essential_craft.main" />
 </module>

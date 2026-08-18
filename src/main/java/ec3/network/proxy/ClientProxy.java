@@ -3,6 +3,7 @@ package ec3.network.proxy;
 import java.util.ArrayList;
 import java.util.List;
 
+import ec3.client.render.*;
 import org.lwjgl.input.Keyboard;
 
 import DummyCore.Client.GuiCommon;
@@ -97,73 +98,6 @@ import ec3.client.regular.EntityFogFX;
 import ec3.client.regular.EntityItemFX;
 import ec3.client.regular.EntityMRUFX;
 import ec3.client.regular.RenderMRUArrow;
-import ec3.client.render.ArmorRenderer;
-import ec3.client.render.ClientRenderHandler;
-import ec3.client.render.GunItemRenderHelper;
-import ec3.client.render.RenderBlocksECIII;
-import ec3.client.render.RenderChargingChamber;
-import ec3.client.render.RenderCloudsFirstWorld;
-import ec3.client.render.RenderColdDistillator;
-import ec3.client.render.RenderCollectedSpawner;
-import ec3.client.render.RenderCorruptionCleaner;
-import ec3.client.render.RenderCrystalController;
-import ec3.client.render.RenderCrystalExtractor;
-import ec3.client.render.RenderCrystalFormer;
-import ec3.client.render.RenderDarknessObelisk;
-import ec3.client.render.RenderDemon;
-import ec3.client.render.RenderDemonicPentacle;
-import ec3.client.render.RenderDivider;
-import ec3.client.render.RenderElementalCrystal;
-import ec3.client.render.RenderElementalCrystalAsItem;
-import ec3.client.render.RenderEnderGenerator;
-import ec3.client.render.RenderFlowerBurner;
-import ec3.client.render.RenderHandlerEC3;
-import ec3.client.render.RenderHeatGenerator;
-import ec3.client.render.RenderHologram;
-import ec3.client.render.RenderMIM;
-import ec3.client.render.RenderMINEjector;
-import ec3.client.render.RenderMINInjector;
-import ec3.client.render.RenderMRUCoil;
-import ec3.client.render.RenderMRUCoilHardener;
-import ec3.client.render.RenderMRULink;
-import ec3.client.render.RenderMRUPresence;
-import ec3.client.render.RenderMRURay;
-import ec3.client.render.RenderMRUReactor;
-import ec3.client.render.RenderMagicalAssembler;
-import ec3.client.render.RenderMagicalBook;
-import ec3.client.render.RenderMagicalBuilder;
-import ec3.client.render.RenderMagicalChest;
-import ec3.client.render.RenderMagicalDisplay;
-import ec3.client.render.RenderMagicalEnchanter;
-import ec3.client.render.RenderMagicalJukebox;
-import ec3.client.render.RenderMagicalMirror;
-import ec3.client.render.RenderMagicalQuarry;
-import ec3.client.render.RenderMagicalRepairer;
-import ec3.client.render.RenderMagicianTable;
-import ec3.client.render.RenderMagmaticSmelter;
-import ec3.client.render.RenderMatrixAbsorber;
-import ec3.client.render.RenderMithrilineCrystal;
-import ec3.client.render.RenderMithrilineFurnace;
-import ec3.client.render.RenderMonsterHarvester;
-import ec3.client.render.RenderMonsterHolder;
-import ec3.client.render.RenderNewMIM;
-import ec3.client.render.RenderOrbitalRemote;
-import ec3.client.render.RenderOrbitalStrike;
-import ec3.client.render.RenderPlayerClone;
-import ec3.client.render.RenderPlayerPentacle;
-import ec3.client.render.RenderPoisonFume;
-import ec3.client.render.RenderPotionSpreader;
-import ec3.client.render.RenderRadiatingChamber;
-import ec3.client.render.RenderRayTower;
-import ec3.client.render.RenderSkyFirstWorld;
-import ec3.client.render.RenderSolarBeam;
-import ec3.client.render.RenderSolarPrism;
-import ec3.client.render.RenderSolarPrismAsItem;
-import ec3.client.render.RenderSunRayAbsorber;
-import ec3.client.render.RenderUltraFlowerBurner;
-import ec3.client.render.RenderUltraHeatGenerator;
-import ec3.client.render.RenderWindMage;
-import ec3.client.render.RenderWindRune;
 import ec3.common.block.BlocksCore;
 import ec3.common.entity.EntityArmorDestroyer;
 import ec3.common.entity.EntityDemon;
@@ -298,9 +232,9 @@ import ec3.common.tile.TileecStateChecker;
 import ec3.utils.cfg.Config;
 
 public class ClientProxy extends CommonProxy{
-	
+
 	public static final List<Pair<String, ISound>> playingMusic = new ArrayList<Pair<String, ISound>>();
-	
+
 	public boolean listHasKey(String key)
 	{
 		for(int i = 0; i < playingMusic.size(); ++i)
@@ -308,10 +242,10 @@ public class ClientProxy extends CommonProxy{
 			if(playingMusic.get(i).getFirst().equals(key))
 				return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public int positionOf(String key)
 	{
 		for(int i = 0; i < playingMusic.size(); ++i)
@@ -319,10 +253,10 @@ public class ClientProxy extends CommonProxy{
 			if(playingMusic.get(i).getFirst().equals(key))
 				return i;
 		}
-		
+
 		return 0;
 	}
-	
+
 	@Override
 	public void stopSound(String soundID)
 	{
@@ -332,11 +266,11 @@ public class ClientProxy extends CommonProxy{
 			playingMusic.remove(soundID);
 		}
 	}
-	
+
 	@Override
 	public void startSound(String soundID, String soundName)
 	{
-		
+
 		if(!listHasKey(soundID))
 		{
 			PositionedSoundRecord s = PositionedSoundRecord.func_147673_a(new ResourceLocation(soundName));
@@ -345,11 +279,11 @@ public class ClientProxy extends CommonProxy{
 			Minecraft.getMinecraft().getSoundHandler().playSound(s);
 		}
 	}
-	
+
 	ResourceLocation villagerSkin = new ResourceLocation("essentialcraft","textures/entities/magician.png");
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) 
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z)
 	{
 		if(ID == Config.guiID[0])
 		{
@@ -588,13 +522,13 @@ public class ClientProxy extends CommonProxy{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void openBookGUIForPlayer()
 	{
 		Minecraft.getMinecraft().displayGuiScreen(new GuiResearchBook());
 	}
-	
+
 	@Override
 	public void openPentacleGUIForPlayer(TileEntity tile)
 	{
@@ -631,20 +565,20 @@ public class ClientProxy extends CommonProxy{
 		MinecraftForgeClient.registerItemRenderer(ItemsCore.gatling, new GunItemRenderHelper());
 		MinecraftForgeClient.registerItemRenderer(ItemsCore.magicalBuilder, new RenderMagicalBuilder());
 		MinecraftForgeClient.registerItemRenderer(ItemsCore.orbitalRemote, new RenderOrbitalRemote());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.research_book, new RenderMagicalBook());
+//		MinecraftForgeClient.registerItemRenderer(ItemsCore.research_book, new RenderMagicalBook());
 		MinecraftForgeClient.registerItemRenderer(ItemsCore.collectedSpawner, new RenderCollectedSpawner());
 		for(int i = 0; i < ItemsCore.magicArmorItems.length; ++i)
 		{
 			if(ItemsCore.magicArmorItems[i] != null)
 				MinecraftForgeClient.registerItemRenderer(ItemsCore.magicArmorItems[i], new ArmorRenderer());
 		}
-		
+
 		kbArmorBoost =  new KeyBinding("ComputerArmorBoost", Keyboard.KEY_Z, "key.categories.gameplay");
 		ClientRegistry.registerKeyBinding(kbArmorBoost);
 		kbArmorVision =  new KeyBinding("ComputerArmorNightVision", Keyboard.KEY_X, "key.categories.gameplay");
 		ClientRegistry.registerKeyBinding(kbArmorVision);
 	}
-	
+
 	@Override
 	public void registerTileEntitySpecialRenderer()
 	{
@@ -695,13 +629,13 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalChest.class, new RenderMagicalChest());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileNewMIM.class, new RenderNewMIM());
 	}
-	
+
 	@Override
 	public World getClientWorld()
 	{
 		return FMLClientHandler.instance().getClient().theWorld;
 	}
-	
+
 	@Override
 	public Object getClientIcon(String str)
 	{
@@ -726,7 +660,7 @@ public class ClientProxy extends CommonProxy{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void spawnParticle(String name, float x, float y, float z, double i, double j, double k)
 	{
@@ -737,7 +671,7 @@ public class ClientProxy extends CommonProxy{
 		if(name.equals("fogFX"))
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFogFX(getClientWorld(), x, y, z, i, j, k));
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean itemHasEffect(ItemStack stk)
@@ -759,23 +693,23 @@ public class ClientProxy extends CommonProxy{
 		}
 		return false;
 	}
-	
+
 	@Override
 	public Object getClientModel(int id)
 	{
-		switch (id) 
+		switch (id)
 		{
 			case 0:
 				return chest;
-			case 1: 
+			case 1:
 				return legs;
 			case 2:
 				return chest1;
-			default: break; 
-		} 
-		return chest; 
+			default: break;
+		}
+		return chest;
 	}
-	
+
 	@Override
 	public Object getRenderer(int index)
 	{
@@ -784,13 +718,13 @@ public class ClientProxy extends CommonProxy{
 		else
 			return cloudedRenderer;
 	}
-	
+
 	@Override
 	public EntityPlayer getClientPlayer()
 	{
 		return Minecraft.getMinecraft().thePlayer;
 	}
-	
+
 	@Override
 	public void ItemFX(double... ds)
 	{
@@ -798,7 +732,7 @@ public class ClientProxy extends CommonProxy{
 				Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], 1, 0, 1, ds[3], ds[4], ds[5]
 				));
 	}
-	
+
 	@Override
 	public void FlameFX(double... ds)
 	{
@@ -806,7 +740,7 @@ public class ClientProxy extends CommonProxy{
 				Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8], ds[9]
 				));
 	}
-	
+
 	public void SmokeFX(double... ds)
 	{
 		if(ds.length == 7)
@@ -822,7 +756,7 @@ public class ClientProxy extends CommonProxy{
 					));
 		}
 	}
-	
+
 	@Override
 	public void MRUFX(double... ds)
 	{
@@ -832,7 +766,7 @@ public class ClientProxy extends CommonProxy{
 		}else
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8]));
 	}
-	
+
 	@Override
 	public void wingsAction(EntityPlayer e, ItemStack s)
 	{
@@ -852,7 +786,7 @@ public class ClientProxy extends CommonProxy{
 			DummyPacketHandler.sendToServer(pkt);
 		}
 	}
-	
+
 	@Override
 	public void handlePositionChangePacket(DummyData[] packetData)
 	{
@@ -865,7 +799,7 @@ public class ClientProxy extends CommonProxy{
 		player.setPositionAndRotation(sX, sY, sZ,yaw,pitch);
 		player.rotationYawHead = player.rotationYaw;
 	}
-	
+
 	public void handleSoundPlay(DummyData[] packetData)
 	{
 		double sX = Double.parseDouble(packetData[1].fieldValue);
@@ -877,25 +811,25 @@ public class ClientProxy extends CommonProxy{
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		player.worldObj.playSound(sX, sY, sZ, sound, volume, pitch, false);
 	}
-	
+
 	public static IIcon mruIcon;
 	public static IIcon mruParticleIcon;
 	public static IIcon[] c_spell_particle_array = new IIcon[4];
 	public static IIcon chaosIcon;
 	public static IIcon frozenIcon;
-	
+
 
 	@SideOnly(Side.CLIENT)
 	private static IRenderHandler skyedRenderer = new RenderSkyFirstWorld();
-	
+
 	@SideOnly(Side.CLIENT)
 	private static IRenderHandler cloudedRenderer = new RenderCloudsFirstWorld();
 	public static IIcon fogIcon;
-	
+
 	private static final ModelArmorEC3 chest = new ModelArmorEC3(1.0f);
 	private static final ModelArmorEC3 chest1 = new ModelArmorEC3(0.75f);
 	private static final ModelArmorEC3 legs = new ModelArmorEC3(0.5f);
-	
+
 	public static KeyBinding kbArmorBoost;
 	public static KeyBinding kbArmorVision;
 }

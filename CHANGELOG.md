@@ -1,4 +1,10 @@
 # Essential Craft 3.5 Changelog
+## v4.6.8
+
+---
+### Removed:
+- Custom font used by Knowledge book; now uses default MC's one
+- Alternative Main Menu GUIs
 ## v4.6.7
 
 ---

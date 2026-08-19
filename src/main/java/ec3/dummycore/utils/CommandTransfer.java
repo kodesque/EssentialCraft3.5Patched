@@ -1,0 +1,24 @@
+package ec3.dummycore.utils;
+
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayerMP;
+
+public class CommandTransfer extends CommandBase {
+    public CommandTransfer() {
+    }
+
+    public String getCommandName() {
+        return "DummyCore.Transfer";
+    }
+
+    public String getCommandUsage(ICommandSender p_71518_1_) {
+        return "/DummyCore.Transfer <player> <dimensionID>";
+    }
+
+    public void processCommand(ICommandSender p_71515_1_, String[] p_71515_2_) {
+        int var3 = parseInt(p_71515_1_, p_71515_2_[1]);
+        EntityPlayerMP player = p_71515_2_.length == 0 ? getCommandSenderAsPlayer(p_71515_1_) : getPlayer(p_71515_1_, p_71515_2_[0]);
+        player.travelToDimension(var3);
+    }
+}

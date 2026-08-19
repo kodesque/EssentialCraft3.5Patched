@@ -47,45 +47,45 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class GuiResearchBook extends GuiScreen{
-	
+
 	 public static RenderItem itemRender = new RenderItem();
-	 
+
 	 public int currentDepth;
 	 public static int currentPage;
 	 public static CategoryEntry currentCategory;
 	 public static DiscoveryEntry currentDiscovery;
 	 public static int currentPage_discovery;
-	 
+
 	 public static List<Object> hoveringText = new ArrayList<Object>();
-	 
+
 	 public static List<Object[]> prevState = new ArrayList<Object[]>();
-	 
+
 	 public static final int discoveries_per_page = 48;
-	 
+
 	 public NBTTagCompound bookTag;
-	 
+
 	 public boolean firstOpened = false;
-	 
+
 	 public boolean isLeftMouseKeyPressed = false;
-	 
+
 	 public boolean isRightMouseKeyPressed = false;
-	 
+
 	 public static final ResourceLocation gui = new ResourceLocation("essentialcraft","textures/gui/research_book_generic.png");
-	 
+
 	 public static float ticksOpened;
-	 
+
 	 public static int ticksBeforePressing;
-	 
+
 	 public String numberString = "";
-	 
+
 	 public int pressDelay;
-	 
+
 	 public GuiResearchBook()
 	 {
 		 super();
 	 }
-	 
-	 public void updateScreen() 
+
+	 public void updateScreen()
 	 {
 		 ++ticksOpened;
 		 --ticksBeforePressing;
@@ -117,10 +117,10 @@ public class GuiResearchBook extends GuiScreen{
 					 }
 			 }
 			 numberString = "";
-			 
+
 		 }
 	 }
-	 
+
 	 @Override
 	 protected void keyTyped(char typed, int keyID)
 	 {
@@ -154,13 +154,13 @@ public class GuiResearchBook extends GuiScreen{
 			 }
 		 }
 	 }
-	 
-	 public void initGui() 
+
+	 public void initGui()
 	 {
 		 isLeftMouseKeyPressed = Mouse.isButtonDown(0);
 		 isRightMouseKeyPressed = Mouse.isButtonDown(1);
 		 firstOpened = false;
-		
+
 		 this.buttonList.clear();
 		 this.labelList.clear();
 		 bookTag = this.mc.thePlayer.getCurrentEquippedItem().getTagCompound();
@@ -170,10 +170,10 @@ public class GuiResearchBook extends GuiScreen{
 	    	 initDiscoveries();
 	     if(currentCategory != null && currentDiscovery != null)
 	    	 initPage();
-	     
+
 	     ticksBeforePressing = 1;
 	 }
-	 
+
 	 public void drawBackground(int p_146278_1_)
 	 {
 	     int k = (this.width - 256) / 2;
@@ -199,7 +199,7 @@ public class GuiResearchBook extends GuiScreen{
 	     }
 	     this.drawTexturedModalRect(k, l, 0, 0, 256, 180);
 	 }
-	 
+
 	 @Override
 	 public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
 	 {
@@ -278,7 +278,7 @@ public class GuiResearchBook extends GuiScreen{
 	     if(FMLClientHandler.instance().getCurrentLanguage().equalsIgnoreCase("en_gb") && !firstOpened)
 	     {
 	    	 firstOpened = true;
-	    	 this.fontRendererObj = new FontRenderer(mc.gameSettings, new ResourceLocation("essentialcraft","textures/special/research_font.png"), mc.renderEngine, false);
+             this.fontRendererObj = mc.fontRenderer;
 	    	 fontRendererObj.setUnicodeFlag(false);
 	    	 fontRendererObj.setBidiFlag(true);
 	    	 ((IReloadableResourceManager)this.mc.getResourceManager()).registerReloadListener(fontRendererObj);
@@ -310,7 +310,7 @@ public class GuiResearchBook extends GuiScreen{
 			 RenderHelper.enableStandardItemLighting();
 		 }
 	 }
-	 
+
     @SuppressWarnings("unchecked")
 	public void drawAllText()
 	 {
@@ -329,7 +329,7 @@ public class GuiResearchBook extends GuiScreen{
 			 }
 		 }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public void initDiscoveries()
 	 {
@@ -350,7 +350,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	 page_right.enabled = true;
 	     }else
 	    	 page_right.enabled = false;
-	     
+
 	     this.buttonList.add(page_left);
 	     this.buttonList.add(page_right);
 	     for(int i = 48*(currentPage_discovery); i < discAmount - 48*(currentPage_discovery); ++i)
@@ -363,7 +363,7 @@ public class GuiResearchBook extends GuiScreen{
 	     }
 
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public void initCategories()
 	 {
@@ -391,7 +391,7 @@ public class GuiResearchBook extends GuiScreen{
 		    	 }
 		     }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public void initPage()
 	 {
@@ -413,7 +413,7 @@ public class GuiResearchBook extends GuiScreen{
 	     this.buttonList.add(page_left);
 	     this.buttonList.add(page_right);
 	 }
-	 
+
 	 public void drawPage(int mouseX, int mouseZ)
 	 {
 	     int pagesMax = currentDiscovery.pages.size();
@@ -475,12 +475,12 @@ public class GuiResearchBook extends GuiScreen{
 	    		 }
 	    	 }
 	     }
-	     
+
 	     this.drawPage_0(mouseX, mouseZ);
 	     if(currentPage+1 < pagesMax)
 	    	 this.drawPage_1(mouseX, mouseZ);
 	 }
-	 
+
 	 public void drawPage_0(int mouseX, int mouseY)
 	 {
 		 PageEntry page = currentDiscovery.pages.get(currentPage);
@@ -509,7 +509,7 @@ public class GuiResearchBook extends GuiScreen{
 	    		 this.fontRendererObj.drawStringWithShadow(page.pageTitle, k+6, l+10, 0xffffff);
 	    	 }
 	     }
-	     
+
 	     if(page.pageImgLink != null)
 	     {
 	    	 GL11.glColor3f(1, 1, 1);
@@ -518,7 +518,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	 func_152125_a(k+16, l+10, 0, 0, 256, 256, 100, 100, 256, 256);
 	    	 l += 86;
 	     }
-	     
+
 	     if(page.displayedItems != null)
 	     {
 	    	 for(int i = 0; i < page.displayedItems.length; ++i)
@@ -529,7 +529,7 @@ public class GuiResearchBook extends GuiScreen{
 	    			 this.drawIS(is, k + 10 + (i%4*20), l + 10 + (i/4 * 20), mouseX, mouseY, 0);
 	    		 }
 	    	 }
-	    	 
+
 	    	 for(int i = 0; i < page.displayedItems.length; ++i)
 	    	 {
 	    		 ItemStack is = page.displayedItems[i];
@@ -538,7 +538,7 @@ public class GuiResearchBook extends GuiScreen{
 	    			 this.drawIS(is, k + 10 + (i%4*20), l + 10 + (i/4 * 20), mouseX, mouseY, 1);
 	    		 }
 	    	 }
-	    	 
+
 	    	 l += page.displayedItems.length/4 * 20;
 	     }
 	     if(page.pageRecipe != null)
@@ -564,7 +564,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	 RenderHelper.enableGUIStandardItemLighting();
 	     }
 	 }
-	 
+
 	 public void drawPage_1(int mouseX, int mouseY)
 	 {
 		 if(currentDiscovery.pages.size() > currentPage+1)
@@ -578,7 +578,7 @@ public class GuiResearchBook extends GuiScreen{
 		    		 this.fontRendererObj.drawStringWithShadow(page.pageTitle, k+6, l+10, 0xffffff);
 		    	 }
 		     }
-		     
+
 		     if(page.pageImgLink != null)
 		     {
 		    	 GL11.glDisable(GL11.GL_LIGHTING);
@@ -587,7 +587,7 @@ public class GuiResearchBook extends GuiScreen{
 		    	 func_152125_a(k+16, l+10, 0, 0, 256, 256, 100, 100, 256, 256);
 		    	 l += 86;
 		     }
-		     
+
 		     if(page.displayedItems != null)
 		     {
 		    	 for(int i = 0; i < page.displayedItems.length; ++i)
@@ -598,7 +598,7 @@ public class GuiResearchBook extends GuiScreen{
 		    			 this.drawIS(is, k + 10 + (i%4*20), l + 10 + (i/4 * 20), mouseX, mouseY, 0);
 		    		 }
 		    	 }
-		    	 
+
 		    	 for(int i = 0; i < page.displayedItems.length; ++i)
 		    	 {
 		    		 ItemStack is = page.displayedItems[i];
@@ -607,7 +607,7 @@ public class GuiResearchBook extends GuiScreen{
 		    			 this.drawIS(is, k + 10 + (i%4*20), l + 10 + (i/4 * 20), mouseX, mouseY, 1);
 		    		 }
 		    	 }
-		    	 
+
 		    	 l += page.displayedItems.length/4 * 20;
 		     }
 		     if(page.pageRecipe != null)
@@ -623,7 +623,7 @@ public class GuiResearchBook extends GuiScreen{
 		    	 List<String> display = parse(page.pageText);
 		    	 for(int i = 0; i < display.size(); ++i)
 		    	 {
-		    		 
+
 		    		 RenderHelper.enableStandardItemLighting();
 		    		 GL11.glEnable(GL11.GL_BLEND);
 		    		 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -640,10 +640,10 @@ public class GuiResearchBook extends GuiScreen{
 
 		 }
 	 }
-	 
+
 	 public int drawRecipe(int mouseX, int mouseZ, int k, int l, IRecipe toDraw)
 	 {
-		 
+
 		 //2
 		 if(toDraw instanceof ShapedOreRecipe)
 		 {
@@ -681,7 +681,7 @@ public class GuiResearchBook extends GuiScreen{
 	 {
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal("ec3.txt.magicianRecipe"), k+24, l+12, 0x222222);
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal("MRU Required: "+toDraw.mruRequired), k+26, l+83, 0x222222);
-		
+
 		 GL11.glDisable(GL11.GL_LIGHTING);
 		 RenderHelper.disableStandardItemLighting();
 		 RenderHelper.enableGUIStandardItemLighting();
@@ -691,14 +691,14 @@ public class GuiResearchBook extends GuiScreen{
 		 int percentageScaled = MathUtils.pixelatedTextureSize((int) (toDraw.mruRequired), 5000, 72);
 		 IIcon icon = (IIcon) EssentialCraftCore.proxy.getClientIcon("mru");
 		 MiscUtils.drawTexture(k+8, l-1+(74-percentageScaled)+20, icon, 16, percentageScaled-2, 2);
-		 
+
 		 this.drawSlotInRecipe(k, l, 13, 8);
 		 this.drawSlotInRecipe(k, l, 13+36, 8);
 		 this.drawSlotInRecipe(k, l, 13, 8+36);
 		 this.drawSlotInRecipe(k, l, 13+36, 8+36);
 		 this.drawSlotInRecipe(k, l, 13+18, 8+18);
 		 this.drawSlotInRecipe(k, l, 13+74, 8+18);
-		 
+
 		 if(toDraw.requiredItems[0]!=null)
 			 this.drawIS(toDraw.requiredItems[0].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26+18, l+25+18, mouseX, mouseZ, 0);
 		 if(toDraw.requiredItems[1]!=null)
@@ -709,12 +709,12 @@ public class GuiResearchBook extends GuiScreen{
 		 	this.drawIS(toDraw.requiredItems[3].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26, l+25+36, mouseX, mouseZ, 0);
 		 if(toDraw.requiredItems[4]!=null)
 			 this.drawIS(toDraw.requiredItems[4].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26+36, l+25+36, mouseX, mouseZ, 0);
-		 
+
 		 this.drawIS(toDraw.result, k+26+74, l+25+18, mouseX, mouseZ, 0);
-		 
+
 		 if(toDraw.requiredItems[0]!=null)
 			 this.drawIS(toDraw.requiredItems[0].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26+18, l+25+18, mouseX, mouseZ, 1);
-		 if(toDraw.requiredItems[1]!=null) 
+		 if(toDraw.requiredItems[1]!=null)
 			 this.drawIS(toDraw.requiredItems[1].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26, l+25, mouseX, mouseZ, 1);
 		 if(toDraw.requiredItems[2]!=null)
 			 this.drawIS(toDraw.requiredItems[2].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26+36, l+25, mouseX, mouseZ, 1);
@@ -722,11 +722,11 @@ public class GuiResearchBook extends GuiScreen{
 			 this.drawIS(toDraw.requiredItems[3].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26, l+25+36, mouseX, mouseZ, 1);
 		 if(toDraw.requiredItems[4]!=null)
 			 this.drawIS(toDraw.requiredItems[4].getISToDraw(Minecraft.getMinecraft().theWorld.getWorldTime()), k+26+36, l+25+36, mouseX, mouseZ, 1);
-		 
+
 		 this.drawIS(toDraw.result, k+26+74, l+25+18, mouseX, mouseZ, 1);
 		 return 80;
 	 }
-	 
+
 	 public int drawRadiatingChamberRecipe(int mouseX, int mouseZ, int k, int l, RadiatingChamberRecipe toDraw)
 	 {
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal("ec3.txt.radiatingRecipe"), k+8, l+12, 0x222222);
@@ -759,7 +759,7 @@ public class GuiResearchBook extends GuiScreen{
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal(StatCollector.translateToLocal("ec3.txt.format.lowerBalance")+addeddCF+balanceLower), k+44, l+32+36, 0x222222);
 
 		 this.fontRendererObj.drawString("MRU/t "+(int)toDraw.costModifier, k+44+18, l+32+18, 0x222222);
-		 
+
 		 GL11.glDisable(GL11.GL_LIGHTING);
 		 RenderHelper.disableStandardItemLighting();
 		 RenderHelper.enableGUIStandardItemLighting();
@@ -773,17 +773,17 @@ public class GuiResearchBook extends GuiScreen{
 		 this.drawSlotInRecipe(k, l, 13, 4+positionY);
 		 this.drawSlotInRecipe(k, l, 13+18, 22+positionY);
 		 this.drawSlotInRecipe(k, l, 13, 40+positionY);
-		 
+
 		 this.drawIS(toDraw.recipeItems[0], k+26, l+21+positionY, mouseX, mouseZ, 0);
 		 this.drawIS(toDraw.recipeItems[1], k+26, l+21+36+positionY, mouseX, mouseZ, 0);
 		 this.drawIS(toDraw.result, k+26+18, l+21+18+positionY, mouseX, mouseZ, 0);
-		 
+
 		 this.drawIS(toDraw.recipeItems[0], k+26, l+21+positionY, mouseX, mouseZ, 1);
 		 this.drawIS(toDraw.recipeItems[1], k+26, l+21+36+positionY, mouseX, mouseZ, 1);
 		 this.drawIS(toDraw.result, k+26+18, l+21+18+positionY, mouseX, mouseZ, 1);
 		 return 90;
 	 }
-	 
+
 	 public int drawStructureRecipe(int mouseX, int mouseZ, int k, int l, StructureRecipe toDraw)
 	 {
 		 try
@@ -805,7 +805,7 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawSB(blk, k+52+blk.x*12, l+32+highestStructureBlk*20+blk.z*12, mouseX, mouseZ, 0);
 		 }
 		 this.drawIS(recipe.referal, k+52, l+144, mouseX, mouseZ, 0);
-		 
+
 		 for(StructureBlock blk : recipe.structure)
 		 {
 			 if(!Config.renderStructuresFromAbove)
@@ -813,9 +813,9 @@ public class GuiResearchBook extends GuiScreen{
 			 else
 				 this.drawSB(blk, k+52+blk.x*12, l+32+highestStructureBlk*20+blk.z*12, mouseX, mouseZ, 1);
 		 }
-		 
+
 		 this.drawIS(recipe.referal, k+52, l+144, mouseX, mouseZ, 1);
-		 
+
 		 return 60+highestStructureBlk*20;
 		 }
 		 catch(Exception e)
@@ -824,32 +824,32 @@ public class GuiResearchBook extends GuiScreen{
 			 return 0;
 		 }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public int drawShapedAssemblerRecipe(int mouseX, int mouseZ, int k, int l, ShapedAssemblerRecipe toDraw)
 	 {
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal("ec3.txt.assemblerRecipe"), k+8, l+12, 0x222222);
 		 ShapedAssemblerRecipe recipe = (ShapedAssemblerRecipe) toDraw;
-		 
+
 		 RenderHelper.disableStandardItemLighting();
 		 RenderHelper.enableGUIStandardItemLighting();
 		 GL11.glColor3f(1, 1, 1);
 		 this.fontRendererObj.drawString(StatCollector.translateToLocal("MRU Required: "+toDraw.mruRequired), k+16, l+83, 0x222222);
-		 
+
 		 for(int i = 0; i < 9; ++i)
 		 {
 			 drawSlotInRecipe(k,l+6,(i%3)*18,(i/3)*18);
 		 }
 		 drawSlotInRecipe(k,l+6,80,(1)*18);
 		 MiscUtils.bindTexture("minecraft", "textures/gui/container/crafting_table.png");
-		 
+
 		 GL11.glColor3f(1, 1, 1);
 		 this.drawTexturedModalRect(k+78-10, l+23+18, 90, 35, 22, 15);
-		 
+
 		 Random rnd = new Random(mc.theWorld.getWorldTime()/20);
-		 
+
 		 int[] drawingID = new int[9];
-		 
+
 		 for(int i = 0; i < 9; ++i)
 		 {
 			 Object drawable = recipe.getInput()[i];
@@ -882,9 +882,9 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 23 + (i/3 * 18), mouseX, mouseZ, 0);
 			 }
 		 }
-		 
+
 		 this.drawIS(recipe.getRecipeOutput(), k + 93, l + 41, mouseX, mouseZ, 0);
-		 
+
 		 for(int i = 0; i < 9; ++i)
 		 {
 			 Object drawable = recipe.getInput()[i];
@@ -912,15 +912,15 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 23 + (i/3 * 18), mouseX, mouseZ, 1);
 			 }
 		 }
-		 
+
 		 this.drawIS(recipe.getRecipeOutput(), k + 93, l + 41, mouseX, mouseZ, 1);
-		 
-		 
+
+
 		 rnd = null;
-		 
+
 		 return 80;
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public int drawShapedOreRecipe(int mouseX, int mouseZ, int k, int l, ShapedOreRecipe toDraw)
 	 {
@@ -932,14 +932,14 @@ public class GuiResearchBook extends GuiScreen{
 		 }
 		 drawSlotInRecipe(k,l+6,80,(1)*18);
 		 MiscUtils.bindTexture("minecraft", "textures/gui/container/crafting_table.png");
-		 
+
 		 GL11.glColor3f(1, 1, 1);
 		 this.drawTexturedModalRect(k+78-10, l+23+18, 90, 35, 22, 15);
-		 
+
 		 Random rnd = new Random(mc.theWorld.getWorldTime()/20);
-		 
+
 		 int[] drawingID = new int[9];
-		 
+
 		 for(int i = 0; i < recipe.getRecipeSize(); ++i)
 		 {
 			 Object drawable = recipe.getInput()[i];
@@ -972,9 +972,9 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 23 + (i/3 * 18), mouseX, mouseZ, 0);
 			 }
 		 }
-		 
+
 		 this.drawIS(recipe.getRecipeOutput(), k + 93, l + 41, mouseX, mouseZ, 0);
-		 
+
 		 for(int i = 0; i < recipe.getRecipeSize(); ++i)
 		 {
 			 Object drawable = recipe.getInput()[i];
@@ -1002,15 +1002,15 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 23 + (i/3 * 18), mouseX, mouseZ, 1);
 			 }
 		 }
-		 
+
 		 this.drawIS(recipe.getRecipeOutput(), k + 93, l + 41, mouseX, mouseZ, 1);
-		 
-		 
+
+
 		 rnd = null;
-		 
+
 		 return (2)*18 + 20;
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public int drawShapelessOreRecipe(int mouseX, int mouseZ, int k, int l, ShapelessOreRecipe toDraw)
 	 {
@@ -1023,21 +1023,21 @@ public class GuiResearchBook extends GuiScreen{
 		 }
 		 int defaultX = 80;
 		 int defaultY = (input.size()/3)*18;
-		 
+
 		 int defaultYDraw = defaultY;
 		 if(defaultYDraw > 1*18) defaultYDraw = 1*18;
 
 		 drawSlotInRecipe(k,l,defaultX,defaultYDraw);
-		 
+
 		 MiscUtils.bindTexture("minecraft", "textures/gui/container/crafting_table.png");
-		 
+
 		 GL11.glColor3f(1, 1, 1);
 		 this.drawTexturedModalRect(k+defaultX-10, l+defaultYDraw+18, 90, 35, 22, 15);
-		 
+
 		 Random rnd = new Random(mc.theWorld.getWorldTime()/20);
-		 
+
 		 int[] drawingID = new int[9];
-		 
+
 		 for(int i = 0; i < input.size(); ++i)
 		 {
 			 Object drawable = input.get(i);
@@ -1070,9 +1070,9 @@ public class GuiResearchBook extends GuiScreen{
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 17 + (i/3 * 18), mouseX, mouseZ, 0);
 			 }
 		 }
-		 
+
 		 this.drawIS(toDraw.getRecipeOutput(), k + defaultX + 13, l + defaultYDraw + 17, mouseX, mouseZ, 0);
-		 
+
 		 for(int i = 0; i < input.size(); ++i)
 		 {
 			 Object drawable = input.get(i);
@@ -1099,17 +1099,17 @@ public class GuiResearchBook extends GuiScreen{
 			 {
 				 this.drawIS(needToDraw, k + 13 + (i%3*18), l + 17 + (i/3 * 18), mouseX, mouseZ, 1);
 			 }
-			 
+
 			 this.drawIS(toDraw.getRecipeOutput(), k + defaultX + 13, l + defaultYDraw + 17, mouseX, mouseZ, 1);
 		 }
-		 
-		 
-		 
+
+
+
 		 rnd = null;
-		 
+
 		 return (input.size()/3)*18 + 20;
 	 }
-	 
+
 	 public void drawSlotInRecipe(int k, int l, int defaultX, int defaultY)
 	 {
 	     GL11.glColor3f(1, 1, 1);
@@ -1123,7 +1123,7 @@ public class GuiResearchBook extends GuiScreen{
 		 this.drawGradientRect(k+12+17+defaultX, l+16+defaultY, k+12+18+defaultX, l+16+18+defaultY, 0xff990099, 0xff110011);
 		 this.drawGradientRect(k+12+defaultX, l+16+defaultY, k+12+18+defaultX, l+16+1+defaultY, 0xff660066, 0xff990099);
 	 }
-	 
+
 	 public List<String> parse(String s)
 	 {
 		 List<String> rtLst = new ArrayList<String>();
@@ -1163,7 +1163,7 @@ public class GuiResearchBook extends GuiScreen{
 		 }
 		 return rtLst;
 	 }
-	 
+
 	 public void drawDiscoveries(int mouseX, int mouseZ)
 	 {
 	     int k = (this.width - 256) / 2;
@@ -1220,7 +1220,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	     GL11.glColor3f(1, 1, 1);
 	    		 RenderHelper.disableStandardItemLighting();
 	    		 RenderHelper.enableGUIStandardItemLighting();
-	    		 
+
 	    		 if(currentCategory == null || currentCategory.specificBookTextures == null)
 	    			 this.mc.renderEngine.bindTexture(gui);
 	    		 else
@@ -1230,7 +1230,7 @@ public class GuiResearchBook extends GuiScreen{
 	    		 if(!hover)
 	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 0, 222, 20, 20);
 	    		 else
-	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 28, 222, 20, 20); 
+	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 28, 222, 20, 20);
 	    		 GL11.glColor3f(1, 1, 1);
 	    		 if(disc.displayStack != null)
 	    		 {
@@ -1238,35 +1238,35 @@ public class GuiResearchBook extends GuiScreen{
 	    			 GL11.glDisable(GL11.GL_LIGHTING);
 
 	    			 itemRender.renderItemAndEffectIntoGUI(fontRendererObj, this.mc.renderEngine, disc.displayStack, btn.xPosition+2, btn.yPosition+2);
-	    			 
+
 	    			 GL11.glPopMatrix();
 	    		 }
 	    		 else if(disc.displayTexture != null)
 	    		 {
 	    			 RenderHelper.enableStandardItemLighting();
-	    			 
+
 	    			 GL11.glEnable(GL11.GL_BLEND);
 	    			 GL11.glColor3f(1, 1, 1);
 	    			 GL11.glDisable(GL11.GL_LIGHTING);
-	    			 
+
 	    			 this.mc.renderEngine.bindTexture(disc.displayTexture);
 	    		     Tessellator tec = Tessellator.instance;
 	    		     tec.startDrawingQuads();
-	    		     
+
 	    		     tec.addVertexWithUV(btn.xPosition+2, btn.yPosition+2, 0, 0, 0);
 	    		     tec.addVertexWithUV(btn.xPosition+2, btn.yPosition+2+16, 0, 0, 1);
 	    		     tec.addVertexWithUV(btn.xPosition+2+16, btn.yPosition+2+16, 0, 1, 1);
 	    		     tec.addVertexWithUV(btn.xPosition+2+16, btn.yPosition+2, 0, 1, 0);
-	    		     
+
 	    		     tec.draw();
-	    		     
+
 	    		     GL11.glEnable(GL11.GL_LIGHTING);
 	    		     GL11.glDisable(GL11.GL_BLEND);
-	    			
+
 		    		 RenderHelper.disableStandardItemLighting();
 		    		 RenderHelper.enableGUIStandardItemLighting();
 	    		 }
-	    		 
+
 	    		 if(isCtrlKeyDown())
 	    		 {
 	    			 GL11.glTranslated(0, 0, 100);
@@ -1275,7 +1275,7 @@ public class GuiResearchBook extends GuiScreen{
 	    			 GL11.glColor3f(1, 1, 1);
 	    			 GL11.glTranslated(0, 0, -100);
 	    		 }
-	    		 
+
 	    		 RenderHelper.enableStandardItemLighting();
 	    	 }
 	     }
@@ -1318,7 +1318,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	 }
 	     }
 	 }
-	 
+
 	 public void drawCategories(int mouseX, int mouseZ)
 	 {
 	     int k = (this.width - 256) / 2;
@@ -1350,14 +1350,14 @@ public class GuiResearchBook extends GuiScreen{
 	    		 if(!hover)
 	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 0, 222, 20, 20);
 	    		 else
-	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 28, 222, 20, 20); 
+	    			 this.drawTexturedModalRect(btn.xPosition, btn.yPosition, 28, 222, 20, 20);
 	    		 if(cat.displayStack != null)
 	    		 {
 	    			 GL11.glPushMatrix();
 	    			 GL11.glDisable(GL11.GL_LIGHTING);
 
 	    			 itemRender.renderItemAndEffectIntoGUI(fontRendererObj, this.mc.renderEngine, cat.displayStack, btn.xPosition+2, btn.yPosition+2);
-	    			 
+
 	    			 GL11.glPopMatrix();
 	    		 }
 	    		 else if(cat.displayTexture != null)
@@ -1401,7 +1401,7 @@ public class GuiResearchBook extends GuiScreen{
 	    	 }
 	     }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public void drawIS(ItemStack toDraw, int pX, int pZ, int mX, int mZ, int phase)
 	 {
@@ -1471,7 +1471,7 @@ public class GuiResearchBook extends GuiScreen{
 			 }
 		 }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	public void drawSB(StructureBlock drawable, int pX, int pZ, int mX, int mZ, int phase)
 	 {
@@ -1536,18 +1536,18 @@ public class GuiResearchBook extends GuiScreen{
     		 }
 		 }
 	 }
-	 
+
 	 @Override
 	 protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_)
 	 {
 		 super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
 	 }
-	 
-	 protected void actionPerformed(GuiButton b) 
+
+	 protected void actionPerformed(GuiButton b)
 	 {
 		 if(ticksBeforePressing > 0)
 			 return;
-		 
+
 		 if(currentCategory == null)
 		 {
 			 CategoryEntry cat = ApiCore.categories.get(b.id);
@@ -1605,7 +1605,7 @@ public class GuiResearchBook extends GuiScreen{
 			 }
 		 }
 	 }
-	 
+
 	 @SuppressWarnings("unchecked")
 	protected void renderToolTip(ItemStack p_146285_1_, int p_146285_2_, int p_146285_3_)
 	 {
@@ -1626,13 +1626,13 @@ public class GuiResearchBook extends GuiScreen{
 	     FontRenderer font = p_146285_1_.getItem().getFontRenderer(p_146285_1_);
 	     drawHoveringText(list, p_146285_2_, p_146285_3_, (font == null ? fontRendererObj : font));
 	 }
-	 
+
 	 @SuppressWarnings("rawtypes")
 	protected void func_146283_a(List p_146283_1_, int p_146283_2_, int p_146283_3_)
 	    {
 		 //TODO listAdditions
 		 	hoveringText.add(new Object[]{p_146283_1_,p_146283_2_,p_146283_3_,fontRendererObj});
-	        //drawHoveringText(p_146283_1_, p_146283_2_, p_146283_3_, fontRendererObj);   
+	        //drawHoveringText(p_146283_1_, p_146283_2_, p_146283_3_, fontRendererObj);
 	    }
 
 	    @SuppressWarnings({ "unchecked", "rawtypes" })

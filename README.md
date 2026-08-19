@@ -1,6 +1,21 @@
-# EssentialCraft3
-EssentialCraft 3 is a huge magic themed industrial mod, which adds a lot of content to the game. A new energy system, recipes, tools, armor, devices, bosses - even a new dimension exists!
+# 🔮 EssentialCraft 3.5 Patched
 
-Feel free to report bugs. However, please, attach a crash report when reporting bugs!
+An updated version of [EssentialCraft 3 by Modbder](https://www.curseforge.com/minecraft/mc-mods/essentialcraft-3).
 
-EssentialCraft is redistributed under CreativeCommons 4.0 share-alike license. license(http://creativecommons.org/licenses/by-sa/4.0/)
+---
+
+## ❓ Why This Exists
+Original mod has been unmaintained since 2016, and while a couple of forks exist across GitHub, none of them were successful enough to be released.
+
+My goal is to bring the codebase to a stable state, after which content adjustments and gameplay rebalancing will be done.
+
+## 🙏 Special Thanks
+- English localization fix ~ RaidhoSketch
+
+## 📜 Updated Description
+EssentialCraft 3 is a huge technomagical mod which adds a new energy system, MRU (Magical Radiation Unit), and various ways to harness it. 
+
+There are a lot of new devices for automation means, new weapon types and armor sets, accessories and ways to interact with MRU directly, including irradiating the world around you.
+
+Also features a new dimension and a unique boss!
+

@@ -9,6 +9,7 @@
 - Custom font used by Knowledge book; now uses default MC's one
 - Alternative Main Menu GUIs
 - WAILA compat; to be rewritten
+- Automatic version checker; to be updated
 ## v4.6.7
 
 ---

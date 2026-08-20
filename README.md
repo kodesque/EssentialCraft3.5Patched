@@ -2,6 +2,8 @@
 
 An updated version of [EssentialCraft 3 by Modbder](https://www.curseforge.com/minecraft/mc-mods/essentialcraft-3).
 
+![Excluded Dependency DummyCore](https://img.shields.io/badge/Excluded_Dependency-DummyCore-purple.svg?labelColor=grey&style=for-the-badge)
+
 ---
 
 ## ❓ Why This Exists

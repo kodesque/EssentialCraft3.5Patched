@@ -1,9 +1,9 @@
 package ec3.api;
 
 public enum EnumSpellType {
-	
-	CONSUMING,
-	MIRACLE,
-	SORCERY;
+
+    CONSUMING,
+    MIRACLE,
+    SORCERY;
 
 }

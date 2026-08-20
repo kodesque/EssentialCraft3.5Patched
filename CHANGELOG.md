@@ -1,16 +1,20 @@
 # Essential Craft 3.5 Changelog
 ## v4.6.8
 
+### Changed:
+- Merged DummyCore; updated to ALPHA-2.0
+
 ---
 ### Removed:
 - Custom font used by Knowledge book; now uses default MC's one
 - Alternative Main Menu GUIs
+- WAILA compat; to be rewritten
 ## v4.6.7
 
 ---
 ### Changed:
 - Mod versioning convention: v4.6.1710.67 -> 4.6.7
-- Mod change logging convention: txt -> md; improved readability; only gameplay-relevant changes
+- Mod change logging convention: txt -> md; improved readability; only user-relevant changes
 - Updated en_US.lang (courtesy of @RaidhoSketch)
 ### Fixed:
 - (Crash) EnderGenerator not recognizing mobs from Hardcore Ender Expansion

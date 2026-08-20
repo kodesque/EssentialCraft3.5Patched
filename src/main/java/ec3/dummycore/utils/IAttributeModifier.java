@@ -5,13 +5,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface IAttributeModifier {
-    String getType(ItemStack var1, EntityPlayer var2);
 
-    double getValue(ItemStack var1, EntityPlayer var2);
+    public abstract String getType(ItemStack stack, EntityPlayer p);
 
-    IAttribute getAttribute(ItemStack var1, EntityPlayer var2);
+    public abstract double getValue(ItemStack stack, EntityPlayer p);
 
-    String last5OfUUID(ItemStack var1, EntityPlayer var2);
+    public abstract IAttribute getAttribute(ItemStack stack, EntityPlayer p);
 
-    int getOperation(ItemStack var1, EntityPlayer var2);
+    public abstract String last5OfUUID(ItemStack stack, EntityPlayer p);
+
+    public abstract int getOperation(ItemStack stack, EntityPlayer p);
+
 }

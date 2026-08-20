@@ -1,17 +1,17 @@
 package ec3.client.gui;
 
-import DummyCore.Utils.MiscUtils;
-import ec3.common.inventory.ContainerMIMInventoryStorage;
-import ec3.common.tile.TileNewMIMInventoryStorage;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class GuiMIMInventoryStorage extends GuiContainer{
-	
-	TileNewMIMInventoryStorage tile;
-	
-    public GuiMIMInventoryStorage(InventoryPlayer inventoryPlayer, TileNewMIMInventoryStorage t)
-    {
+import ec3.common.inventory.ContainerMIMInventoryStorage;
+import ec3.common.tile.TileNewMIMInventoryStorage;
+import ec3.dummycore.utils.MiscUtils;
+
+public class GuiMIMInventoryStorage extends GuiContainer {
+
+    TileNewMIMInventoryStorage tile;
+
+    public GuiMIMInventoryStorage(InventoryPlayer inventoryPlayer, TileNewMIMInventoryStorage t) {
         super(new ContainerMIMInventoryStorage(inventoryPlayer, t));
         tile = t;
 
@@ -19,13 +19,13 @@ public class GuiMIMInventoryStorage extends GuiContainer{
         ySize = 222;
     }
 
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks,int mX, int mY) {
-		int k = (this.width - this.xSize)/2;
-		int l = (this.height - this.ySize)/2;
-		
-		MiscUtils.bindTexture("essentialcraft", "textures/gui/magical_chest.png");
-        
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mX, int mY) {
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+
+        MiscUtils.bindTexture("essentialcraft", "textures/gui/magical_chest.png");
+
         this.drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
-	}
+    }
 }

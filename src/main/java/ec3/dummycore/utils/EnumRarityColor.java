@@ -1,6 +1,7 @@
 package ec3.dummycore.utils;
 
 public enum EnumRarityColor {
+
     BROKEN("8", "Broken"),
     COMMON("f", "Common"),
     GOOD("a", "Good"),
@@ -12,37 +13,34 @@ public enum EnumRarityColor {
     EXCEPTIONAL("b", "Exceptional"),
     PERFECT("3", "Perfect"),
     ULTIMATE("c", "Ultimate"),
-    TURQUOISE("4", "Turquoise");
+    TURQUOISE("4", "Turquoise"),;
+
+    EnumRarityColor(String s, String s1) {
+        value = s;
+        name = s1;
+    }
 
     private String value;
     private String name;
 
-    EnumRarityColor(String s, String s1) {
-        this.value = s;
-        this.name = s1;
-    }
-
     public String getRarityColor() {
         String ret = new String();
-        ret = ret + "§";
-        ret = ret + this.value;
+        ret += "\247";
+        ret += value;
         return ret;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public static ec3.dummycore.utils.EnumRarityColor getColorByHex(String hex) {
+    public static EnumRarityColor getColorByHex(String hex) {
         EnumRarityColor retColor = BROKEN;
-
-        for(int i = 0; i < values().length; ++i) {
-            ec3.dummycore.utils.EnumRarityColor color = values()[i];
-            if (color.value.equalsIgnoreCase(hex)) {
-                return color;
-            }
+        for (int i = 0; i < values().length; ++i) {
+            EnumRarityColor color = values()[i];
+            if (color.value.equalsIgnoreCase(hex)) return color;
         }
-
         return retColor;
     }
+
 }

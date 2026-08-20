@@ -1,13 +1,11 @@
 package ec3.dummycore.utils;
 
-import DummyCore.Utils.Coord3D;
-import DummyCore.Utils.DummyData;
-
 public interface ITEHasGameData {
-    String getData();
 
-    void setData(DummyData[] var1);
+    public abstract String getData();
 
-    Coord3D getPosition();
+    public abstract void setData(DummyData[] data);
+
+    public abstract Coord3D getPosition();
+
 }
-

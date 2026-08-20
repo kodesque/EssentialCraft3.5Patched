@@ -3,6 +3,9 @@ package ec3.common.registry;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.config.Configuration;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import ec3.common.tile.TileAMINEjector;
 import ec3.common.tile.TileAMINInjector;
@@ -78,105 +81,99 @@ import ec3.common.tile.TileecHoldingChamber;
 import ec3.common.tile.TileecRedstoneController;
 import ec3.common.tile.TileecStateChecker;
 import ec3.utils.cfg.Config;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.config.Configuration;
 
 public class TileRegistry {
-	
-	public static final List<Class<? extends TileEntity>> cfgDependant = new ArrayList<Class<? extends TileEntity>>();
-	
-	public static void register()
-	{
-		addTileToMapping(TileecController.class);
-		addTileToMapping(TileecAcceptor.class);
-		addTileToMapping(TileecBalancer.class);
-		addTileToMapping(TileecEjector.class);
-		addTileToMapping(TileecHoldingChamber.class);
-		addTileToMapping(TileecRedstoneController.class);
-		addTileToMapping(TileecStateChecker.class);
-		addTileToMapping(TileRayTower.class);
-		addTileToMapping(TileCorruption.class);
-		addTileToMapping(TileMoonWell.class);
-		addTileToMapping(TileSolarPrism.class);
-		addTileToMapping(TileSunRayAbsorber.class);
-		addTileToMapping(TileColdDistillator.class);
-		addTileToMapping(TileFlowerBurner.class);
-		addTileToMapping(TileHeatGenerator.class);
-		addTileToMapping(TileEnderGenerator.class);
-		addTileToMapping(TileMagicianTable.class);
-		addTileToMapping(TileMagicalQuarry.class);
-		addTileToMapping(TileMonsterHolder.class);
-		addTileToMapping(TilePotionSpreader.class);
-		addTileToMapping(TileMagicalEnchanter.class);
-		addTileToMapping(TileMonsterHarvester.class);
-		addTileToMapping(TileMagicalRepairer.class);
-		addTileToMapping(TileMatrixAbsorber.class);
-		addTileToMapping(TileRadiatingChamber.class);
-		addTileToMapping(TileMagmaticSmelter.class);
-		addTileToMapping(TileMagicalJukebox.class);
-		addTileToMapping(TileElementalCrystal.class);
-		addTileToMapping(TileCrystalFormer.class);
-		addTileToMapping(TileCrystalController.class);
-		addTileToMapping(TileCrystalExtractor.class);
-		addTileToMapping(TileChargingChamber.class);
-		addTileToMapping(TileMagicalTeleporter.class);
-		addTileToMapping(TileMagicalFurnace.class);
-		addTileToMapping(TileEmberForge.class);
-		addTileToMapping(TileMRUCoil_Hardener.class);
-		addTileToMapping(TileMRUCoil.class);
-		addTileToMapping(TileCorruptionCleaner.class);
-		addTileToMapping(TileMRUReactor.class);
-		addTileToMapping(TileMINEjector.class);
-		addTileToMapping(TileAMINEjector.class);
-		addTileToMapping(TileMINInjector.class);
-		addTileToMapping(TileAMINInjector.class);
-		addTileToMapping(TileMIM.class);
-		addTileToMapping(TileDarknessObelisk.class);
-		addTileToMapping(TileUltraHeatGenerator.class);
-		addTileToMapping(TileUltraFlowerBurner.class);
-		addTileToMapping(TileMagicalAssembler.class);
-		addTileToMapping(TileMagicalMirror.class);
-		addTileToMapping(TileMagicalDisplay.class);
-		addTileToMapping(TileMithrilineCrystal.class);
-		addTileToMapping(TileMithrilineFurnace.class);
-		addTileToMapping(TilePlayerPentacle.class);
-		addTileToMapping(TileWindRune.class);
-		addTileToMapping(TileRightClicker.class);
-		addTileToMapping(TileRedstoneTransmitter.class);
-		addTileToMapping(TileMagicalHopper.class);
-		addTileToMapping(TileDemonicPentacle.class);
-		addTileToMapping(TileWeaponMaker.class);
-		addTileToMapping(TileFurnaceMagic.class);
-		addTileToMapping(TileMagicalChest.class);
-		addTileToMapping(TileNewMIMInventoryStorage.class);
-		addTileToMapping(TileNewMIM.class);
-		addTileToMapping(TileNewMIMScreen.class);
-		addTileToMapping(TileNewMIMCraftingManager.class);
-		addTileToMapping(TileNewMIMExportNode.class);
-		addTileToMapping(TileNewMIMImportNode.class);
-		addTileToMapping(TileAdvancedBlockBreaker.class);
-		addTileToMapping(TileNewMIMExportNode_Persistant.class);
-		addTileToMapping(TileNewMIMImportNode_Persistant.class);
-		addTileToMapping(TileCrafter.class);
-		addTileToMapping(TileCreativeMRUSource.class);
-		addTileToMapping(TileAnimalSeparator.class);
-	}
-	
-	public static void addTileToMapping(Class<? extends TileEntity> tile)
-	{
-		GameRegistry.registerTileEntity(tile, "ec3:"+tile.getCanonicalName());
-		try
-		{
-			if(tile.getMethod("setupConfig", Configuration.class) != null)
-			{
-				cfgDependant.add(tile);
-				tile.getMethod("setupConfig", Configuration.class).invoke(null, Config.config);
-			}
-		}catch(Exception e)
-		{
-			return;
-		}
-		
-	}
+
+    public static final List<Class<? extends TileEntity>> cfgDependant = new ArrayList<Class<? extends TileEntity>>();
+
+    public static void register() {
+        addTileToMapping(TileecController.class);
+        addTileToMapping(TileecAcceptor.class);
+        addTileToMapping(TileecBalancer.class);
+        addTileToMapping(TileecEjector.class);
+        addTileToMapping(TileecHoldingChamber.class);
+        addTileToMapping(TileecRedstoneController.class);
+        addTileToMapping(TileecStateChecker.class);
+        addTileToMapping(TileRayTower.class);
+        addTileToMapping(TileCorruption.class);
+        addTileToMapping(TileMoonWell.class);
+        addTileToMapping(TileSolarPrism.class);
+        addTileToMapping(TileSunRayAbsorber.class);
+        addTileToMapping(TileColdDistillator.class);
+        addTileToMapping(TileFlowerBurner.class);
+        addTileToMapping(TileHeatGenerator.class);
+        addTileToMapping(TileEnderGenerator.class);
+        addTileToMapping(TileMagicianTable.class);
+        addTileToMapping(TileMagicalQuarry.class);
+        addTileToMapping(TileMonsterHolder.class);
+        addTileToMapping(TilePotionSpreader.class);
+        addTileToMapping(TileMagicalEnchanter.class);
+        addTileToMapping(TileMonsterHarvester.class);
+        addTileToMapping(TileMagicalRepairer.class);
+        addTileToMapping(TileMatrixAbsorber.class);
+        addTileToMapping(TileRadiatingChamber.class);
+        addTileToMapping(TileMagmaticSmelter.class);
+        addTileToMapping(TileMagicalJukebox.class);
+        addTileToMapping(TileElementalCrystal.class);
+        addTileToMapping(TileCrystalFormer.class);
+        addTileToMapping(TileCrystalController.class);
+        addTileToMapping(TileCrystalExtractor.class);
+        addTileToMapping(TileChargingChamber.class);
+        addTileToMapping(TileMagicalTeleporter.class);
+        addTileToMapping(TileMagicalFurnace.class);
+        addTileToMapping(TileEmberForge.class);
+        addTileToMapping(TileMRUCoil_Hardener.class);
+        addTileToMapping(TileMRUCoil.class);
+        addTileToMapping(TileCorruptionCleaner.class);
+        addTileToMapping(TileMRUReactor.class);
+        addTileToMapping(TileMINEjector.class);
+        addTileToMapping(TileAMINEjector.class);
+        addTileToMapping(TileMINInjector.class);
+        addTileToMapping(TileAMINInjector.class);
+        addTileToMapping(TileMIM.class);
+        addTileToMapping(TileDarknessObelisk.class);
+        addTileToMapping(TileUltraHeatGenerator.class);
+        addTileToMapping(TileUltraFlowerBurner.class);
+        addTileToMapping(TileMagicalAssembler.class);
+        addTileToMapping(TileMagicalMirror.class);
+        addTileToMapping(TileMagicalDisplay.class);
+        addTileToMapping(TileMithrilineCrystal.class);
+        addTileToMapping(TileMithrilineFurnace.class);
+        addTileToMapping(TilePlayerPentacle.class);
+        addTileToMapping(TileWindRune.class);
+        addTileToMapping(TileRightClicker.class);
+        addTileToMapping(TileRedstoneTransmitter.class);
+        addTileToMapping(TileMagicalHopper.class);
+        addTileToMapping(TileDemonicPentacle.class);
+        addTileToMapping(TileWeaponMaker.class);
+        addTileToMapping(TileFurnaceMagic.class);
+        addTileToMapping(TileMagicalChest.class);
+        addTileToMapping(TileNewMIMInventoryStorage.class);
+        addTileToMapping(TileNewMIM.class);
+        addTileToMapping(TileNewMIMScreen.class);
+        addTileToMapping(TileNewMIMCraftingManager.class);
+        addTileToMapping(TileNewMIMExportNode.class);
+        addTileToMapping(TileNewMIMImportNode.class);
+        addTileToMapping(TileAdvancedBlockBreaker.class);
+        addTileToMapping(TileNewMIMExportNode_Persistant.class);
+        addTileToMapping(TileNewMIMImportNode_Persistant.class);
+        addTileToMapping(TileCrafter.class);
+        addTileToMapping(TileCreativeMRUSource.class);
+        addTileToMapping(TileAnimalSeparator.class);
+    }
+
+    public static void addTileToMapping(Class<? extends TileEntity> tile) {
+        GameRegistry.registerTileEntity(tile, "ec3:" + tile.getCanonicalName());
+        try {
+            if (tile.getMethod("setupConfig", Configuration.class) != null) {
+                cfgDependant.add(tile);
+                tile.getMethod("setupConfig", Configuration.class)
+                    .invoke(null, Config.config);
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+    }
 
 }

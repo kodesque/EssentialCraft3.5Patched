@@ -1,70 +1,83 @@
 package ec3.dummycore.creativetabs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ec3.dummycore.core.CoreInitializer;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ec3.dummycore.core.CoreInitializer;
 
+/**
+ * @version From DummyCore 1.0
+ * @author Modbder
+ *         Do not change anything here! Used to work with Blocks.
+ */
 public final class CreativePageBlocks extends CreativeTabs {
+
     public int delayTime = 0;
-    public ItemStack displayStack;
+    public ItemStack displayStack = new ItemStack(Blocks.crafting_table, 1, 0);
     private final String tabLabel;
-    public List<ItemStack> blockList;
-    public int tries;
+    public List<ItemStack> blockList = new ArrayList<ItemStack>();
+    public int tries = 0;
+    public ItemStack overrideDisplayStack;
 
     public CreativePageBlocks(String m) {
         super(m + " Blocks");
-        this.displayStack = new ItemStack(Blocks.crafting_table, 1, 0);
-        this.blockList = new ArrayList<>();
-        this.tries = 0;
-        this.tabLabel = m + " Blocks";
+        tabLabel = m + " Blocks";
     }
 
-    public ItemStack func_151244_d() {
-        CoreInitializer.proxy.chooseDisplayStack(this);
+    public ItemStack getIconItemStack() {
+        if (overrideDisplayStack != null) return overrideDisplayStack;
+        CoreInitializer.proxy.choseDisplayStack(this);
         return this.displayStack;
     }
 
     public List<ItemStack> initialiseBlocksList() {
-        ++this.tries;
-        if (this.blockList.isEmpty() && this.tries <= 1) {
-            for(int t = 0; t < Block.blockRegistry.getKeys().size(); ++t) {
-                Block b = Block.getBlockFromName((String)Block.blockRegistry.getKeys().toArray()[t]);
+        ++tries;
+        if (this.blockList.isEmpty() && tries <= 1) {
+            for (int t = 0; t < Block.blockRegistry.getKeys()
+                .size(); ++t) {
+                Block b = Block.getBlockFromName(
+                    (String) Block.blockRegistry.getKeys()
+                        .toArray()[t]);
                 if (b != null && b.getCreativeTabToDisplayOn() == this) {
                     Item itm = Item.getItemFromBlock(b);
                     if (itm != null) {
-                        List<ItemStack> lst = new ArrayList<>();
+                        List<ItemStack> lst = new ArrayList<ItemStack>();
                         itm.getSubItems(itm, this, lst);
                         if (!lst.isEmpty()) {
-                            for(ItemStack stk : lst) {
+                            for (ItemStack stk : lst) {
                                 if (stk != null) {
                                     this.blockList.add(stk);
                                 }
                             }
+
                         }
                     }
+
                 }
             }
 
-            return this.blockList;
+            return blockList;
         } else {
             return this.blockList;
         }
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public String getTranslatedTabLabel() {
         return this.tabLabel;
     }
 
+    @Override
     public Item getTabIconItem() {
-        return this.displayStack.getItem();
+        return displayStack.getItem();
     }
 }

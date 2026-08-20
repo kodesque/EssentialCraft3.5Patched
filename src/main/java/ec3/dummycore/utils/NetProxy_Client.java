@@ -1,15 +1,11 @@
 package ec3.dummycore.utils;
 
-import DummyCore.Client.GuiMainMenuOld;
-import DummyCore.Client.GuiMainMenuVanilla;
-import DummyCore.Client.MainMenuRegistry;
-import DummyCore.Core.CoreInitialiser;
-import DummyCore.CreativeTabs.CreativePageBlocks;
-import DummyCore.CreativeTabs.CreativePageItems;
-import DummyCore.Utils.DummyConfig;
-import DummyCore.Utils.GuiContainerLibrary;
-import DummyCore.Utils.NetProxy_Server;
-import DummyCore.Utils.Notifier;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.Hashtable;
+import java.util.Random;
+import java.util.Set;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -23,46 +19,66 @@ import net.minecraft.network.INetHandler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Constructor;
-import java.util.Hashtable;
-import java.util.Random;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.Logger;
+
+import com.google.common.collect.SetMultimap;
+import com.google.common.collect.Table;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import ec3.dummycore.core.CoreInitializer;
+import ec3.dummycore.creativetabs.CreativePageBlocks;
+import ec3.dummycore.creativetabs.CreativePageItems;
 
 public class NetProxy_Client extends NetProxy_Server {
-    public static final Hashtable<String, ShaderGroup> shaders = new Hashtable();
 
-    public NetProxy_Client() {
-    }
+    public static final Hashtable<String, ShaderGroup> shaders = new Hashtable<String, ShaderGroup>();
 
+    @Override
     public EntityPlayer getPlayerOnSide(INetHandler handler) {
-        return handler instanceof NetHandlerPlayClient ? Minecraft.func_71410_x().field_71439_g : null;
-    }
-
-    public void registerInfo() {
-        MainMenuRegistry.registerNewGui(GuiMainMenuVanilla.class, "[DC] Vanilla", "Just a simple vanilla MC gui.");
-        MainMenuRegistry.registerNewGui(GuiMainMenuOld.class, "[DC] Old Vanilla", "An old MC gui.");
-    }
-
-    public void registerInit() {
-        if (CoreInitialiser.cfg.removeMissingTexturesErrors) {
-            Logger logger = LogManager.getLogger(TextureMap.class);
-            org.apache.logging.log4j.core.Logger log = (org.apache.logging.log4j.core.Logger)logger;
-            log.setLevel(Level.OFF);
+        if (handler instanceof NetHandlerPlayClient) {
+            return Minecraft.getMinecraft().thePlayer;
         }
-
+        return null;
     }
 
+    public EntityPlayer getClientPlayer() {
+        return Minecraft.getMinecraft().thePlayer;
+    }
+
+    @Override
+    public void registerInfo() {
+        TimerHijack.initMCTimer();
+    }
+
+    @Override
+    public void registerInit() {
+        if (((DummyConfig) CoreInitializer.cfg).removeMissingTexturesErrors) {
+            try {
+                Class<TextureMap> textureMap = TextureMap.class;
+                Field logger = textureMap.getDeclaredFields()[0];
+                boolean canAccess = logger.isAccessible();
+                if (!canAccess) logger.setAccessible(true);
+                Logger lg = Logger.class.cast(logger.get(null));
+                lg.setLevel(Level.OFF);
+
+                if (!canAccess) logger.setAccessible(false);
+            } catch (Exception e) {
+                Notifier.notifyError("DummyCore was sadly unable to remove missing texture errors :(");
+            }
+        }
+    }
+
+    @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         try {
-            Class<?> guiClass = Class.forName((String) DummyCore.Utils.GuiContainerLibrary.guis.get(ID));
+            Class<?> guiClass = Class.forName(GuiContainerLibrary.guis.get(ID));
             Constructor<?> constrctr_gui = guiClass.getConstructor(Container.class, TileEntity.class);
-            Class<?> containerClass = Class.forName((String) GuiContainerLibrary.containers.get(ID));
+            Class<?> containerClass = Class.forName(GuiContainerLibrary.containers.get(ID));
             Constructor<?> constrctr = containerClass.getConstructor(InventoryPlayer.class, TileEntity.class);
-            Object obj = constrctr.newInstance(player.field_71071_by, world.func_147438_o(x, y, z));
-            return constrctr_gui.newInstance(obj, world.func_147438_o(x, y, z));
+            Object obj = constrctr.newInstance(player.inventory, world.getTileEntity(x, y, z));
+            return constrctr_gui.newInstance(obj, world.getTileEntity(x, y, z));
         } catch (Exception e) {
             Notifier.notifySimple("Unable to open GUI for ID " + ID);
             e.printStackTrace();
@@ -70,65 +86,101 @@ public class NetProxy_Client extends NetProxy_Server {
         }
     }
 
-    public void initShaders(ResourceLocation rLoc) {
-        Minecraft mc = Minecraft.func_71410_x();
-        EntityRenderer er = mc.field_71460_t;
+    @SuppressWarnings("unchecked")
+    @Override
+    public void removeMissingTextureErrors() {
+        if (((DummyConfig) CoreInitializer.cfg).removeMissingTexturesErrors) {
+            try {
+                Class<FMLClientHandler> fmlClientHandler = FMLClientHandler.class;
+                Field missingTextures = fmlClientHandler.getDeclaredField("missingTextures");
+                Field badTextureDomains = fmlClientHandler.getDeclaredField("badTextureDomains");
+                Field brokenTextures = fmlClientHandler.getDeclaredField("brokenTextures");
+                boolean canAccess = missingTextures.isAccessible();
+                if (!canAccess) missingTextures.setAccessible(true);
 
-        try {
-            if (rLoc == null) {
-                er.func_147703_b();
-            } else {
-                er.field_147707_d = new ShaderGroup(mc.func_110434_K(), mc.func_110442_L(), mc.func_147110_a(), rLoc);
-                er.field_147707_d.func_148026_a(mc.field_71443_c, mc.field_71440_d);
+                SetMultimap<String, ResourceLocation> smmp = SetMultimap.class
+                    .cast(missingTextures.get(FMLClientHandler.instance()));
+                smmp.clear();
+
+                if (!canAccess) missingTextures.setAccessible(false);
+
+                canAccess = badTextureDomains.isAccessible();
+                if (!canAccess) badTextureDomains.setAccessible(true);
+
+                Set<String> set = Set.class.cast(badTextureDomains.get(FMLClientHandler.instance()));
+                set.clear();
+
+                if (!canAccess) badTextureDomains.setAccessible(false);
+
+                canAccess = brokenTextures.isAccessible();
+                if (!canAccess) brokenTextures.setAccessible(true);
+
+                Table<String, String, Set<ResourceLocation>> table = Table.class
+                    .cast(brokenTextures.get(FMLClientHandler.instance()));
+                table.clear();
+
+                if (!canAccess) brokenTextures.setAccessible(false);
+
+                Notifier.notifyWarn(
+                    "DummyCore has removed all possible texture errors the FML could output to the console!");
+            } catch (Exception e) {
+                Notifier.notifyError("DummyCore was sadly unable to remove missing texture errors :(");
+                e.printStackTrace();
             }
-
-        } catch (Exception var5) {
         }
     }
 
+    @Override
+    public void initShaders(ResourceLocation rLoc) {
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityRenderer er = mc.entityRenderer;
+        try {
+            if (rLoc == null) {
+                er.deactivateShader();
+            } else {
+                er.theShaderGroup = new ShaderGroup(
+                    mc.getTextureManager(),
+                    mc.getResourceManager(),
+                    mc.getFramebuffer(),
+                    rLoc);
+                er.theShaderGroup.createBindFramebuffers(mc.displayWidth, mc.displayHeight);
+            }
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    @Override
     public void choseDisplayStack(CreativePageBlocks blocks) {
-        World w = Minecraft.func_71410_x().field_71441_e;
-        if (w.field_72995_K && w.func_72820_D() % 60L == 0L) {
+        World w = Minecraft.getMinecraft().theWorld;
+        if (w.isRemote && w.getWorldTime() % 60 == 0) {
             blocks.delayTime = 0;
             blocks.blockList = blocks.initialiseBlocksList();
             if (blocks.blockList != null && !blocks.blockList.isEmpty()) {
                 Random rand;
-                if (DummyCore.Utils.DummyConfig.shouldChangeImage) {
-                    rand = new Random(w.func_72820_D());
-                } else {
-                    rand = new Random(0L);
-                }
-
+                if (DummyConfig.shouldChangeImage) rand = new Random(w.getWorldTime());
+                else rand = new Random(0);
                 int random = rand.nextInt(blocks.blockList.size());
-                ItemStack itm = (ItemStack)blocks.blockList.get(random);
-                if (itm != null && itm.func_77973_b() != null) {
-                    blocks.displayStack = itm;
-                }
+                ItemStack itm = blocks.blockList.get(random);
+                if (itm != null && itm.getItem() != null) blocks.displayStack = itm;
             }
         }
-
     }
 
+    @Override
     public void choseDisplayStack(CreativePageItems items) {
-        World w = Minecraft.func_71410_x().field_71441_e;
-        if (w.field_72995_K && w.func_72820_D() % 60L == 0L) {
+        World w = Minecraft.getMinecraft().theWorld;
+        if (w.isRemote && w.getWorldTime() % 60 == 0) {
             items.delayTime = 0;
             items.itemList = items.initialiseItemsList();
             if (items.itemList != null && !items.itemList.isEmpty()) {
                 Random rand;
-                if (DummyConfig.shouldChangeImage) {
-                    rand = new Random(w.func_72820_D());
-                } else {
-                    rand = new Random(0L);
-                }
-
+                if (DummyConfig.shouldChangeImage) rand = new Random(w.getWorldTime());
+                else rand = new Random(0);
                 int random = rand.nextInt(items.itemList.size());
-                ItemStack itm = (ItemStack)items.itemList.get(random);
-                if (itm != null && itm.func_77973_b() != null) {
-                    items.displayStack = itm;
-                }
+                ItemStack itm = items.itemList.get(random);
+                if (itm != null && itm.getItem() != null) items.displayStack = itm;
             }
         }
-
     }
 }

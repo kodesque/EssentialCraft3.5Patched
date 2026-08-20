@@ -9,11 +9,12 @@ import net.minecraft.world.World;
  * 
  */
 public interface IColdBlock {
-	
-	/**
-	 * This is used to check how many mru per tick will this block add
-	 * @param meta - the metadata of the block 
-	 * @return amount of mru per tick will this block add
-	 */
-	public float getColdModifier(World w, int x, int y, int z, int meta);
+
+    /**
+     * This is used to check how many mru per tick will this block add
+     * 
+     * @param meta - the metadata of the block
+     * @return amount of mru per tick will this block add
+     */
+    public float getColdModifier(World w, int x, int y, int z, int meta);
 }

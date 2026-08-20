@@ -1,465 +1,547 @@
 package ec3.dummycore.utils;
 
-import DummyCore.Utils.Coord3D;
-import DummyCore.Utils.Pair;
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-
 public class Generator {
-    public static final DummyCore.Utils.Generator instance = new DummyCore.Utils.Generator();
+
+    public static final Generator instance = new Generator();
+
     public World worldObj;
     public boolean isWorking;
     public boolean hasOffset;
+
     public Coord3D offset;
+
     public Block setTo;
     public int genMetadata;
+
     public int flag;
 
-    public Generator() {
-    }
-
     public static AxisAlignedBB centerBB(AxisAlignedBB genBox) {
-        return AxisAlignedBB.func_72330_a(genBox.field_72340_a - (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F, genBox.field_72338_b - (genBox.field_72337_e - genBox.field_72338_b) / (double)2.0F, genBox.field_72339_c - (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F, genBox.field_72336_d - (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F, genBox.field_72337_e - (genBox.field_72337_e - genBox.field_72338_b) / (double)2.0F, genBox.field_72334_f - (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F);
+        return AxisAlignedBB.getBoundingBox(
+            genBox.minX - ((genBox.maxX - genBox.minX) / 2),
+            genBox.minY - ((genBox.maxY - genBox.minY) / 2),
+            genBox.minZ - ((genBox.maxZ - genBox.minZ) / 2),
+            genBox.maxX - ((genBox.maxX - genBox.minX) / 2),
+            genBox.maxY - ((genBox.maxY - genBox.minY) / 2),
+            genBox.maxZ - ((genBox.maxZ - genBox.minZ) / 2));
     }
 
     public static AxisAlignedBB normaliseBB(AxisAlignedBB genBox) {
-        double minX = genBox.field_72340_a;
-        double minY = genBox.field_72338_b;
-        double minZ = genBox.field_72339_c;
-        double maxX = genBox.field_72336_d;
-        double maxY = genBox.field_72337_e;
-        double maxZ = genBox.field_72334_f;
-        return AxisAlignedBB.func_72330_a(maxX < minX ? genBox.field_72336_d : genBox.field_72340_a, maxY < minY ? genBox.field_72337_e : genBox.field_72338_b, maxZ < minZ ? genBox.field_72334_f : genBox.field_72339_c, maxX < minX ? genBox.field_72340_a : genBox.field_72336_d, maxY < minY ? genBox.field_72338_b : genBox.field_72337_e, maxZ < minZ ? genBox.field_72339_c : genBox.field_72334_f);
+        double minX = genBox.minX;
+        double minY = genBox.minY;
+        double minZ = genBox.minZ;
+        double maxX = genBox.maxX;
+        double maxY = genBox.maxY;
+        double maxZ = genBox.maxZ;
+
+        return AxisAlignedBB.getBoundingBox(
+            maxX < minX ? genBox.maxX : genBox.minX,
+            maxY < minY ? genBox.maxY : genBox.minY,
+            maxZ < minZ ? genBox.maxZ : genBox.minZ,
+            maxX < minX ? genBox.minX : genBox.maxX,
+            maxY < minY ? genBox.minY : genBox.maxY,
+            maxZ < minZ ? genBox.minZ : genBox.maxZ);
     }
 
     public ArrayList<Coord3D> getBlocksOfType(AxisAlignedBB genBox) {
-        this.gen();
-        this.prepareBB(genBox);
-        ArrayList<Coord3D> lst = new ArrayList();
+        gen();
 
-        for(int x = MathHelper.func_76128_c(genBox.field_72340_a); x <= MathHelper.func_76128_c(genBox.field_72336_d); ++x) {
-            for(int y = MathHelper.func_76128_c(genBox.field_72338_b); y <= MathHelper.func_76128_c(genBox.field_72337_e); ++y) {
-                for(int z = MathHelper.func_76128_c(genBox.field_72339_c); z <= MathHelper.func_76128_c(genBox.field_72334_f); ++z) {
-                    if (this.worldObj.func_147439_a(x, y, z) == this.setTo && this.worldObj.func_72805_g(x, y, z) == this.genMetadata) {
-                        Coord3D c = new Coord3D((float)x, (float)y, (float)z);
+        prepareBB(genBox);
+
+        ArrayList<Coord3D> lst = new ArrayList<Coord3D>();
+
+        for (int x = MathHelper.floor_double(genBox.minX); x <= MathHelper.floor_double(genBox.maxX); ++x) {
+            for (int y = MathHelper.floor_double(genBox.minY); y <= MathHelper.floor_double(genBox.maxY); ++y) {
+                for (int z = MathHelper.floor_double(genBox.minZ); z <= MathHelper.floor_double(genBox.maxZ); ++z) {
+                    if (worldObj.getBlock(x, y, z) == setTo && worldObj.getBlockMetadata(x, y, z) == genMetadata) {
+                        Coord3D c = new Coord3D(x, y, z);
                         lst.add(c);
                     }
                 }
             }
         }
 
-        this.restoreBB(genBox);
+        restoreBB(genBox);
+
         return lst;
     }
 
     public void setOffset(Coord3D coord) {
-        this.offset = coord;
-        this.hasOffset = true;
+        offset = coord;
+        hasOffset = true;
     }
 
     public void setOffset(int x, int y, int z) {
-        this.offset = new Coord3D((float)x, (float)y, (float)z);
-        this.hasOffset = true;
+        offset = new Coord3D(x, y, z);
+        hasOffset = true;
     }
 
     public void startWorldgen(World world) {
-        if (world.field_72995_K) {
-            throw new IllegalArgumentException("Worldgen on CLIENT side is not allowed!");
-        } else if (this.isWorking) {
-            throw new IllegalStateException("Already generating!");
-        } else {
-            this.offset = null;
-            this.hasOffset = false;
-            this.isWorking = true;
-            this.worldObj = world;
-            this.setTo = Blocks.field_150350_a;
-            this.genMetadata = 0;
-            this.flag = 2;
-        }
+        if (world.isRemote) throw new IllegalArgumentException("Worldgen on CLIENT side is not allowed!");
+
+        if (isWorking) throw new IllegalStateException("Already generating!");
+
+        offset = null;
+        hasOffset = false;
+        isWorking = true;
+        worldObj = world;
+        setTo = Blocks.air;
+        genMetadata = 0;
+        flag = 2;
     }
 
     public void endWorldgen() {
-        if (!this.isWorking) {
-            throw new IllegalStateException("Not generating!");
-        } else {
-            this.offset = null;
-            this.isWorking = false;
-            this.worldObj = null;
-            this.hasOffset = false;
-            this.setTo = null;
-            this.genMetadata = 0;
-            this.flag = 0;
-        }
+        if (!isWorking) throw new IllegalStateException("Not generating!");
+
+        offset = null;
+        isWorking = false;
+        worldObj = null;
+        hasOffset = false;
+        setTo = null;
+        genMetadata = 0;
+        flag = 0;
     }
 
     public void setFlag(int i) {
-        this.gen();
-        this.flag = i;
+        gen();
+
+        flag = i;
     }
 
     public boolean gen() {
-        if (!this.isWorking) {
-            throw new IllegalStateException("Can't worlgen if not generating!");
-        } else if (this.worldObj.field_72995_K) {
-            throw new IllegalArgumentException("Worldgen on CLIENT side is not allowed!");
-        } else {
-            return this.isWorking;
-        }
+        if (!isWorking) throw new IllegalStateException("Can't worlgen if not generating!");
+
+        if (worldObj.isRemote) throw new IllegalArgumentException("Worldgen on CLIENT side is not allowed!");
+
+        return isWorking;
     }
 
     public void restoreBB(AxisAlignedBB genBox) {
-        this.gen();
-        if (this.hasOffset) {
-            genBox.field_72340_a -= (double)this.offset.x;
-            genBox.field_72338_b -= (double)this.offset.y;
-            genBox.field_72339_c -= (double)this.offset.z;
-            genBox.field_72336_d -= (double)this.offset.x;
-            genBox.field_72337_e -= (double)this.offset.y;
-            genBox.field_72334_f -= (double)this.offset.z;
-        }
+        gen();
 
+        if (hasOffset) {
+            genBox.minX -= offset.x;
+            genBox.minY -= offset.y;
+            genBox.minZ -= offset.z;
+            genBox.maxX -= offset.x;
+            genBox.maxY -= offset.y;
+            genBox.maxZ -= offset.z;
+        }
     }
 
     public void prepareBB(AxisAlignedBB genBox) {
-        this.gen();
-        if (this.hasOffset) {
-            genBox.field_72340_a += (double)this.offset.x;
-            genBox.field_72338_b += (double)this.offset.y;
-            genBox.field_72339_c += (double)this.offset.z;
-            genBox.field_72336_d += (double)this.offset.x;
-            genBox.field_72337_e += (double)this.offset.y;
-            genBox.field_72334_f += (double)this.offset.z;
-        }
+        gen();
 
+        if (hasOffset) {
+            genBox.minX += offset.x;
+            genBox.minY += offset.y;
+            genBox.minZ += offset.z;
+            genBox.maxX += offset.x;
+            genBox.maxY += offset.y;
+            genBox.maxZ += offset.z;
+        }
     }
 
     public void setBlock(Block b) {
-        this.gen();
-        this.setTo = b;
-        this.genMetadata = 0;
+        gen();
+
+        setTo = b;
+        genMetadata = 0;
     }
 
     public void setMeta(int i) {
-        this.gen();
-        this.genMetadata = i;
+        gen();
+
+        genMetadata = i;
     }
 
+    @SuppressWarnings("unchecked")
     public void randomiseCuboid(AxisAlignedBB genBox, Pair<Block, Integer>... pairs) {
-        this.gen();
-        this.prepareBB(genBox);
-        int x = MathHelper.func_76128_c(genBox.field_72340_a);
-        int y = MathHelper.func_76128_c(genBox.field_72338_b);
-        int z = MathHelper.func_76128_c(genBox.field_72339_c);
-        int eX = MathHelper.func_76128_c(genBox.field_72336_d);
-        int eY = MathHelper.func_76128_c(genBox.field_72337_e);
-        int eZ = MathHelper.func_76128_c(genBox.field_72334_f);
+        gen();
 
-        for(int dx = x; dx <= eX; ++dx) {
-            for(int dy = y; dy <= eY; ++dy) {
-                for(int dz = z; dz <= eZ; ++dz) {
-                    int i = this.worldObj.field_73012_v.nextInt(pairs.length);
-                    if (this.worldObj.func_147439_a(dx, dy, dz) == this.setTo) {
-                        this.worldObj.func_147465_d(dx, dy, dz, (Block)pairs[i].obj1, (Integer)pairs[i].obj2, this.flag);
-                    }
+        prepareBB(genBox);
+
+        int x = MathHelper.floor_double(genBox.minX);
+        int y = MathHelper.floor_double(genBox.minY);
+        int z = MathHelper.floor_double(genBox.minZ);
+        int eX = MathHelper.floor_double(genBox.maxX);
+        int eY = MathHelper.floor_double(genBox.maxY);
+        int eZ = MathHelper.floor_double(genBox.maxZ);
+
+        for (int dx = x; dx <= eX; ++dx) {
+            for (int dy = y; dy <= eY; ++dy) {
+                for (int dz = z; dz <= eZ; ++dz) {
+                    int i = worldObj.rand.nextInt(pairs.length);
+                    if (worldObj.getBlock(dx, dy, dz) == setTo)
+                        worldObj.setBlock(dx, dy, dz, pairs[i].obj1, pairs[i].obj2, flag);
                 }
             }
         }
 
-        this.restoreBB(genBox);
+        restoreBB(genBox);
     }
 
     public void addFullSphere(AxisAlignedBB genBox) {
-        this.gen();
+        gen();
+
         genBox = normaliseBB(genBox);
-        this.prepareBB(genBox);
-        double radiusX = (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F;
-        double radiusY = (genBox.field_72337_e - genBox.field_72338_b) / (double)2.0F;
-        double radiusZ = (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F;
-        int dx = MathHelper.func_76128_c(genBox.field_72340_a + radiusX);
-        int dy = MathHelper.func_76128_c(genBox.field_72338_b + radiusY);
-        int dz = MathHelper.func_76128_c(genBox.field_72339_c + radiusZ);
-        double invRadiusX = (double)1.0F / radiusX;
-        double invRadiusY = (double)1.0F / radiusY;
-        double invRadiusZ = (double)1.0F / radiusZ;
-        int ceilRadiusX = (int)Math.ceil(radiusX);
-        int ceilRadiusY = (int)Math.ceil(radiusY);
-        int ceilRadiusZ = (int)Math.ceil(radiusZ);
-        double nextXn = (double)0.0F;
+        prepareBB(genBox);
+
+        double radiusX = (genBox.maxX - genBox.minX) / 2;
+        double radiusY = (genBox.maxY - genBox.minY) / 2;
+        double radiusZ = (genBox.maxZ - genBox.minZ) / 2;
+
+        int dx = MathHelper.floor_double(genBox.minX + radiusX);
+        int dy = MathHelper.floor_double(genBox.minY + radiusY);
+        int dz = MathHelper.floor_double(genBox.minZ + radiusZ);
+
+        double invRadiusX = 1.0D / radiusX;
+        double invRadiusY = 1.0D / radiusY;
+        double invRadiusZ = 1.0D / radiusZ;
+        int ceilRadiusX = (int) Math.ceil(radiusX);
+        int ceilRadiusY = (int) Math.ceil(radiusY);
+        int ceilRadiusZ = (int) Math.ceil(radiusZ);
+        double nextXn = 0.0D;
         boolean filled = true;
 
-        label51:
-        for(int x = 0; x <= ceilRadiusX; ++x) {
+        fX: for (int x = 0; x <= ceilRadiusX; x++) {
             double xn = nextXn;
-            nextXn = (double)(x + 1) * invRadiusX;
-            double nextYn = (double)0.0F;
-
-            for(int y = 0; y <= ceilRadiusY; ++y) {
+            nextXn = (double) (x + 1) * invRadiusX;
+            double nextYn = 0.0D;
+            fZ: for (int y = 0; y <= ceilRadiusY; y++) {
                 double yn = nextYn;
-                nextYn = (double)(y + 1) * invRadiusY;
-                double nextZn = (double)0.0F;
-
-                for(int z = 0; z <= ceilRadiusZ; ++z) {
+                nextYn = (double) (y + 1) * invRadiusY;
+                double nextZn = 0.0D;
+                for (int z = 0; z <= ceilRadiusZ; z++) {
                     double zn = nextZn;
-                    nextZn = (double)(z + 1) * invRadiusZ;
+                    nextZn = (double) (z + 1) * invRadiusZ;
                     double distanceSq = lengthSq(xn, yn, zn);
-                    if (distanceSq > (double)1.0F) {
-                        if (z == 0) {
-                            if (y == 0) {
-                                break label51;
-                            }
-                            continue label51;
-                        }
-                        break;
+                    if (distanceSq > 1.0D) {
+                        if (z != 0) break;
+                        if (y == 0) break fX;
+                        else break fZ;
                     }
+                    if (!filled && lengthSq(nextXn, yn, zn) <= 1.0D
+                        && lengthSq(xn, nextYn, zn) <= 1.0D
+                        && lengthSq(xn, yn, nextZn) <= 1.0D) continue;
 
-                    if (filled || !(lengthSq(nextXn, yn, zn) <= (double)1.0F) || !(lengthSq(xn, nextYn, zn) <= (double)1.0F) || !(lengthSq(xn, yn, nextZn) <= (double)1.0F)) {
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz - z)));
-                    }
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz - z));
                 }
             }
         }
-
-        this.restoreBB(genBox);
+        restoreBB(genBox);
     }
 
     public void addHollowCylinder(AxisAlignedBB genBox) {
-        this.gen();
+        gen();
+
         genBox = normaliseBB(genBox);
-        this.prepareBB(genBox);
-        double radiusX = (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F;
-        double height = genBox.field_72337_e - genBox.field_72338_b;
-        double radiusZ = (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F;
-        int dx = MathHelper.func_76128_c(genBox.field_72340_a + radiusX);
-        int dy = MathHelper.func_76128_c(genBox.field_72338_b);
-        int dz = MathHelper.func_76128_c(genBox.field_72339_c + radiusZ);
+        prepareBB(genBox);
+
+        double radiusX = (genBox.maxX - genBox.minX) / 2;
+        double height = genBox.maxY - genBox.minY;
+        double radiusZ = (genBox.maxZ - genBox.minZ) / 2;
+
+        int dx = MathHelper.floor_double(genBox.minX + radiusX);
+        int dy = MathHelper.floor_double(genBox.minY);
+        int dz = MathHelper.floor_double(genBox.minZ + radiusZ);
+
         boolean filled = false;
-        radiusX += (double)0.5F;
-        radiusZ += (double)0.5F;
-        if (height != (double)0.0F) {
-            if (height < (double)0.0F) {
-                height = -height;
-                dy = MathHelper.func_76128_c(-height);
-            }
 
-            if (dy < 0) {
-                dy = 0;
-            } else if ((double)dy + height - (double)1.0F > (double)this.worldObj.func_72940_L()) {
-                height = (double)(this.worldObj.func_72940_L() - dy + 1);
-            }
+        radiusX += 0.5D;
+        radiusZ += 0.5D;
+        if (height == 0) return;
 
-            double invRadiusX = (double)1.0F / radiusX;
-            double invRadiusZ = (double)1.0F / radiusZ;
-            int ceilRadiusX = (int)Math.ceil(radiusX);
-            int ceilRadiusZ = (int)Math.ceil(radiusZ);
-            double nextXn = (double)0.0F;
+        if (height < 0) {
+            height = -height;
+            dy = MathHelper.floor_double(-height);
+        }
+        if (dy < 0) dy = 0;
+        else if ((dy + height) - 1 > worldObj.getActualHeight()) height = (int) ((worldObj.getActualHeight() - dy) + 1);
+        double invRadiusX = 1.0D / radiusX;
+        double invRadiusZ = 1.0D / radiusZ;
+        int ceilRadiusX = (int) Math.ceil(radiusX);
+        int ceilRadiusZ = (int) Math.ceil(radiusZ);
+        double nextXn = 0.0D;
+        D: for (int x = 0; x <= ceilRadiusX; x++) {
+            double xn = nextXn;
+            nextXn = (double) (x + 1) * invRadiusX;
+            double nextZn = 0.0D;
+            for (int z = 0; z <= ceilRadiusZ; z++) {
+                double zn = nextZn;
+                nextZn = (double) (z + 1) * invRadiusZ;
+                double distanceSq = lengthSq(xn, zn);
+                if (distanceSq > 1.0D) if (z == 0) break D;
+                else break;
+                if (!filled && lengthSq(nextXn, zn) <= 1.0D && lengthSq(xn, nextZn) <= 1.0D) continue;
 
-            label59:
-            for(int x = 0; x <= ceilRadiusX; ++x) {
-                double xn = nextXn;
-                nextXn = (double)(x + 1) * invRadiusX;
-                double nextZn = (double)0.0F;
-
-                for(int z = 0; z <= ceilRadiusZ; ++z) {
-                    double zn = nextZn;
-                    nextZn = (double)(z + 1) * invRadiusZ;
-                    double distanceSq = lengthSq(xn, zn);
-                    if (distanceSq > (double)1.0F) {
-                        if (z == 0) {
-                            break label59;
-                        }
-                        break;
-                    }
-
-                    if (filled || !(lengthSq(nextXn, zn) <= (double)1.0F) || !(lengthSq(xn, nextZn) <= (double)1.0F)) {
-                        for(int y = 0; (double)y < height; ++y) {
-                            this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                            this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                            this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                            this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        }
-                    }
+                for (int y = 0; y < height; y++) {
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
                 }
             }
-
-            this.restoreBB(genBox);
         }
+
+        restoreBB(genBox);
     }
 
     public void addFullCylinder(AxisAlignedBB genBox) {
-        this.gen();
+        gen();
+
         genBox = normaliseBB(genBox);
-        this.prepareBB(genBox);
-        double radiusX = (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F;
-        double height = genBox.field_72337_e - genBox.field_72338_b;
-        double radiusZ = (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F;
-        int dx = MathHelper.func_76128_c(genBox.field_72340_a + radiusX);
-        int dy = MathHelper.func_76128_c(genBox.field_72338_b);
-        int dz = MathHelper.func_76128_c(genBox.field_72339_c + radiusZ);
+        prepareBB(genBox);
+
+        double radiusX = (genBox.maxX - genBox.minX) / 2;
+        double height = genBox.maxY - genBox.minY;
+        double radiusZ = (genBox.maxZ - genBox.minZ) / 2;
+
+        int dx = MathHelper.floor_double(genBox.minX + radiusX);
+        int dy = MathHelper.floor_double(genBox.minY);
+        int dz = MathHelper.floor_double(genBox.minZ + radiusZ);
+
         boolean filled = true;
-        radiusX += (double)0.5F;
-        radiusZ += (double)0.5F;
-        if (height != (double)0.0F) {
-            if (height < (double)0.0F) {
-                height = -height;
-                dy = MathHelper.func_76128_c(-height);
-            }
 
-            if (dy < 0) {
-                dy = 0;
-            } else if ((double)dy + height - (double)1.0F > (double)this.worldObj.func_72940_L()) {
-                height = (double)(this.worldObj.func_72940_L() - dy + 1);
-            }
+        radiusX += 0.5D;
+        radiusZ += 0.5D;
+        if (height == 0) return;
 
-            double invRadiusX = (double)1.0F / radiusX;
-            double invRadiusZ = (double)1.0F / radiusZ;
-            int ceilRadiusX = (int)Math.ceil(radiusX);
-            int ceilRadiusZ = (int)Math.ceil(radiusZ);
-            double nextXn = (double)0.0F;
+        if (height < 0) {
+            height = -height;
+            dy = MathHelper.floor_double(-height);
+        }
+        if (dy < 0) dy = 0;
+        else if ((dy + height) - 1 > worldObj.getActualHeight()) height = (int) ((worldObj.getActualHeight() - dy) + 1);
+        double invRadiusX = 1.0D / radiusX;
+        double invRadiusZ = 1.0D / radiusZ;
+        int ceilRadiusX = (int) Math.ceil(radiusX);
+        int ceilRadiusZ = (int) Math.ceil(radiusZ);
+        double nextXn = 0.0D;
+        D: for (int x = 0; x <= ceilRadiusX; x++) {
+            double xn = nextXn;
+            nextXn = (double) (x + 1) * invRadiusX;
+            double nextZn = 0.0D;
+            for (int z = 0; z <= ceilRadiusZ; z++) {
+                double zn = nextZn;
+                nextZn = (double) (z + 1) * invRadiusZ;
+                double distanceSq = lengthSq(xn, zn);
+                if (distanceSq > 1.0D) if (z == 0) break D;
+                else break;
+                if (!filled && lengthSq(nextXn, zn) <= 1.0D && lengthSq(xn, nextZn) <= 1.0D) continue;
 
-            label59:
-            for(int x = 0; x <= ceilRadiusX; ++x) {
-                double xn = nextXn;
-                nextXn = (double)(x + 1) * invRadiusX;
-                double nextZn = (double)0.0F;
-
-                for(int z = 0; z <= ceilRadiusZ; ++z) {
-                    double zn = nextZn;
-                    nextZn = (double)(z + 1) * invRadiusZ;
-                    double distanceSq = lengthSq(xn, zn);
-                    if (distanceSq > (double)1.0F) {
-                        if (z == 0) {
-                            break label59;
-                        }
-                        break;
-                    }
-
-                    if (filled || !(lengthSq(nextXn, zn) <= (double)1.0F) || !(lengthSq(xn, nextZn) <= (double)1.0F)) {
-                        for(int y = 0; (double)y < height; ++y) {
-                            this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                            this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                            this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                            this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        }
-                    }
+                for (int y = 0; y < height; y++) {
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
                 }
             }
-
-            this.restoreBB(genBox);
         }
+
+        restoreBB(genBox);
     }
 
     public void addHollowSphere(AxisAlignedBB genBox) {
-        this.gen();
+        gen();
+
         genBox = normaliseBB(genBox);
-        this.prepareBB(genBox);
-        double radiusX = (genBox.field_72336_d - genBox.field_72340_a) / (double)2.0F;
-        double radiusY = (genBox.field_72337_e - genBox.field_72338_b) / (double)2.0F;
-        double radiusZ = (genBox.field_72334_f - genBox.field_72339_c) / (double)2.0F;
-        int dx = MathHelper.func_76128_c(genBox.field_72340_a + radiusX);
-        int dy = MathHelper.func_76128_c(genBox.field_72338_b + radiusY);
-        int dz = MathHelper.func_76128_c(genBox.field_72339_c + radiusZ);
-        double invRadiusX = (double)1.0F / radiusX;
-        double invRadiusY = (double)1.0F / radiusY;
-        double invRadiusZ = (double)1.0F / radiusZ;
-        int ceilRadiusX = (int)Math.ceil(radiusX);
-        int ceilRadiusY = (int)Math.ceil(radiusY);
-        int ceilRadiusZ = (int)Math.ceil(radiusZ);
-        double nextXn = (double)0.0F;
+        prepareBB(genBox);
+
+        double radiusX = (genBox.maxX - genBox.minX) / 2;
+        double radiusY = (genBox.maxY - genBox.minY) / 2;
+        double radiusZ = (genBox.maxZ - genBox.minZ) / 2;
+
+        int dx = MathHelper.floor_double(genBox.minX + radiusX);
+        int dy = MathHelper.floor_double(genBox.minY + radiusY);
+        int dz = MathHelper.floor_double(genBox.minZ + radiusZ);
+
+        double invRadiusX = 1.0D / radiusX;
+        double invRadiusY = 1.0D / radiusY;
+        double invRadiusZ = 1.0D / radiusZ;
+        int ceilRadiusX = (int) Math.ceil(radiusX);
+        int ceilRadiusY = (int) Math.ceil(radiusY);
+        int ceilRadiusZ = (int) Math.ceil(radiusZ);
+        double nextXn = 0.0D;
         boolean filled = false;
 
-        label51:
-        for(int x = 0; x <= ceilRadiusX; ++x) {
+        fX: for (int x = 0; x <= ceilRadiusX; x++) {
             double xn = nextXn;
-            nextXn = (double)(x + 1) * invRadiusX;
-            double nextYn = (double)0.0F;
-
-            for(int y = 0; y <= ceilRadiusY; ++y) {
+            nextXn = (double) (x + 1) * invRadiusX;
+            double nextYn = 0.0D;
+            fZ: for (int y = 0; y <= ceilRadiusY; y++) {
                 double yn = nextYn;
-                nextYn = (double)(y + 1) * invRadiusY;
-                double nextZn = (double)0.0F;
-
-                for(int z = 0; z <= ceilRadiusZ; ++z) {
+                nextYn = (double) (y + 1) * invRadiusY;
+                double nextZn = 0.0D;
+                for (int z = 0; z <= ceilRadiusZ; z++) {
                     double zn = nextZn;
-                    nextZn = (double)(z + 1) * invRadiusZ;
+                    nextZn = (double) (z + 1) * invRadiusZ;
                     double distanceSq = lengthSq(xn, yn, zn);
-                    if (distanceSq > (double)1.0F) {
-                        if (z == 0) {
-                            if (y == 0) {
-                                break label51;
-                            }
-                            continue label51;
-                        }
-                        break;
+                    if (distanceSq > 1.0D) {
+                        if (z != 0) break;
+                        if (y == 0) break fX;
+                        else break fZ;
                     }
+                    if (!filled && lengthSq(nextXn, yn, zn) <= 1.0D
+                        && lengthSq(xn, nextYn, zn) <= 1.0D
+                        && lengthSq(xn, yn, nextZn) <= 1.0D) continue;
 
-                    if (filled || !(lengthSq(nextXn, yn, zn) <= (double)1.0F) || !(lengthSq(xn, nextYn, zn) <= (double)1.0F) || !(lengthSq(xn, yn, nextZn) <= (double)1.0F)) {
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz + z)));
-                        this.block(MathHelper.func_76141_d((float)(dx + x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy + y)), MathHelper.func_76141_d((float)(dz - z)));
-                        this.block(MathHelper.func_76141_d((float)(dx - x)), MathHelper.func_76141_d((float)(dy - y)), MathHelper.func_76141_d((float)(dz - z)));
-                    }
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz + z));
+                    block(
+                        MathHelper.floor_float(dx + x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy + y),
+                        MathHelper.floor_float(dz - z));
+                    block(
+                        MathHelper.floor_float(dx - x),
+                        MathHelper.floor_float(dy - y),
+                        MathHelper.floor_float(dz - z));
                 }
             }
         }
-
-        this.restoreBB(genBox);
+        restoreBB(genBox);
     }
 
     public void addWallsCuboid(AxisAlignedBB genBox) {
-        this.gen();
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72340_a, genBox.field_72338_b, genBox.field_72339_c, genBox.field_72336_d, genBox.field_72338_b, genBox.field_72334_f));
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72340_a, genBox.field_72337_e, genBox.field_72339_c, genBox.field_72336_d, genBox.field_72337_e, genBox.field_72334_f));
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72340_a, genBox.field_72338_b, genBox.field_72339_c, genBox.field_72340_a, genBox.field_72337_e, genBox.field_72334_f));
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72336_d, genBox.field_72338_b, genBox.field_72339_c, genBox.field_72336_d, genBox.field_72337_e, genBox.field_72334_f));
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72340_a, genBox.field_72338_b, genBox.field_72339_c, genBox.field_72336_d, genBox.field_72337_e, genBox.field_72339_c));
-        this.addCuboid(AxisAlignedBB.func_72330_a(genBox.field_72340_a, genBox.field_72338_b, genBox.field_72334_f, genBox.field_72336_d, genBox.field_72337_e, genBox.field_72334_f));
+        gen();
+
+        // Bottom
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.minX, genBox.minY, genBox.minZ, genBox.maxX, genBox.minY, genBox.maxZ));
+        // Top
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.minX, genBox.maxY, genBox.minZ, genBox.maxX, genBox.maxY, genBox.maxZ));
+        // X Neg
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.minX, genBox.minY, genBox.minZ, genBox.minX, genBox.maxY, genBox.maxZ));
+        // X Pos
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.maxX, genBox.minY, genBox.minZ, genBox.maxX, genBox.maxY, genBox.maxZ));
+        // Z Neg
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.minX, genBox.minY, genBox.minZ, genBox.maxX, genBox.maxY, genBox.minZ));
+        // Z Pos
+        addCuboid(
+            AxisAlignedBB.getBoundingBox(genBox.minX, genBox.minY, genBox.maxZ, genBox.maxX, genBox.maxY, genBox.maxZ));
+
     }
 
     public boolean block(int x, int y, int z) {
-        this.gen();
-        return this.worldObj.func_147465_d(x, y, z, this.setTo, this.genMetadata, this.flag);
+        gen();
+
+        return worldObj.setBlock(x, y, z, setTo, genMetadata, flag);
     }
 
     public void addCuboid(AxisAlignedBB genBox) {
-        this.gen();
-        this.prepareBB(genBox);
-        int x = MathHelper.func_76128_c(genBox.field_72340_a);
-        int y = MathHelper.func_76128_c(genBox.field_72338_b);
-        int z = MathHelper.func_76128_c(genBox.field_72339_c);
-        int eX = MathHelper.func_76128_c(genBox.field_72336_d);
-        int eY = MathHelper.func_76128_c(genBox.field_72337_e);
-        int eZ = MathHelper.func_76128_c(genBox.field_72334_f);
-        this.addCuboid(x, y, z, eX, eY, eZ);
-        this.restoreBB(genBox);
+        gen();
+        prepareBB(genBox);
+
+        int x = MathHelper.floor_double(genBox.minX);
+        int y = MathHelper.floor_double(genBox.minY);
+        int z = MathHelper.floor_double(genBox.minZ);
+        int eX = MathHelper.floor_double(genBox.maxX);
+        int eY = MathHelper.floor_double(genBox.maxY);
+        int eZ = MathHelper.floor_double(genBox.maxZ);
+
+        addCuboid(x, y, z, eX, eY, eZ);
+
+        restoreBB(genBox);
     }
 
     public void addCuboid(int x, int y, int z, int eX, int eY, int eZ) {
-        this.gen();
+        gen();
 
-        for(int dx = x; dx <= eX; ++dx) {
-            for(int dy = y; dy <= eY; ++dy) {
-                for(int dz = z; dz <= eZ; ++dz) {
-                    this.block(dx, dy, dz);
+        for (int dx = x; dx <= eX; ++dx) {
+            for (int dy = y; dy <= eY; ++dy) {
+                for (int dz = z; dz <= eZ; ++dz) {
+                    block(dx, dy, dz);
                 }
             }
         }
-
     }
 
     private static double lengthSq(double x, double y, double z) {

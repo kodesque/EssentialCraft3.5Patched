@@ -3,16 +3,6 @@ package ec3.network.proxy;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.client.render.*;
-import org.lwjgl.input.Keyboard;
-
-import DummyCore.Client.GuiCommon;
-import DummyCore.Client.MainMenuRegistry;
-import DummyCore.Utils.DummyData;
-import DummyCore.Utils.DummyPacketHandler;
-import DummyCore.Utils.DummyPacketIMSG;
-import DummyCore.Utils.MathUtils;
-import DummyCore.Utils.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -32,6 +22,9 @@ import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -73,7 +66,6 @@ import ec3.client.gui.GuiMagicalRepairer;
 import ec3.client.gui.GuiMagicalTeleporter;
 import ec3.client.gui.GuiMagicianTable;
 import ec3.client.gui.GuiMagmaticSmeltery;
-import ec3.client.gui.GuiMainMenuEC3;
 import ec3.client.gui.GuiMatrixAbsorber;
 import ec3.client.gui.GuiMithrilineFurnace;
 import ec3.client.gui.GuiMonsterHarvester;
@@ -98,6 +90,7 @@ import ec3.client.regular.EntityFogFX;
 import ec3.client.regular.EntityItemFX;
 import ec3.client.regular.EntityMRUFX;
 import ec3.client.regular.RenderMRUArrow;
+import ec3.client.render.*;
 import ec3.common.block.BlocksCore;
 import ec3.common.entity.EntityArmorDestroyer;
 import ec3.common.entity.EntityDemon;
@@ -229,607 +222,577 @@ import ec3.common.tile.TileWeaponMaker;
 import ec3.common.tile.TileWindRune;
 import ec3.common.tile.TileecAcceptor;
 import ec3.common.tile.TileecStateChecker;
+import ec3.dummycore.client.GuiCommon;
+import ec3.dummycore.utils.*;
 import ec3.utils.cfg.Config;
 
-public class ClientProxy extends CommonProxy{
+public class ClientProxy extends CommonProxy {
 
-	public static final List<Pair<String, ISound>> playingMusic = new ArrayList<Pair<String, ISound>>();
+    public static final List<Pair<String, ISound>> playingMusic = new ArrayList<Pair<String, ISound>>();
 
-	public boolean listHasKey(String key)
-	{
-		for(int i = 0; i < playingMusic.size(); ++i)
-		{
-			if(playingMusic.get(i).getFirst().equals(key))
-				return true;
-		}
+    public boolean listHasKey(String key) {
+        for (int i = 0; i < playingMusic.size(); ++i) {
+            if (playingMusic.get(i)
+                .getFirst()
+                .equals(key)) return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public int positionOf(String key)
-	{
-		for(int i = 0; i < playingMusic.size(); ++i)
-		{
-			if(playingMusic.get(i).getFirst().equals(key))
-				return i;
-		}
+    public int positionOf(String key) {
+        for (int i = 0; i < playingMusic.size(); ++i) {
+            if (playingMusic.get(i)
+                .getFirst()
+                .equals(key)) return i;
+        }
 
-		return 0;
-	}
+        return 0;
+    }
 
-	@Override
-	public void stopSound(String soundID)
-	{
-		if(listHasKey(soundID))
-		{
-			Minecraft.getMinecraft().getSoundHandler().stopSound(playingMusic.get(positionOf(soundID)).getSecond());
-			playingMusic.remove(soundID);
-		}
-	}
+    @Override
+    public void stopSound(String soundID) {
+        if (listHasKey(soundID)) {
+            Minecraft.getMinecraft()
+                .getSoundHandler()
+                .stopSound(
+                    playingMusic.get(positionOf(soundID))
+                        .getSecond());
+            playingMusic.remove(soundID);
+        }
+    }
 
-	@Override
-	public void startSound(String soundID, String soundName)
-	{
+    @Override
+    public void startSound(String soundID, String soundName) {
 
-		if(!listHasKey(soundID))
-		{
-			PositionedSoundRecord s = PositionedSoundRecord.func_147673_a(new ResourceLocation(soundName));
-			playingMusic.add(new Pair<String, ISound>(soundID, s));
-			Minecraft.getMinecraft().getSoundHandler().stopSounds();
-			Minecraft.getMinecraft().getSoundHandler().playSound(s);
-		}
-	}
+        if (!listHasKey(soundID)) {
+            PositionedSoundRecord s = PositionedSoundRecord.func_147673_a(new ResourceLocation(soundName));
+            playingMusic.add(new Pair<String, ISound>(soundID, s));
+            Minecraft.getMinecraft()
+                .getSoundHandler()
+                .stopSounds();
+            Minecraft.getMinecraft()
+                .getSoundHandler()
+                .playSound(s);
+        }
+    }
 
-	ResourceLocation villagerSkin = new ResourceLocation("essentialcraft","textures/entities/magician.png");
-	@SuppressWarnings("unchecked")
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z)
-	{
-		if(ID == Config.guiID[0])
-		{
-			TileEntity tile = world.getTileEntity(x, y, z);
-			if(tile == null)
-			{
-				//Item:filter
-				if(x == 0 && y == -1 && z == 0)
-				{
-					InventoryMagicFilter inventory = new InventoryMagicFilter(player.getCurrentEquippedItem());
-					return new GuiFilter(new ContainerFilter(player, inventory), inventory);
-				}
-				//Item: Crafting Frame
-				if(x == 0 && y == -2 && z == 0)
-				{
-					InventoryCraftingFrame inventory = new InventoryCraftingFrame(player.getCurrentEquippedItem());
-					return new GuiCraftingFrame(new ContainerCraftingFrame(player, inventory), inventory);
-				}
-			}
-			if(tile instanceof TileRayTower)
-			{
-				return new GuiRayTower(new ContainerRayTower(player.inventory, tile), tile);
-			}
-			if(tile instanceof TileecAcceptor)
-			{
-				return new GuiMRUAcceptor(new ContainerMRUAcceptor(player.inventory,tile), tile);
-			}
-			if(tile instanceof TileecStateChecker)
-			{
-				return new GuiMRUInfo(new ContainerMRUInfo(player.inventory,tile), tile);
-			}
-			if(tile instanceof TileMoonWell)
-			{
-				return new GuiMoonWell(new ContainerMoonWell(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileSunRayAbsorber)
-			{
-				return new GuiSunRayAbsorber(new ContainerSunRayAbsorber(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileColdDistillator)
-			{
-				return new GuiColdDistillator(new ContainerColdDistillator(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileFlowerBurner)
-			{
-				return new GuiFlowerBurner(new ContainerFlowerBurner(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileHeatGenerator)
-			{
-				return new GuiHeatGenerator(new ContainerHeatGenerator(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileEnderGenerator)
-			{
-				return new GuiEnderGenerator(new ContainerEnderGenerator(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicianTable)
-			{
-				return new GuiMagicianTable(new ContainerMagicianTable(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalQuarry)
-			{
-				return new GuiMagicalQuarry(new ContainerMagicalQuarry(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMonsterHolder)
-			{
-				return new GuiMonsterHolder(new ContainerMonsterHolder(player.inventory, tile),tile);
-			}
-			if(tile instanceof TilePotionSpreader)
-			{
-				return new GuiPotionSpreader(new ContainerPotionSpreader(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalEnchanter)
-			{
-				return new GuiMagicalEnchanter(new ContainerMagicalEnchanter(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMonsterHarvester)
-			{
-				return new GuiMonsterHarvester(new ContainerMonsterHarvester(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalRepairer)
-			{
-				return new GuiMagicalRepairer(new ContainerMagicalRepairer(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMatrixAbsorber)
-			{
-				return new GuiMatrixAbsorber(new ContainerMatrixAbsorber(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileRadiatingChamber)
-			{
-				return new GuiRadiatingChamber(new ContainerRadiatingChamber(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagmaticSmelter)
-			{
-				return new GuiMagmaticSmeltery(new ContainerMagmaticSmeltery(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalJukebox)
-			{
-				return new GuiMagicalJukebox(new ContainerMagicalJukebox(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileCrystalFormer)
-			{
-				return new GuiCrystalFormer(new ContainerCrystalFormer(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileCrystalController)
-			{
-				return new GuiCrystalController(new ContainerCrystalController(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileCrystalExtractor)
-			{
-				return new GuiCrystalExtractor(new ContainerCrystalExtractor(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileChargingChamber)
-			{
-				return new GuiChargingChamber(new ContainerChargingChamber(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalTeleporter)
-			{
-				return new GuiMagicalTeleporter(new ContainerMagicalTeleporter(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalFurnace)
-			{
-				return new GuiMagicalFurnace(new ContainerMagicalFurnace(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMRUCoil)
-			{
-				return new GuiMRUCoil(new ContainerMRUCoil(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileCorruptionCleaner)
-			{
-				return new GuiCorruptionCleaner(new ContainerCorruptionCleaner(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileAMINEjector)
-			{
-				return new GuiAMINEjector(new ContainerAMINEjector(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMINEjector)
-			{
-				return new GuiMINEjector(new ContainerMINEjector(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileAMINInjector)
-			{
-				return new GuiAMINInjector(new ContainerAMINInjector(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMINInjector)
-			{
-				return new GuiMINInjector(new ContainerMINInjector(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMIM)
-			{
-				return new GuiMIM(new ContainerMIM(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileDarknessObelisk)
-			{
-				return new GuiDarknessObelisk(new ContainerDarknessObelisk(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileUltraHeatGenerator)
-			{
-				return new GuiUltraHeatGenerator(new ContainerUltraHeatGenerator(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileUltraFlowerBurner)
-			{
-				return new GuiUltraFlowerBurner(new ContainerUltraFlowerBurner(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalAssembler)
-			{
-				return new GuiMagicalAssembler(new ContainerMagicalAssembler(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMithrilineFurnace)
-			{
-				return new GuiMithrilineFurnace(new ContainerMithrilineFurnace(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileRightClicker)
-			{
-				return new GuiRightClicker(new ContainerRightClicker(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileRedstoneTransmitter)
-			{
-				return new GuiCommon(new ContainerRedstoneTransmitter(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileMagicalHopper)
-			{
-				return new GuiCommon(new ContainerMagicalHopper(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileWeaponMaker)
-			{
-				return new GuiWeaponBench(new ContainerWeaponBench(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileFurnaceMagic)
-			{
-				return new GuiFurnaceMagic(new ContainerFurnaceMagic(player.inventory, tile),tile);
-			}
-			if(tile instanceof TilePlayerPentacle)
-			{
-				return new GuiPlayerPentacle(tile);
-			}
-			if(tile instanceof TileMagicalChest)
-			{
-				return new GuiMagicalChest(player.inventory, (TileMagicalChest) tile);
-			}
-			if(tile instanceof TileNewMIMInventoryStorage)
-			{
-				return new GuiMIMInventoryStorage(player.inventory, (TileNewMIMInventoryStorage) tile);
-			}
-			if(tile instanceof TileNewMIM)
-			{
-				return new GuiNewMIM(new ContainerNewMIM(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileNewMIMScreen)
-			{
-				return new GuiNewMIMScreen((TileNewMIMScreen) tile, player);
-			}
-			if(tile instanceof TileNewMIMCraftingManager)
-			{
-				return new GuiMIMCraftingManager(player.inventory, (TileNewMIMCraftingManager) tile);
-			}
-			if(tile instanceof TileNewMIMExportNode || tile instanceof TileNewMIMImportNode || tile instanceof TileAdvancedBlockBreaker)
-			{
-				return new GuiCommon(new ContainerNewMIMSimpleNode(player.inventory, tile),tile);
-			}
-			if(tile instanceof TileCrafter)
-			{
-				return new GuiCrafter(new ContainerCrafter(player.inventory, (TileCrafter) tile),(TileCrafter) tile);
-			}
-			if(tile instanceof TileAnimalSeparator)
-			{
-				return new GuiRayTower(new ContainerRayTower(player.inventory, tile),tile);
-			}
-		}
-		if(ID == Config.guiID[1])
-		{
-			List<EntityDemon> demons = world.getEntitiesWithinAABB(EntityDemon.class, AxisAlignedBB.getBoundingBox(x-1, y-1, z-1, x+1, y+1, z+1));
-			if(!demons.isEmpty())
-			{
-				return new GuiDemon(new ContainerDemon(player, demons.get(0)));
-			}
-		}
-		return null;
-	}
+    ResourceLocation villagerSkin = new ResourceLocation("essentialcraft", "textures/entities/magician.png");
 
-	@Override
-	public void openBookGUIForPlayer()
-	{
-		Minecraft.getMinecraft().displayGuiScreen(new GuiResearchBook());
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        if (ID == Config.guiID[0]) {
+            TileEntity tile = world.getTileEntity(x, y, z);
+            if (tile == null) {
+                // Item:filter
+                if (x == 0 && y == -1 && z == 0) {
+                    InventoryMagicFilter inventory = new InventoryMagicFilter(player.getCurrentEquippedItem());
+                    return new GuiFilter(new ContainerFilter(player, inventory), inventory);
+                }
+                // Item: Crafting Frame
+                if (x == 0 && y == -2 && z == 0) {
+                    InventoryCraftingFrame inventory = new InventoryCraftingFrame(player.getCurrentEquippedItem());
+                    return new GuiCraftingFrame(new ContainerCraftingFrame(player, inventory), inventory);
+                }
+            }
+            if (tile instanceof TileRayTower) {
+                return new GuiRayTower(new ContainerRayTower(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileecAcceptor) {
+                return new GuiMRUAcceptor(new ContainerMRUAcceptor(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileecStateChecker) {
+                return new GuiMRUInfo(new ContainerMRUInfo(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMoonWell) {
+                return new GuiMoonWell(new ContainerMoonWell(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileSunRayAbsorber) {
+                return new GuiSunRayAbsorber(new ContainerSunRayAbsorber(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileColdDistillator) {
+                return new GuiColdDistillator(new ContainerColdDistillator(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileFlowerBurner) {
+                return new GuiFlowerBurner(new ContainerFlowerBurner(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileHeatGenerator) {
+                return new GuiHeatGenerator(new ContainerHeatGenerator(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileEnderGenerator) {
+                return new GuiEnderGenerator(new ContainerEnderGenerator(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicianTable) {
+                return new GuiMagicianTable(new ContainerMagicianTable(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalQuarry) {
+                return new GuiMagicalQuarry(new ContainerMagicalQuarry(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMonsterHolder) {
+                return new GuiMonsterHolder(new ContainerMonsterHolder(player.inventory, tile), tile);
+            }
+            if (tile instanceof TilePotionSpreader) {
+                return new GuiPotionSpreader(new ContainerPotionSpreader(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalEnchanter) {
+                return new GuiMagicalEnchanter(new ContainerMagicalEnchanter(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMonsterHarvester) {
+                return new GuiMonsterHarvester(new ContainerMonsterHarvester(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalRepairer) {
+                return new GuiMagicalRepairer(new ContainerMagicalRepairer(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMatrixAbsorber) {
+                return new GuiMatrixAbsorber(new ContainerMatrixAbsorber(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileRadiatingChamber) {
+                return new GuiRadiatingChamber(new ContainerRadiatingChamber(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagmaticSmelter) {
+                return new GuiMagmaticSmeltery(new ContainerMagmaticSmeltery(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalJukebox) {
+                return new GuiMagicalJukebox(new ContainerMagicalJukebox(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileCrystalFormer) {
+                return new GuiCrystalFormer(new ContainerCrystalFormer(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileCrystalController) {
+                return new GuiCrystalController(new ContainerCrystalController(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileCrystalExtractor) {
+                return new GuiCrystalExtractor(new ContainerCrystalExtractor(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileChargingChamber) {
+                return new GuiChargingChamber(new ContainerChargingChamber(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalTeleporter) {
+                return new GuiMagicalTeleporter(new ContainerMagicalTeleporter(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalFurnace) {
+                return new GuiMagicalFurnace(new ContainerMagicalFurnace(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMRUCoil) {
+                return new GuiMRUCoil(new ContainerMRUCoil(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileCorruptionCleaner) {
+                return new GuiCorruptionCleaner(new ContainerCorruptionCleaner(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileAMINEjector) {
+                return new GuiAMINEjector(new ContainerAMINEjector(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMINEjector) {
+                return new GuiMINEjector(new ContainerMINEjector(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileAMINInjector) {
+                return new GuiAMINInjector(new ContainerAMINInjector(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMINInjector) {
+                return new GuiMINInjector(new ContainerMINInjector(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMIM) {
+                return new GuiMIM(new ContainerMIM(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileDarknessObelisk) {
+                return new GuiDarknessObelisk(new ContainerDarknessObelisk(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileUltraHeatGenerator) {
+                return new GuiUltraHeatGenerator(new ContainerUltraHeatGenerator(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileUltraFlowerBurner) {
+                return new GuiUltraFlowerBurner(new ContainerUltraFlowerBurner(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalAssembler) {
+                return new GuiMagicalAssembler(new ContainerMagicalAssembler(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMithrilineFurnace) {
+                return new GuiMithrilineFurnace(new ContainerMithrilineFurnace(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileRightClicker) {
+                return new GuiRightClicker(new ContainerRightClicker(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileRedstoneTransmitter) {
+                return new GuiCommon(new ContainerRedstoneTransmitter(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileMagicalHopper) {
+                return new GuiCommon(new ContainerMagicalHopper(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileWeaponMaker) {
+                return new GuiWeaponBench(new ContainerWeaponBench(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileFurnaceMagic) {
+                return new GuiFurnaceMagic(new ContainerFurnaceMagic(player.inventory, tile), tile);
+            }
+            if (tile instanceof TilePlayerPentacle) {
+                return new GuiPlayerPentacle(tile);
+            }
+            if (tile instanceof TileMagicalChest) {
+                return new GuiMagicalChest(player.inventory, (TileMagicalChest) tile);
+            }
+            if (tile instanceof TileNewMIMInventoryStorage) {
+                return new GuiMIMInventoryStorage(player.inventory, (TileNewMIMInventoryStorage) tile);
+            }
+            if (tile instanceof TileNewMIM) {
+                return new GuiNewMIM(new ContainerNewMIM(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileNewMIMScreen) {
+                return new GuiNewMIMScreen((TileNewMIMScreen) tile, player);
+            }
+            if (tile instanceof TileNewMIMCraftingManager) {
+                return new GuiMIMCraftingManager(player.inventory, (TileNewMIMCraftingManager) tile);
+            }
+            if (tile instanceof TileNewMIMExportNode || tile instanceof TileNewMIMImportNode
+                || tile instanceof TileAdvancedBlockBreaker) {
+                return new GuiCommon(new ContainerNewMIMSimpleNode(player.inventory, tile), tile);
+            }
+            if (tile instanceof TileCrafter) {
+                return new GuiCrafter(new ContainerCrafter(player.inventory, (TileCrafter) tile), (TileCrafter) tile);
+            }
+            if (tile instanceof TileAnimalSeparator) {
+                return new GuiRayTower(new ContainerRayTower(player.inventory, tile), tile);
+            }
+        }
+        if (ID == Config.guiID[1]) {
+            List<EntityDemon> demons = world.getEntitiesWithinAABB(
+                EntityDemon.class,
+                AxisAlignedBB.getBoundingBox(x - 1, y - 1, z - 1, x + 1, y + 1, z + 1));
+            if (!demons.isEmpty()) {
+                return new GuiDemon(new ContainerDemon(player, demons.get(0)));
+            }
+        }
+        return null;
+    }
 
-	@Override
-	public void openPentacleGUIForPlayer(TileEntity tile)
-	{
-		Minecraft.getMinecraft().displayGuiScreen(new GuiPlayerPentacle(tile));
-	}
+    @Override
+    public void openBookGUIForPlayer() {
+        Minecraft.getMinecraft()
+            .displayGuiScreen(new GuiResearchBook());
+    }
 
-	@Override
-	public void registerRenderInformation()
-	{
-		MainMenuRegistry.registerNewGui(GuiMainMenuEC3.class, "[EC3] Magical Menu", "For EC3 fans ;)");
-		RenderingRegistry.registerEntityRenderingHandler(EntityMRUPresence.class, new RenderMRUPresence());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMRUArrow.class, new RenderMRUArrow());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySolarBeam.class, new RenderSolarBeam());
-		RenderingRegistry.registerEntityRenderingHandler(EntityWindMage.class, new RenderWindMage());
-		RenderingRegistry.registerEntityRenderingHandler(EntityPoisonFume.class, new RenderPoisonFume());
-		RenderingRegistry.registerEntityRenderingHandler(EntityShadowKnife.class, new RenderSnowball(ItemsCore.shadeKnife));
-		RenderingRegistry.registerEntityRenderingHandler(EntityArmorDestroyer.class, new RenderSnowball(ItemsCore.magicalSlag));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDividerProjectile.class, new RenderSnowball(ItemsCore.magicalSlag));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMRURay.class, new RenderMRURay());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDemon.class, new RenderDemon());
-		RenderingRegistry.registerEntityRenderingHandler(EntityHologram.class, new RenderHologram());
-		RenderingRegistry.registerEntityRenderingHandler(EntityPlayerClone.class, new RenderPlayerClone());
-		RenderingRegistry.registerEntityRenderingHandler(EntityOrbitalStrike.class, new RenderOrbitalStrike());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDivider.class, new RenderDivider());
-		RenderingRegistry.registerBlockHandler(new RenderBlocksECIII());
-		MinecraftForge.EVENT_BUS.register(new ClientRenderHandler());
-		FMLCommonHandler.instance().bus().register(new RenderHandlerEC3());
-		MinecraftForge.EVENT_BUS.register(new RenderHandlerEC3());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlocksCore.elementalCrystal), new RenderElementalCrystalAsItem());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlocksCore.solarPrism), new RenderSolarPrismAsItem());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.pistol, new GunItemRenderHelper());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.rifle, new GunItemRenderHelper());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.sniper, new GunItemRenderHelper());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.gatling, new GunItemRenderHelper());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.magicalBuilder, new RenderMagicalBuilder());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.orbitalRemote, new RenderOrbitalRemote());
-//		MinecraftForgeClient.registerItemRenderer(ItemsCore.research_book, new RenderMagicalBook());
-		MinecraftForgeClient.registerItemRenderer(ItemsCore.collectedSpawner, new RenderCollectedSpawner());
-		for(int i = 0; i < ItemsCore.magicArmorItems.length; ++i)
-		{
-			if(ItemsCore.magicArmorItems[i] != null)
-				MinecraftForgeClient.registerItemRenderer(ItemsCore.magicArmorItems[i], new ArmorRenderer());
-		}
+    @Override
+    public void openPentacleGUIForPlayer(TileEntity tile) {
+        Minecraft.getMinecraft()
+            .displayGuiScreen(new GuiPlayerPentacle(tile));
+    }
 
-		kbArmorBoost =  new KeyBinding("ComputerArmorBoost", Keyboard.KEY_Z, "key.categories.gameplay");
-		ClientRegistry.registerKeyBinding(kbArmorBoost);
-		kbArmorVision =  new KeyBinding("ComputerArmorNightVision", Keyboard.KEY_X, "key.categories.gameplay");
-		ClientRegistry.registerKeyBinding(kbArmorVision);
-	}
+    @Override
+    public void registerRenderInformation() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityMRUPresence.class, new RenderMRUPresence());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMRUArrow.class, new RenderMRUArrow());
+        RenderingRegistry.registerEntityRenderingHandler(EntitySolarBeam.class, new RenderSolarBeam());
+        RenderingRegistry.registerEntityRenderingHandler(EntityWindMage.class, new RenderWindMage());
+        RenderingRegistry.registerEntityRenderingHandler(EntityPoisonFume.class, new RenderPoisonFume());
+        RenderingRegistry
+            .registerEntityRenderingHandler(EntityShadowKnife.class, new RenderSnowball(ItemsCore.shadeKnife));
+        RenderingRegistry
+            .registerEntityRenderingHandler(EntityArmorDestroyer.class, new RenderSnowball(ItemsCore.magicalSlag));
+        RenderingRegistry
+            .registerEntityRenderingHandler(EntityDividerProjectile.class, new RenderSnowball(ItemsCore.magicalSlag));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMRURay.class, new RenderMRURay());
+        RenderingRegistry.registerEntityRenderingHandler(EntityDemon.class, new RenderDemon());
+        RenderingRegistry.registerEntityRenderingHandler(EntityHologram.class, new RenderHologram());
+        RenderingRegistry.registerEntityRenderingHandler(EntityPlayerClone.class, new RenderPlayerClone());
+        RenderingRegistry.registerEntityRenderingHandler(EntityOrbitalStrike.class, new RenderOrbitalStrike());
+        RenderingRegistry.registerEntityRenderingHandler(EntityDivider.class, new RenderDivider());
+        RenderingRegistry.registerBlockHandler(new RenderBlocksECIII());
+        MinecraftForge.EVENT_BUS.register(new ClientRenderHandler());
+        FMLCommonHandler.instance()
+            .bus()
+            .register(new RenderHandlerEC3());
+        MinecraftForge.EVENT_BUS.register(new RenderHandlerEC3());
+        MinecraftForgeClient.registerItemRenderer(
+            Item.getItemFromBlock(BlocksCore.elementalCrystal),
+            new RenderElementalCrystalAsItem());
+        MinecraftForgeClient
+            .registerItemRenderer(Item.getItemFromBlock(BlocksCore.solarPrism), new RenderSolarPrismAsItem());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.pistol, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.rifle, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.sniper, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.gatling, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.magicalBuilder, new RenderMagicalBuilder());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.orbitalRemote, new RenderOrbitalRemote());
+        // MinecraftForgeClient.registerItemRenderer(ItemsCore.research_book, new RenderMagicalBook());
+        MinecraftForgeClient.registerItemRenderer(ItemsCore.collectedSpawner, new RenderCollectedSpawner());
+        for (int i = 0; i < ItemsCore.magicArmorItems.length; ++i) {
+            if (ItemsCore.magicArmorItems[i] != null)
+                MinecraftForgeClient.registerItemRenderer(ItemsCore.magicArmorItems[i], new ArmorRenderer());
+        }
 
-	@Override
-	public void registerTileEntitySpecialRenderer()
-	{
-		ClientRegistry.bindTileEntitySpecialRenderer(TileRayTower.class, new RenderRayTower());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileecAcceptor.class, new RenderMRULink());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileSolarPrism.class, new RenderSolarPrism());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileSunRayAbsorber.class, new RenderSunRayAbsorber());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileColdDistillator.class, new RenderColdDistillator());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerBurner.class, new RenderFlowerBurner());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileHeatGenerator.class, new RenderHeatGenerator());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderGenerator.class, new RenderEnderGenerator());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicianTable.class, new RenderMagicianTable());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalQuarry.class, new RenderMagicalQuarry());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMonsterHolder.class, new RenderMonsterHolder());
-		ClientRegistry.bindTileEntitySpecialRenderer(TilePotionSpreader.class, new RenderPotionSpreader());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalEnchanter.class, new RenderMagicalEnchanter());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMonsterHarvester.class, new RenderMonsterHarvester());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalRepairer.class, new RenderMagicalRepairer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMatrixAbsorber.class, new RenderMatrixAbsorber());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileRadiatingChamber.class, new RenderRadiatingChamber());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagmaticSmelter.class, new RenderMagmaticSmelter());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalJukebox.class, new RenderMagicalJukebox());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileElementalCrystal.class, new RenderElementalCrystal());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalFormer.class, new RenderCrystalFormer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalController.class, new RenderCrystalController());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalExtractor.class, new RenderCrystalExtractor());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileChargingChamber.class, new RenderChargingChamber());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil_Hardener.class, new RenderMRUCoilHardener());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil.class, new RenderMRUCoil());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCorruptionCleaner.class, new RenderCorruptionCleaner());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMRUReactor.class, new RenderMRUReactor());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMINEjector.class, new RenderMINEjector());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileAMINEjector.class, new RenderMINEjector());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMINInjector.class, new RenderMINInjector());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileAMINInjector.class, new RenderMINInjector());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMIM.class, new RenderMIM());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileDarknessObelisk.class, new RenderDarknessObelisk());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileUltraHeatGenerator.class, new RenderUltraHeatGenerator());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileUltraFlowerBurner.class, new RenderUltraFlowerBurner());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalAssembler.class, new RenderMagicalAssembler());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalMirror.class, new RenderMagicalMirror());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalDisplay.class, new RenderMagicalDisplay());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMithrilineCrystal.class, new RenderMithrilineCrystal());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMithrilineFurnace.class, new RenderMithrilineFurnace());
-		ClientRegistry.bindTileEntitySpecialRenderer(TilePlayerPentacle.class, new RenderPlayerPentacle());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileWindRune.class, new RenderWindRune());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileDemonicPentacle.class, new RenderDemonicPentacle());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalChest.class, new RenderMagicalChest());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileNewMIM.class, new RenderNewMIM());
-	}
+        kbArmorBoost = new KeyBinding("ComputerArmorBoost", Keyboard.KEY_Z, "key.categories.gameplay");
+        ClientRegistry.registerKeyBinding(kbArmorBoost);
+        kbArmorVision = new KeyBinding("ComputerArmorNightVision", Keyboard.KEY_X, "key.categories.gameplay");
+        ClientRegistry.registerKeyBinding(kbArmorVision);
+    }
 
-	@Override
-	public World getClientWorld()
-	{
-		return FMLClientHandler.instance().getClient().theWorld;
-	}
+    @Override
+    public void registerTileEntitySpecialRenderer() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileRayTower.class, new RenderRayTower());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileecAcceptor.class, new RenderMRULink());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileSolarPrism.class, new RenderSolarPrism());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileSunRayAbsorber.class, new RenderSunRayAbsorber());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileColdDistillator.class, new RenderColdDistillator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerBurner.class, new RenderFlowerBurner());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileHeatGenerator.class, new RenderHeatGenerator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEnderGenerator.class, new RenderEnderGenerator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicianTable.class, new RenderMagicianTable());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalQuarry.class, new RenderMagicalQuarry());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMonsterHolder.class, new RenderMonsterHolder());
+        ClientRegistry.bindTileEntitySpecialRenderer(TilePotionSpreader.class, new RenderPotionSpreader());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalEnchanter.class, new RenderMagicalEnchanter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMonsterHarvester.class, new RenderMonsterHarvester());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalRepairer.class, new RenderMagicalRepairer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMatrixAbsorber.class, new RenderMatrixAbsorber());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileRadiatingChamber.class, new RenderRadiatingChamber());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagmaticSmelter.class, new RenderMagmaticSmelter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalJukebox.class, new RenderMagicalJukebox());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileElementalCrystal.class, new RenderElementalCrystal());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalFormer.class, new RenderCrystalFormer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalController.class, new RenderCrystalController());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalExtractor.class, new RenderCrystalExtractor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileChargingChamber.class, new RenderChargingChamber());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil_Hardener.class, new RenderMRUCoilHardener());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil.class, new RenderMRUCoil());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCorruptionCleaner.class, new RenderCorruptionCleaner());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMRUReactor.class, new RenderMRUReactor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMINEjector.class, new RenderMINEjector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileAMINEjector.class, new RenderMINEjector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMINInjector.class, new RenderMINInjector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileAMINInjector.class, new RenderMINInjector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMIM.class, new RenderMIM());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileDarknessObelisk.class, new RenderDarknessObelisk());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileUltraHeatGenerator.class, new RenderUltraHeatGenerator());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileUltraFlowerBurner.class, new RenderUltraFlowerBurner());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalAssembler.class, new RenderMagicalAssembler());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalMirror.class, new RenderMagicalMirror());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalDisplay.class, new RenderMagicalDisplay());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMithrilineCrystal.class, new RenderMithrilineCrystal());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMithrilineFurnace.class, new RenderMithrilineFurnace());
+        ClientRegistry.bindTileEntitySpecialRenderer(TilePlayerPentacle.class, new RenderPlayerPentacle());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileWindRune.class, new RenderWindRune());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileDemonicPentacle.class, new RenderDemonicPentacle());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMagicalChest.class, new RenderMagicalChest());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileNewMIM.class, new RenderNewMIM());
+    }
 
-	@Override
-	public Object getClientIcon(String str)
-	{
-		if(str.equals("mru"))
-			return mruIcon;
-		if(str.equals("chaosIcon"))
-			return chaosIcon;
-		if(str.equals("frozenIcon"))
-			return frozenIcon;
-		if(str.equals("mruParticleIcon"))
-			return mruParticleIcon;
-		if(str.equals("particle_fogFX"))
-			return fogIcon;
-		if(str.contains("consSpellParticle"))
-		{
-			int index = str.indexOf('_');
-			if(index != -1)
-			{
-				int arrayNum = Integer.parseInt(str.substring(index+1));
-				return c_spell_particle_array[arrayNum];
-			}
-		}
-		return null;
-	}
+    @Override
+    public World getClientWorld() {
+        return FMLClientHandler.instance()
+            .getClient().theWorld;
+    }
 
-	@Override
-	public void spawnParticle(String name, float x, float y, float z, double i, double j, double k)
-	{
-		if(name.equals("mruFX"))
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), x, y, z, i, j, k));
-		if(name.equals("cSpellFX"))
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCSpellFX(getClientWorld(), x, y, z, i, j, k));
-		if(name.equals("fogFX"))
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFogFX(getClientWorld(), x, y, z, i, j, k));
-	}
+    @Override
+    public Object getClientIcon(String str) {
+        if (str.equals("mru")) return mruIcon;
+        if (str.equals("chaosIcon")) return chaosIcon;
+        if (str.equals("frozenIcon")) return frozenIcon;
+        if (str.equals("mruParticleIcon")) return mruParticleIcon;
+        if (str.equals("particle_fogFX")) return fogIcon;
+        if (str.contains("consSpellParticle")) {
+            int index = str.indexOf('_');
+            if (index != -1) {
+                int arrayNum = Integer.parseInt(str.substring(index + 1));
+                return c_spell_particle_array[arrayNum];
+            }
+        }
+        return null;
+    }
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public boolean itemHasEffect(ItemStack stk)
-	{
-		if(stk.getItem() instanceof ItemSecret)
-		{
-			int metadata = stk.getItemDamage();
-			switch(metadata)
-			{
-				case 0:
-				{
-					EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-					World wrld = Minecraft.getMinecraft().theWorld;
-					List playerLst = wrld.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(player.posX-10, player.posY-10, player.posZ-10, player.posX+10, player.posY+10, player.posZ+10));
-					BiomeGenBase biome = wrld.getBiomeGenForCoords((int)player.posX, (int)player.posY);
-					return (wrld.getWorldTime() % 24000 >= 14000 && wrld.getWorldTime() % 24000 <= 16000) && (player.rotationPitch <= -42 && player.rotationPitch >= -65) && (playerLst.size() == 1) && (!wrld.isRaining() && (biome.getTempCategory() == TempCategory.WARM || biome.getTempCategory() == TempCategory.MEDIUM));
-				}
-			}
-		}
-		return false;
-	}
+    @Override
+    public void spawnParticle(String name, float x, float y, float z, double i, double j, double k) {
+        if (name.equals("mruFX"))
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), x, y, z, i, j, k));
+        if (name.equals("cSpellFX"))
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCSpellFX(getClientWorld(), x, y, z, i, j, k));
+        if (name.equals("fogFX"))
+            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFogFX(getClientWorld(), x, y, z, i, j, k));
+    }
 
-	@Override
-	public Object getClientModel(int id)
-	{
-		switch (id)
-		{
-			case 0:
-				return chest;
-			case 1:
-				return legs;
-			case 2:
-				return chest1;
-			default: break;
-		}
-		return chest;
-	}
+    @SuppressWarnings("rawtypes")
+    @Override
+    public boolean itemHasEffect(ItemStack stk) {
+        if (stk.getItem() instanceof ItemSecret) {
+            int metadata = stk.getItemDamage();
+            switch (metadata) {
+                case 0: {
+                    EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                    World wrld = Minecraft.getMinecraft().theWorld;
+                    List playerLst = wrld.getEntitiesWithinAABB(
+                        EntityPlayer.class,
+                        AxisAlignedBB.getBoundingBox(
+                            player.posX - 10,
+                            player.posY - 10,
+                            player.posZ - 10,
+                            player.posX + 10,
+                            player.posY + 10,
+                            player.posZ + 10));
+                    BiomeGenBase biome = wrld.getBiomeGenForCoords((int) player.posX, (int) player.posY);
+                    return (wrld.getWorldTime() % 24000 >= 14000 && wrld.getWorldTime() % 24000 <= 16000)
+                        && (player.rotationPitch <= -42 && player.rotationPitch >= -65)
+                        && (playerLst.size() == 1)
+                        && (!wrld.isRaining() && (biome.getTempCategory() == TempCategory.WARM
+                            || biome.getTempCategory() == TempCategory.MEDIUM));
+                }
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public Object getRenderer(int index)
-	{
-		if(index == 0)
-			return skyedRenderer;
-		else
-			return cloudedRenderer;
-	}
+    @Override
+    public Object getClientModel(int id) {
+        switch (id) {
+            case 0:
+                return chest;
+            case 1:
+                return legs;
+            case 2:
+                return chest1;
+            default:
+                break;
+        }
+        return chest;
+    }
 
-	@Override
-	public EntityPlayer getClientPlayer()
-	{
-		return Minecraft.getMinecraft().thePlayer;
-	}
+    @Override
+    public Object getRenderer(int index) {
+        if (index == 0) return skyedRenderer;
+        else return cloudedRenderer;
+    }
 
-	@Override
-	public void ItemFX(double... ds)
-	{
-		Minecraft.getMinecraft().effectRenderer.addEffect(new EntityItemFX(
-				Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], 1, 0, 1, ds[3], ds[4], ds[5]
-				));
-	}
+    @Override
+    public EntityPlayer getClientPlayer() {
+        return Minecraft.getMinecraft().thePlayer;
+    }
 
-	@Override
-	public void FlameFX(double... ds)
-	{
-		Minecraft.getMinecraft().effectRenderer.addEffect(new EntityColoredFlameFX(
-				Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8], ds[9]
-				));
-	}
+    @Override
+    public void ItemFX(double... ds) {
+        Minecraft.getMinecraft().effectRenderer.addEffect(
+            new EntityItemFX(Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], 1, 0, 1, ds[3], ds[4], ds[5]));
+    }
 
-	public void SmokeFX(double... ds)
-	{
-		if(ds.length == 7)
-		{
-			Minecraft.getMinecraft().effectRenderer.addEffect(new ec3.client.regular.SmokeFX(
-					Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], (float) ds[6]
-					));
-		}
-		if(ds.length == 10)
-		{
-			Minecraft.getMinecraft().effectRenderer.addEffect(new ec3.client.regular.SmokeFX(
-					Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], (float) ds[6], ds[7], ds[8], ds[9]
-					));
-		}
-	}
+    @Override
+    public void FlameFX(double... ds) {
+        Minecraft.getMinecraft().effectRenderer.addEffect(
+            new EntityColoredFlameFX(
+                Minecraft.getMinecraft().theWorld,
+                ds[0],
+                ds[1],
+                ds[2],
+                ds[3],
+                ds[4],
+                ds[5],
+                ds[6],
+                ds[7],
+                ds[8],
+                ds[9]));
+    }
 
-	@Override
-	public void MRUFX(double... ds)
-	{
-		if(ds.length <= 6)
-		{
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]));
-		}else
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8]));
-	}
+    public void SmokeFX(double... ds) {
+        if (ds.length == 7) {
+            Minecraft.getMinecraft().effectRenderer.addEffect(
+                new ec3.client.regular.SmokeFX(
+                    Minecraft.getMinecraft().theWorld,
+                    ds[0],
+                    ds[1],
+                    ds[2],
+                    ds[3],
+                    ds[4],
+                    ds[5],
+                    (float) ds[6]));
+        }
+        if (ds.length == 10) {
+            Minecraft.getMinecraft().effectRenderer.addEffect(
+                new ec3.client.regular.SmokeFX(
+                    Minecraft.getMinecraft().theWorld,
+                    ds[0],
+                    ds[1],
+                    ds[2],
+                    ds[3],
+                    ds[4],
+                    ds[5],
+                    (float) ds[6],
+                    ds[7],
+                    ds[8],
+                    ds[9]));
+        }
+    }
 
-	@Override
-	public void wingsAction(EntityPlayer e, ItemStack s)
-	{
-		if(GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump) && Minecraft.getMinecraft().inGameHasFocus)
-		{
-			e.worldObj.spawnParticle("reddust", e.posX+MathUtils.randomDouble(e.worldObj.rand)/2, e.posY-1+MathUtils.randomDouble(e.worldObj.rand), e.posZ+MathUtils.randomDouble(e.worldObj.rand)/2, 0, 1, 1);
-			e.motionY += 0.1F;
-			e.fallDistance = 0F;
-			double pX = e.posX;
-			double pY = e.posY;
-			double pZ = e.posZ;
-			String dataString = new String();
-			dataString += "||mod:EC3.Item.Wings";
-			dataString += "||x:"+pX+"||y:"+pY+"||z:"+pZ;
-			dataString += "||playername:"+e.getCommandSenderName();
-			DummyPacketIMSG pkt = new DummyPacketIMSG(dataString);
-			DummyPacketHandler.sendToServer(pkt);
-		}
-	}
+    @Override
+    public void MRUFX(double... ds) {
+        if (ds.length <= 6) {
+            Minecraft.getMinecraft().effectRenderer
+                .addEffect(new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]));
+        } else Minecraft.getMinecraft().effectRenderer.addEffect(
+            new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8]));
+    }
 
-	@Override
-	public void handlePositionChangePacket(DummyData[] packetData)
-	{
-		double sX = Double.parseDouble(packetData[1].fieldValue);
-		double sY = Double.parseDouble(packetData[2].fieldValue);
-		double sZ = Double.parseDouble(packetData[3].fieldValue);
-		float yaw = Float.parseFloat(packetData[4].fieldValue);
-		float pitch = Float.parseFloat(packetData[5].fieldValue);
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		player.setPositionAndRotation(sX, sY, sZ,yaw,pitch);
-		player.rotationYawHead = player.rotationYaw;
-	}
+    @Override
+    public void wingsAction(EntityPlayer e, ItemStack s) {
+        if (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump)
+            && Minecraft.getMinecraft().inGameHasFocus) {
+            e.worldObj.spawnParticle(
+                "reddust",
+                e.posX + MathUtils.randomDouble(e.worldObj.rand) / 2,
+                e.posY - 1 + MathUtils.randomDouble(e.worldObj.rand),
+                e.posZ + MathUtils.randomDouble(e.worldObj.rand) / 2,
+                0,
+                1,
+                1);
+            e.motionY += 0.1F;
+            e.fallDistance = 0F;
+            double pX = e.posX;
+            double pY = e.posY;
+            double pZ = e.posZ;
+            String dataString = new String();
+            dataString += "||mod:EC3.Item.Wings";
+            dataString += "||x:" + pX + "||y:" + pY + "||z:" + pZ;
+            dataString += "||playername:" + e.getCommandSenderName();
+            DummyPacketIMSG pkt = new DummyPacketIMSG(dataString);
+            DummyPacketHandler.sendToServer(pkt);
+        }
+    }
 
-	public void handleSoundPlay(DummyData[] packetData)
-	{
-		double sX = Double.parseDouble(packetData[1].fieldValue);
-		double sY = Double.parseDouble(packetData[2].fieldValue);
-		double sZ = Double.parseDouble(packetData[3].fieldValue);
-		float volume = Float.parseFloat(packetData[4].fieldValue);
-		float pitch = Float.parseFloat(packetData[5].fieldValue);
-		String sound = packetData[6].fieldValue;
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		player.worldObj.playSound(sX, sY, sZ, sound, volume, pitch, false);
-	}
+    @Override
+    public void handlePositionChangePacket(DummyData[] packetData) {
+        double sX = Double.parseDouble(packetData[1].fieldValue);
+        double sY = Double.parseDouble(packetData[2].fieldValue);
+        double sZ = Double.parseDouble(packetData[3].fieldValue);
+        float yaw = Float.parseFloat(packetData[4].fieldValue);
+        float pitch = Float.parseFloat(packetData[5].fieldValue);
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        player.setPositionAndRotation(sX, sY, sZ, yaw, pitch);
+        player.rotationYawHead = player.rotationYaw;
+    }
 
-	public static IIcon mruIcon;
-	public static IIcon mruParticleIcon;
-	public static IIcon[] c_spell_particle_array = new IIcon[4];
-	public static IIcon chaosIcon;
-	public static IIcon frozenIcon;
+    public void handleSoundPlay(DummyData[] packetData) {
+        double sX = Double.parseDouble(packetData[1].fieldValue);
+        double sY = Double.parseDouble(packetData[2].fieldValue);
+        double sZ = Double.parseDouble(packetData[3].fieldValue);
+        float volume = Float.parseFloat(packetData[4].fieldValue);
+        float pitch = Float.parseFloat(packetData[5].fieldValue);
+        String sound = packetData[6].fieldValue;
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        player.worldObj.playSound(sX, sY, sZ, sound, volume, pitch, false);
+    }
 
+    public static IIcon mruIcon;
+    public static IIcon mruParticleIcon;
+    public static IIcon[] c_spell_particle_array = new IIcon[4];
+    public static IIcon chaosIcon;
+    public static IIcon frozenIcon;
 
-	@SideOnly(Side.CLIENT)
-	private static IRenderHandler skyedRenderer = new RenderSkyFirstWorld();
+    @SideOnly(Side.CLIENT)
+    private static IRenderHandler skyedRenderer = new RenderSkyFirstWorld();
 
-	@SideOnly(Side.CLIENT)
-	private static IRenderHandler cloudedRenderer = new RenderCloudsFirstWorld();
-	public static IIcon fogIcon;
+    @SideOnly(Side.CLIENT)
+    private static IRenderHandler cloudedRenderer = new RenderCloudsFirstWorld();
+    public static IIcon fogIcon;
 
-	private static final ModelArmorEC3 chest = new ModelArmorEC3(1.0f);
-	private static final ModelArmorEC3 chest1 = new ModelArmorEC3(0.75f);
-	private static final ModelArmorEC3 legs = new ModelArmorEC3(0.5f);
+    private static final ModelArmorEC3 chest = new ModelArmorEC3(1.0f);
+    private static final ModelArmorEC3 chest1 = new ModelArmorEC3(0.75f);
+    private static final ModelArmorEC3 legs = new ModelArmorEC3(0.5f);
 
-	public static KeyBinding kbArmorBoost;
-	public static KeyBinding kbArmorVision;
+    public static KeyBinding kbArmorBoost;
+    public static KeyBinding kbArmorVision;
 }

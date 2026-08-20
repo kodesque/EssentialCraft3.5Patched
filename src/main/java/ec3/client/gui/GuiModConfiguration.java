@@ -5,21 +5,26 @@ import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
+
 import cpw.mods.fml.client.config.GuiConfig;
 import ec3.utils.cfg.Config;
 
-public class GuiModConfiguration extends GuiConfig{
+public class GuiModConfiguration extends GuiConfig {
 
-	@SuppressWarnings("unchecked")
-	public GuiModConfiguration(GuiScreen parentScreen) {
-		super(parentScreen, getConfigElements(), "essentialcraft", false,false, GuiConfig.getAbridgedConfigPath(Config.config.toString()));
-		// TODO Auto-generated constructor stub
-	}
-
+    @SuppressWarnings("unchecked")
+    public GuiModConfiguration(GuiScreen parentScreen) {
+        super(
+            parentScreen,
+            getConfigElements(),
+            "essentialcraft",
+            false,
+            false,
+            GuiConfig.getAbridgedConfigPath(Config.config.toString()));
+        // TODO Auto-generated constructor stub
+    }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	private static List getConfigElements()
-    {
+    private static List getConfigElements() {
         List list = new ArrayList();
         list.addAll((new ConfigElement(Config.config.getCategory("misc"))).getChildElements());
         list.addAll((new ConfigElement(Config.config.getCategory("general"))).getChildElements());

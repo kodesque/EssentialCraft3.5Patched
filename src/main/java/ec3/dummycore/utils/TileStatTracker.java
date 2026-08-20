@@ -4,32 +4,31 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileStatTracker {
+
     public TileEntity trackedTile;
     public NBTTagCompound trackedTag;
 
     public TileStatTracker(TileEntity tracked) {
-        this.trackedTile = tracked;
+        trackedTile = tracked;
     }
 
     public boolean tileNeedsSyncing() {
-        if (this.trackedTile == null) {
-            return false;
+        if (trackedTile == null) return false;
+        NBTTagCompound currentTag = new NBTTagCompound();
+        if (trackedTag == null) {
+            trackedTag = new NBTTagCompound();
+            trackedTile.writeToNBT(trackedTag);
+            return true;
         } else {
-            NBTTagCompound currentTag = new NBTTagCompound();
-            if (this.trackedTag == null) {
-                this.trackedTag = new NBTTagCompound();
-                this.trackedTile.func_145841_b(this.trackedTag);
-                return true;
+            trackedTile.writeToNBT(currentTag);
+            if (currentTag.equals(trackedTag)) {
+                trackedTile.writeToNBT(trackedTag);
+                return false;
             } else {
-                this.trackedTile.func_145841_b(currentTag);
-                if (currentTag.equals(this.trackedTag)) {
-                    this.trackedTile.func_145841_b(this.trackedTag);
-                    return false;
-                } else {
-                    this.trackedTile.func_145841_b(this.trackedTag);
-                    return true;
-                }
+                trackedTile.writeToNBT(trackedTag);
+                return true;
             }
         }
     }
+
 }

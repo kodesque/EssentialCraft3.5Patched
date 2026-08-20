@@ -1,8 +1,13 @@
 package ec3.dummycore.utils;
 
-import DummyCore.Utils.DummyColor;
-
+/**
+ *
+ * @author Modbder
+ * @version From DummyCore 1.1
+ * @Description Used to work with multi-colored light system.
+ */
 public enum EnumLightColor {
+
     BLACK(51, 51, 51),
     RED(255, 51, 51),
     GREEN(51, 255, 51),
@@ -20,17 +25,15 @@ public enum EnumLightColor {
     ORANGE(255, 153, 51),
     WHITE(204, 204, 204);
 
-    private DummyCore.Utils.DummyColor mainColor;
-    private int colorID = 0;
-    private static int globalID = -1;
-
     private EnumLightColor(int red, int green, int blue) {
-        this.mainColor = new DummyCore.Utils.DummyColor(red, green, blue);
-        this.colorID = this.setGlobal();
+        mainColor = new DummyColor(red, green, blue);
+        colorID = setGlobal();
     }
 
+    private DummyColor mainColor;
+
     public DummyColor getColor() {
-        return this.mainColor;
+        return mainColor;
     }
 
     private int setGlobal() {
@@ -38,6 +41,10 @@ public enum EnumLightColor {
     }
 
     public int getLightID() {
-        return this.colorID;
+        return colorID;
     }
+
+    private int colorID = 0;
+    private static int globalID = -1;
+
 }

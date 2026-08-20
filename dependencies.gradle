@@ -38,8 +38,10 @@ dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:worldedit-gtnh:v0.0.10:dev")
 
     devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.69-GTNH:dev")
-    devOnlyNonPublishable("curse.maven:dummycore-230103:2244260")
-    devOnlyNonPublishable("curse.maven:waila-73488:2230518")
+    //STABLE >
+//    devOnlyNonPublishable("curse.maven:dummycore-230103:2244260")
+    //ALPHA >
+//    devOnlyNonPublishable("curse.maven:dummycore-230103:2256966")
 
     devOnlyNonPublishable(rfg.deobf(project.files("libs/BaublesExpanded-2.2.21-GTNH.jar")))
     devOnlyNonPublishable(rfg.deobf(project.files("libs/Thaumcraft-1.7.10-4.2.3.5.jar")))

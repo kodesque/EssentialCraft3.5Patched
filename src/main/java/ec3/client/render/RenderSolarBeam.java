@@ -1,7 +1,5 @@
 package ec3.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,20 +8,20 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderSolarBeam extends Render{
+import org.lwjgl.opengl.GL11;
 
-	private static final ResourceLocation field_147523_b = new ResourceLocation("textures/entity/beacon_beam.png");
-	  
-	@Override
-	public void doRender(Entity p_76986_1_, double p_147500_2_,
-			double p_147500_4_, double p_147500_6_, float p_147500_8_,
-			float p_76986_9_) {
-		RenderHelper.disableStandardItemLighting();
-		float f1 = 1.0F;
+public class RenderSolarBeam extends Render {
+
+    private static final ResourceLocation field_147523_b = new ResourceLocation("textures/entity/beacon_beam.png");
+
+    @Override
+    public void doRender(Entity p_76986_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_,
+        float p_147500_8_, float p_76986_9_) {
+        RenderHelper.disableStandardItemLighting();
+        float f1 = 1.0F;
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
 
-        if (f1 > 0.0F)
-        {
+        if (f1 > 0.0F) {
             Tessellator tessellator = Tessellator.instance;
             this.bindTexture(field_147523_b);
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
@@ -33,13 +31,13 @@ public class RenderSolarBeam extends Render{
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glDepthMask(true);
             OpenGlHelper.glBlendFunc(770, 1, 1, 0);
-            float f2 = (float)p_76986_1_.worldObj.getTotalWorldTime() + p_147500_8_;
-            float f3 = -f2 * 0.2F - (float)MathHelper.floor_float(-f2 * 0.1F);
+            float f2 = (float) p_76986_1_.worldObj.getTotalWorldTime() + p_147500_8_;
+            float f3 = -f2 * 0.2F - (float) MathHelper.floor_float(-f2 * 0.1F);
             byte b0 = 1;
-            double d3 = (double)f2 * 0.025D * (1.0D - (double)(b0 & 1) * 2.5D);
+            double d3 = (double) f2 * 0.025D * (1.0D - (double) (b0 & 1) * 2.5D);
             tessellator.startDrawingQuads();
             tessellator.setColorRGBA(255, 255, 0, 11);
-            double d5 = (double)b0 * 0.2D;
+            double d5 = (double) b0 * 0.2D;
             double d7 = 0.5D + Math.cos(d3 + 2.356194490192345D) * d5;
             double d9 = 0.5D + Math.sin(d3 + 2.356194490192345D) * d5;
             double d11 = 0.5D + Math.cos(d3 + (Math.PI / 4D)) * d5;
@@ -48,11 +46,11 @@ public class RenderSolarBeam extends Render{
             double d17 = 0.5D + Math.sin(d3 + 3.9269908169872414D) * d5;
             double d19 = 0.5D + Math.cos(d3 + 5.497787143782138D) * d5;
             double d21 = 0.5D + Math.sin(d3 + 5.497787143782138D) * d5;
-            double d23 = (double)(256.0F * f1);
+            double d23 = (double) (256.0F * f1);
             double d25 = 0.0D;
             double d27 = 1.0D;
-            double d28 = (double)(-1.0F + f3);
-            double d29 = (double)(256.0F * f1) * (0.5D / d5) + d28;
+            double d28 = (double) (-1.0F + f3);
+            double d29 = (double) (256.0F * f1) * (0.5D / d5) + d28;
             tessellator.addVertexWithUV(p_147500_2_ + d7, p_147500_4_ + d23, p_147500_6_ + d9, d27, d29);
             tessellator.addVertexWithUV(p_147500_2_ + d7, p_147500_4_, p_147500_6_ + d9, d27, d28);
             tessellator.addVertexWithUV(p_147500_2_ + d11, p_147500_4_, p_147500_6_ + d13, d25, d28);
@@ -83,11 +81,11 @@ public class RenderSolarBeam extends Render{
             double d12 = 0.8D;
             double d14 = 0.8D;
             double d16 = 0.8D;
-            double d18 = (double)(256.0F * f1);
+            double d18 = (double) (256.0F * f1);
             double d20 = 0.0D;
             double d22 = 1.0D;
-            double d24 = (double)(-1.0F + f3);
-            double d26 = (double)(256.0F * f1 * f1);
+            double d24 = (double) (-1.0F + f3);
+            double d26 = (double) (256.0F * f1 * f1);
             tessellator.addVertexWithUV(p_147500_2_ + d30, p_147500_4_ + d18, p_147500_6_ + d4, d22, d26);
             tessellator.addVertexWithUV(p_147500_2_ + d30, p_147500_4_, p_147500_6_ + d4, d22, d24);
             tessellator.addVertexWithUV(p_147500_2_ + d6, p_147500_4_, p_147500_6_ + d8, d20, d24);
@@ -110,12 +108,12 @@ public class RenderSolarBeam extends Render{
             GL11.glDepthMask(true);
         }
         RenderHelper.enableStandardItemLighting();
-	}
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-		// TODO Auto-generated method stub
-		return field_147523_b;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
+        // TODO Auto-generated method stub
+        return field_147523_b;
+    }
 
 }

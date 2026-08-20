@@ -5,293 +5,274 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ReflectionProvider {
-    public static final DummyCore.Utils.ReflectionProvider instance = new DummyCore.Utils.ReflectionProvider();
+
+    public static final ReflectionProvider instance = new ReflectionProvider();
+
     private Class<?> workingWith;
     private Object accessed;
+
     private boolean isAccessing;
     private boolean hardAccess;
 
-    public ReflectionProvider() {
-    }
-
     public boolean setTo(String name, Object setTo) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             f.set(accessed, setTo);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return true;
-        } catch (Exception var5) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     public float getFloatFrom(String name) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             float ret = f.getFloat(accessed);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var5) {
+        } catch (Exception e) {
             return Float.NaN;
         }
     }
 
     public double getDoubleFrom(String name) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             double ret = f.getDouble(accessed);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var6) {
+        } catch (Exception e) {
             return Double.NaN;
         }
     }
 
     public int getIntFrom(String name) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             int ret = f.getInt(accessed);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var5) {
+        } catch (Exception e) {
             return Integer.MIN_VALUE;
         }
     }
 
     public boolean getBoolFrom(String name) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             boolean ret = f.getBoolean(accessed);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var5) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     public Object getFrom(String name) {
-        this.c();
+        c();
 
         try {
-            Field f = this.getField(name);
+            Field f = getField(name);
             boolean accessed = f.isAccessible();
-            if (!accessed && this.hardAccess) {
-                f.setAccessible(true);
-            }
+            if (!accessed && hardAccess) f.setAccessible(true);
 
             Object ret = f.get(accessed);
-            if (this.hardAccess) {
-                f.setAccessible(accessed);
-            }
+
+            if (hardAccess) f.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var5) {
+        } catch (Exception e) {
             return null;
         }
     }
 
     public Object create(Class<?>[] parParams, Object[] parObj) {
-        this.c();
+        c();
 
         try {
-            Constructor<?> c = this.getConstructor(parParams);
+
+            Constructor<?> c = getConstructor(parParams);
             boolean accessed = c.isAccessible();
-            if (!accessed && this.hardAccess) {
-                c.setAccessible(true);
-            }
+            if (!accessed && hardAccess) c.setAccessible(true);
 
             Object ret = c.newInstance(parObj);
-            if (this.hardAccess) {
-                c.setAccessible(accessed);
-            }
+
+            if (hardAccess) c.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var6) {
+
+        } catch (Exception e) {
             return null;
         }
     }
 
     public Object invoke(String name, Class<?>[] parParams, Object[] parObj) {
-        this.c();
+        c();
 
         try {
-            Method m = this.getMethod(name, parParams);
+
+            Method m = getMethod(name, parParams);
             boolean accessed = m.isAccessible();
-            if (!accessed && this.hardAccess) {
-                m.setAccessible(true);
-            }
+            if (!accessed && hardAccess) m.setAccessible(true);
 
             Object ret = m.invoke(accessed, parObj);
-            if (this.hardAccess) {
-                m.setAccessible(accessed);
-            }
+
+            if (hardAccess) m.setAccessible(accessed);
 
             return ret;
-        } catch (Exception var7) {
+
+        } catch (Exception e) {
             return null;
         }
     }
 
     public Constructor<?> getConstructor(Class<?>... params) {
-        this.c();
+        c();
 
         try {
-            return this.workingWith.getConstructor(params);
-        } catch (Exception var5) {
+            return workingWith.getConstructor(params);
+        } catch (Exception e) {
             try {
-                return this.workingWith.getDeclaredConstructor(params);
-            } catch (Exception var4) {
+                return workingWith.getDeclaredConstructor(params);
+            } catch (Exception e1) {
                 return null;
             }
         }
     }
 
     public Method getMethod(String name, Class<?>... params) {
-        this.c();
+        c();
 
         try {
-            return this.workingWith.getMethod(name, params);
-        } catch (Exception var6) {
+            return workingWith.getMethod(name, params);
+        } catch (Exception e) {
             try {
-                return this.workingWith.getDeclaredMethod(name, params);
-            } catch (Exception var5) {
+                return workingWith.getDeclaredMethod(name, params);
+            } catch (Exception e1) {
                 return null;
             }
         }
     }
 
     public Field getField(String name) {
-        this.c();
+        c();
 
         try {
-            return this.workingWith.getField(name);
-        } catch (Exception var5) {
+            return workingWith.getField(name);
+        } catch (Exception e) {
             try {
-                return this.workingWith.getDeclaredField(name);
-            } catch (Exception var4) {
+                return workingWith.getDeclaredField(name);
+            } catch (Exception e1) {
                 return null;
             }
         }
     }
 
     public Class<?> getSetClass() {
-        this.c();
-        return this.workingWith;
+        c();
+
+        return workingWith;
     }
 
     public boolean setClass(String classPath) {
-        this.c();
+        c();
 
         try {
-            this.workingWith = Class.forName(classPath);
+            workingWith = Class.forName(classPath);
             return true;
-        } catch (Exception var3) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     public boolean setClass(Object clazz) {
-        this.c();
-        this.workingWith = clazz.getClass();
-        this.accessed = clazz;
+        c();
+
+        workingWith = clazz.getClass();
+        accessed = clazz;
+
         return true;
     }
 
     public void access(Object obj) {
-        this.c();
-        this.accessed = obj;
+        c();
+
+        accessed = obj;
     }
 
     private boolean c() {
-        if (!this.isAccessing) {
-            throw new IllegalStateException("Reflection Provider not running!");
-        } else {
-            return this.isAccessing;
-        }
+        if (!isAccessing) throw new IllegalStateException("Reflection Provider not running!");
+
+        return isAccessing;
     }
 
     public void start() {
-        if (this.isAccessing) {
-            throw new IllegalStateException("Reflection Provider already running!");
-        } else {
-            this.isAccessing = true;
-        }
+        if (isAccessing) throw new IllegalStateException("Reflection Provider already running!");
+
+        isAccessing = true;
     }
 
     public void end() {
-        if (!this.isAccessing) {
-            throw new IllegalStateException("Reflection Provider not running!");
-        } else {
-            this.isAccessing = false;
-            this.workingWith = null;
-            this.accessed = null;
-            this.hardAccess = false;
-        }
+        if (!isAccessing) throw new IllegalStateException("Reflection Provider not running!");
+
+        isAccessing = false;
+        workingWith = null;
+        accessed = null;
+        hardAccess = false;
     }
 
     public void enableHardAccess(boolean b) {
-        this.c();
-        this.hardAccess = b;
+        c();
+
+        hardAccess = b;
     }
 
     public Object getCurrentObj() {
-        this.c();
-        return this.accessed;
+        c();
+
+        return accessed;
     }
 
     public Object setCurrentObj(Object obj) {
-        this.c();
-        this.accessed = obj;
-        return this.accessed;
+        c();
+        accessed = obj;
+        return accessed;
     }
+
 }

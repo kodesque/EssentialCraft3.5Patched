@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.tile.TileCrafter;
+import ec3.common.tile.consumers.TileCrafter;
 
 public class ContainerCrafter extends Container {
 

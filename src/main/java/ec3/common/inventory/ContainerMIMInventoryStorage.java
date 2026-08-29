@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.tile.TileNewMIMInventoryStorage;
+import ec3.common.tile.logistics.TileNewMIMInventoryStorage;
 
 public class ContainerMIMInventoryStorage extends Container {
 

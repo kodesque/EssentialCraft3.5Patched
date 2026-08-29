@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.tile.TileMagicalChest;
+import ec3.common.tile.storage.TileMagicalChest;
 
 public class ContainerMagicalChest extends Container {
 

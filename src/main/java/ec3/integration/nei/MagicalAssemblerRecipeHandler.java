@@ -6,17 +6,18 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import ec3.api.MagicalAssemblerRecipes;
-import ec3.api.ShapedAssemblerRecipe;
-import ec3.common.mod.EssentialCraftCore;
-import ec3.dummycore.utils.MathUtils;
-import ec3.dummycore.utils.MiscUtils;
+import ec3.api.recipes.MagicalAssemblerRecipes;
+import ec3.api.recipes.ShapedAssemblerRecipe;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class MagicalAssemblerRecipeHandler extends TemplateRecipeHandler {
 
@@ -64,7 +65,7 @@ public class MagicalAssemblerRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        return "Magical Assembler";
+        return new ChatComponentTranslation("essentialcraft.gui.nei.magicalassembler").getFormattedText();
     }
 
     @Override

@@ -3,6 +3,21 @@ package ec3.network.proxy;
 import java.util.ArrayList;
 import java.util.List;
 
+import ec3.client.render.entities.*;
+import ec3.client.render.handlers.ClientRenderHandler;
+import ec3.client.render.handlers.RenderHandlerEC;
+import ec3.client.render.items.GunItemRenderHelper;
+import ec3.client.render.items.RenderElementalCrystalAsItem;
+import ec3.client.render.items.RenderOrbitalRemote;
+import ec3.client.render.items.RenderSolarPrismAsItem;
+import ec3.client.render.tiles.*;
+import ec3.client.render.world.RenderCloudsHoanna;
+import ec3.client.render.world.RenderSkyHoanna;
+import ec3.utils.dummycore.network.handlers.DummyPacketHandler;
+import ec3.utils.dummycore.network.packets.DummyPacket;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.utils.dummycore.utils.math.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -31,81 +46,81 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.client.gui.GuiAMINEjector;
-import ec3.client.gui.GuiAMINInjector;
-import ec3.client.gui.GuiChargingChamber;
-import ec3.client.gui.GuiColdDistillator;
-import ec3.client.gui.GuiCorruptionCleaner;
-import ec3.client.gui.GuiCrafter;
-import ec3.client.gui.GuiCraftingFrame;
-import ec3.client.gui.GuiCrystalController;
-import ec3.client.gui.GuiCrystalExtractor;
-import ec3.client.gui.GuiCrystalFormer;
-import ec3.client.gui.GuiDarknessObelisk;
-import ec3.client.gui.GuiDemon;
-import ec3.client.gui.GuiEnderGenerator;
-import ec3.client.gui.GuiFilter;
-import ec3.client.gui.GuiFlowerBurner;
-import ec3.client.gui.GuiFurnaceMagic;
-import ec3.client.gui.GuiHeatGenerator;
-import ec3.client.gui.GuiMIM;
-import ec3.client.gui.GuiMIMCraftingManager;
-import ec3.client.gui.GuiMIMInventoryStorage;
-import ec3.client.gui.GuiMINEjector;
-import ec3.client.gui.GuiMINInjector;
-import ec3.client.gui.GuiMRUAcceptor;
-import ec3.client.gui.GuiMRUCoil;
-import ec3.client.gui.GuiMRUInfo;
-import ec3.client.gui.GuiMagicalAssembler;
-import ec3.client.gui.GuiMagicalChest;
-import ec3.client.gui.GuiMagicalEnchanter;
-import ec3.client.gui.GuiMagicalFurnace;
-import ec3.client.gui.GuiMagicalJukebox;
-import ec3.client.gui.GuiMagicalQuarry;
-import ec3.client.gui.GuiMagicalRepairer;
-import ec3.client.gui.GuiMagicalTeleporter;
-import ec3.client.gui.GuiMagicianTable;
-import ec3.client.gui.GuiMagmaticSmeltery;
-import ec3.client.gui.GuiMatrixAbsorber;
-import ec3.client.gui.GuiMithrilineFurnace;
-import ec3.client.gui.GuiMonsterHarvester;
-import ec3.client.gui.GuiMonsterHolder;
-import ec3.client.gui.GuiMoonWell;
-import ec3.client.gui.GuiNewMIM;
-import ec3.client.gui.GuiNewMIMScreen;
-import ec3.client.gui.GuiPlayerPentacle;
-import ec3.client.gui.GuiPotionSpreader;
-import ec3.client.gui.GuiRadiatingChamber;
-import ec3.client.gui.GuiRayTower;
-import ec3.client.gui.GuiResearchBook;
-import ec3.client.gui.GuiRightClicker;
-import ec3.client.gui.GuiSunRayAbsorber;
-import ec3.client.gui.GuiUltraFlowerBurner;
-import ec3.client.gui.GuiUltraHeatGenerator;
-import ec3.client.gui.GuiWeaponBench;
-import ec3.client.model.ModelArmorEC3;
-import ec3.client.regular.EntityCSpellFX;
-import ec3.client.regular.EntityColoredFlameFX;
-import ec3.client.regular.EntityFogFX;
-import ec3.client.regular.EntityItemFX;
-import ec3.client.regular.EntityMRUFX;
-import ec3.client.regular.RenderMRUArrow;
+import ec3.client.gui.logistics.GuiAMINEjector;
+import ec3.client.gui.logistics.GuiAMINInjector;
+import ec3.client.gui.consumers.GuiChargingChamber;
+import ec3.client.gui.producers.GuiColdDistillator;
+import ec3.client.gui.consumers.GuiCorruptionCleaner;
+import ec3.client.gui.consumers.GuiCrafter;
+import ec3.client.gui.items.GuiCraftingFrame;
+import ec3.client.gui.consumers.GuiCrystalController;
+import ec3.client.gui.consumers.GuiCrystalExtractor;
+import ec3.client.gui.crafting.GuiCrystalFormer;
+import ec3.client.gui.producers.GuiDarknessObelisk;
+import ec3.client.gui.crafting.GuiDemon;
+import ec3.client.gui.producers.GuiEnderGenerator;
+import ec3.client.gui.items.GuiFilter;
+import ec3.client.gui.producers.GuiFlowerBurner;
+import ec3.client.gui.consumers.GuiFurnaceMagic;
+import ec3.client.gui.producers.GuiHeatGenerator;
+import ec3.client.gui.logistics.GuiMIM;
+import ec3.client.gui.logistics.GuiMIMCraftingManager;
+import ec3.client.gui.logistics.GuiMIMInventoryStorage;
+import ec3.client.gui.logistics.GuiMINEjector;
+import ec3.client.gui.logistics.GuiMINInjector;
+import ec3.client.gui.storage.GuiMRUAcceptor;
+import ec3.client.gui.consumers.GuiMRUCoil;
+import ec3.client.gui.storage.GuiMRUInfo;
+import ec3.client.gui.consumers.GuiMagicalAssembler;
+import ec3.client.gui.storage.GuiMagicalChest;
+import ec3.client.gui.consumers.GuiMagicalEnchanter;
+import ec3.client.gui.consumers.GuiMagicalFurnace;
+import ec3.client.gui.consumers.GuiMagicalJukebox;
+import ec3.client.gui.consumers.GuiMagicalQuarry;
+import ec3.client.gui.consumers.GuiMagicalRepairer;
+import ec3.client.gui.consumers.GuiMagicalTeleporter;
+import ec3.client.gui.crafting.GuiMagicianTable;
+import ec3.client.gui.consumers.GuiMagmaticSmeltery;
+import ec3.client.gui.producers.GuiMatrixAbsorber;
+import ec3.client.gui.crafting.GuiMithrilineFurnace;
+import ec3.client.gui.consumers.GuiMonsterHarvester;
+import ec3.client.gui.consumers.GuiMonsterHolder;
+import ec3.client.gui.producers.GuiMoonWell;
+import ec3.client.gui.logistics.GuiNewMIM;
+import ec3.client.gui.logistics.GuiNewMIMScreen;
+import ec3.client.gui.consumers.GuiPlayerPentacle;
+import ec3.client.gui.consumers.GuiPotionSpreader;
+import ec3.client.gui.storage.GuiRadiatingChamber;
+import ec3.client.gui.transport.GuiRayTower;
+import ec3.client.gui.items.GuiResearchBook;
+import ec3.client.gui.redstone.GuiRightClicker;
+import ec3.client.gui.producers.GuiSunRayAbsorber;
+import ec3.client.gui.producers.GuiUltraFlowerBurner;
+import ec3.client.gui.producers.GuiUltraHeatGenerator;
+import ec3.client.gui.crafting.GuiWeaponBench;
+import ec3.client.models.ModelArmorEC;
+import ec3.client.FX.FXSpell;
+import ec3.client.FX.FXColoredFlame;
+import ec3.client.FX.FXFog;
+import ec3.client.FX.FXItem;
+import ec3.client.FX.FXMRU;
+import ec3.client.FX.FXArrow;
 import ec3.client.render.*;
-import ec3.common.block.BlocksCore;
-import ec3.common.entity.EntityArmorDestroyer;
-import ec3.common.entity.EntityDemon;
-import ec3.common.entity.EntityDivider;
-import ec3.common.entity.EntityDividerProjectile;
-import ec3.common.entity.EntityHologram;
-import ec3.common.entity.EntityMRUArrow;
-import ec3.common.entity.EntityMRUPresence;
-import ec3.common.entity.EntityMRURay;
-import ec3.common.entity.EntityOrbitalStrike;
-import ec3.common.entity.EntityPlayerClone;
-import ec3.common.entity.EntityPoisonFume;
-import ec3.common.entity.EntityShadowKnife;
-import ec3.common.entity.EntitySolarBeam;
-import ec3.common.entity.EntityWindMage;
+import ec3.common.init.ECBlocks;
+import ec3.common.entities.EntityArmorDestroyer;
+import ec3.common.entities.EntityDemon;
+import ec3.common.entities.EntityDivider;
+import ec3.common.entities.EntityDividerProjectile;
+import ec3.common.entities.EntityHologram;
+import ec3.common.entities.EntityMRUArrow;
+import ec3.common.entities.EntityMRUPresence;
+import ec3.common.entities.EntityMRURay;
+import ec3.common.entities.EntityOrbitalStrike;
+import ec3.common.entities.EntityPlayerClone;
+import ec3.common.entities.EntityPoisonFume;
+import ec3.common.entities.EntityShadowKnife;
+import ec3.common.entities.EntitySolarBeam;
+import ec3.common.entities.EntityWindMage;
 import ec3.common.inventory.ContainerAMINEjector;
 import ec3.common.inventory.ContainerAMINInjector;
 import ec3.common.inventory.ContainerChargingChamber;
@@ -157,74 +172,73 @@ import ec3.common.inventory.ContainerUltraHeatGenerator;
 import ec3.common.inventory.ContainerWeaponBench;
 import ec3.common.inventory.InventoryCraftingFrame;
 import ec3.common.inventory.InventoryMagicFilter;
-import ec3.common.item.ItemSecret;
-import ec3.common.item.ItemsCore;
-import ec3.common.tile.TileAMINEjector;
-import ec3.common.tile.TileAMINInjector;
-import ec3.common.tile.TileAdvancedBlockBreaker;
-import ec3.common.tile.TileAnimalSeparator;
-import ec3.common.tile.TileChargingChamber;
-import ec3.common.tile.TileColdDistillator;
-import ec3.common.tile.TileCorruptionCleaner;
-import ec3.common.tile.TileCrafter;
-import ec3.common.tile.TileCrystalController;
-import ec3.common.tile.TileCrystalExtractor;
-import ec3.common.tile.TileCrystalFormer;
-import ec3.common.tile.TileDarknessObelisk;
-import ec3.common.tile.TileDemonicPentacle;
-import ec3.common.tile.TileElementalCrystal;
-import ec3.common.tile.TileEnderGenerator;
-import ec3.common.tile.TileFlowerBurner;
-import ec3.common.tile.TileFurnaceMagic;
-import ec3.common.tile.TileHeatGenerator;
-import ec3.common.tile.TileMIM;
-import ec3.common.tile.TileMINEjector;
-import ec3.common.tile.TileMINInjector;
-import ec3.common.tile.TileMRUCoil;
-import ec3.common.tile.TileMRUCoil_Hardener;
-import ec3.common.tile.TileMRUReactor;
-import ec3.common.tile.TileMagicalAssembler;
-import ec3.common.tile.TileMagicalChest;
-import ec3.common.tile.TileMagicalDisplay;
-import ec3.common.tile.TileMagicalEnchanter;
-import ec3.common.tile.TileMagicalFurnace;
-import ec3.common.tile.TileMagicalHopper;
-import ec3.common.tile.TileMagicalJukebox;
-import ec3.common.tile.TileMagicalMirror;
-import ec3.common.tile.TileMagicalQuarry;
-import ec3.common.tile.TileMagicalRepairer;
-import ec3.common.tile.TileMagicalTeleporter;
-import ec3.common.tile.TileMagicianTable;
-import ec3.common.tile.TileMagmaticSmelter;
-import ec3.common.tile.TileMatrixAbsorber;
-import ec3.common.tile.TileMithrilineCrystal;
-import ec3.common.tile.TileMithrilineFurnace;
-import ec3.common.tile.TileMonsterHarvester;
-import ec3.common.tile.TileMonsterHolder;
-import ec3.common.tile.TileMoonWell;
-import ec3.common.tile.TileNewMIM;
-import ec3.common.tile.TileNewMIMCraftingManager;
-import ec3.common.tile.TileNewMIMExportNode;
-import ec3.common.tile.TileNewMIMImportNode;
-import ec3.common.tile.TileNewMIMInventoryStorage;
-import ec3.common.tile.TileNewMIMScreen;
-import ec3.common.tile.TilePlayerPentacle;
-import ec3.common.tile.TilePotionSpreader;
-import ec3.common.tile.TileRadiatingChamber;
-import ec3.common.tile.TileRayTower;
-import ec3.common.tile.TileRedstoneTransmitter;
-import ec3.common.tile.TileRightClicker;
-import ec3.common.tile.TileSolarPrism;
-import ec3.common.tile.TileSunRayAbsorber;
-import ec3.common.tile.TileUltraFlowerBurner;
-import ec3.common.tile.TileUltraHeatGenerator;
-import ec3.common.tile.TileWeaponMaker;
-import ec3.common.tile.TileWindRune;
-import ec3.common.tile.TileecAcceptor;
-import ec3.common.tile.TileecStateChecker;
-import ec3.dummycore.client.GuiCommon;
-import ec3.dummycore.utils.*;
-import ec3.utils.cfg.Config;
+import ec3.common.items.ItemSecret;
+import ec3.common.init.ECItems;
+import ec3.common.tile.logistics.TileAMINEjector;
+import ec3.common.tile.logistics.TileAMINInjector;
+import ec3.common.tile.redstone.TileAdvancedBlockBreaker;
+import ec3.common.tile.redstone.TileAnimalSeparator;
+import ec3.common.tile.consumers.TileChargingChamber;
+import ec3.common.tile.producers.TileColdDistillator;
+import ec3.common.tile.consumers.TileCorruptionCleaner;
+import ec3.common.tile.consumers.TileCrafter;
+import ec3.common.tile.consumers.TileCrystalController;
+import ec3.common.tile.consumers.TileCrystalExtractor;
+import ec3.common.tile.crafting.TileCrystalFormer;
+import ec3.common.tile.producers.TileDarknessObelisk;
+import ec3.common.tile.crafting.TileDemonicPentacle;
+import ec3.common.tile.world.TileElementalCrystal;
+import ec3.common.tile.producers.TileEnderGenerator;
+import ec3.common.tile.producers.TileFlowerBurner;
+import ec3.common.tile.consumers.TileFurnaceMagic;
+import ec3.common.tile.producers.TileHeatGenerator;
+import ec3.common.tile.logistics.TileMIM;
+import ec3.common.tile.logistics.TileMINEjector;
+import ec3.common.tile.logistics.TileMINInjector;
+import ec3.common.tile.consumers.TileMRUCoil;
+import ec3.common.tile.consumers.TileMRUCoilHardener;
+import ec3.common.tile.producers.TileMRUReactor;
+import ec3.common.tile.consumers.TileMagicalAssembler;
+import ec3.common.tile.storage.TileMagicalChest;
+import ec3.common.tile.logistics.TileMagicalDisplay;
+import ec3.common.tile.consumers.TileMagicalEnchanter;
+import ec3.common.tile.consumers.TileMagicalFurnace;
+import ec3.common.tile.redstone.TileMagicalHopper;
+import ec3.common.tile.consumers.TileMagicalJukebox;
+import ec3.common.tile.transport.TileMagicalMirror;
+import ec3.common.tile.consumers.TileMagicalQuarry;
+import ec3.common.tile.consumers.TileMagicalRepairer;
+import ec3.common.tile.consumers.TileMagicalTeleporter;
+import ec3.common.tile.crafting.TileMagicianTable;
+import ec3.common.tile.consumers.TileMagmaticSmelter;
+import ec3.common.tile.producers.TileMatrixAbsorber;
+import ec3.common.tile.consumers.TileMithrilineCrystal;
+import ec3.common.tile.crafting.TileMithrilineFurnace;
+import ec3.common.tile.consumers.TileMonsterHarvester;
+import ec3.common.tile.consumers.TileMonsterHolder;
+import ec3.common.tile.producers.TileMoonWell;
+import ec3.common.tile.logistics.TileNewMIM;
+import ec3.common.tile.logistics.TileNewMIMCraftingManager;
+import ec3.common.tile.logistics.TileNewMIMExportNode;
+import ec3.common.tile.logistics.TileNewMIMImportNode;
+import ec3.common.tile.logistics.TileNewMIMInventoryStorage;
+import ec3.common.tile.logistics.TileNewMIMScreen;
+import ec3.common.tile.consumers.TilePlayerPentacle;
+import ec3.common.tile.consumers.TilePotionSpreader;
+import ec3.common.tile.crafting.TileRadiatingChamber;
+import ec3.common.tile.transport.TileRayTower;
+import ec3.common.tile.redstone.TileRedstoneTransmitter;
+import ec3.common.tile.consumers.TileRightClicker;
+import ec3.common.tile.producers.TileSolarPrism;
+import ec3.common.tile.producers.TileSunRayAbsorber;
+import ec3.common.tile.producers.TileUltraFlowerBurner;
+import ec3.common.tile.producers.TileUltraHeatGenerator;
+import ec3.common.tile.crafting.TileWeaponMaker;
+import ec3.common.tile.crafting.TileWindRune;
+import ec3.common.tile.storage.TileChamberAcceptor;
+import ec3.common.tile.storage.TileChamberStateChecker;
+import ec3.utils.dummycore.client.GuiCommon;
+import ec3.api.config.Config;
 
 public class ClientProxy extends CommonProxy {
 
@@ -299,10 +313,10 @@ public class ClientProxy extends CommonProxy {
             if (tile instanceof TileRayTower) {
                 return new GuiRayTower(new ContainerRayTower(player.inventory, tile), tile);
             }
-            if (tile instanceof TileecAcceptor) {
+            if (tile instanceof TileChamberAcceptor) {
                 return new GuiMRUAcceptor(new ContainerMRUAcceptor(player.inventory, tile), tile);
             }
-            if (tile instanceof TileecStateChecker) {
+            if (tile instanceof TileChamberStateChecker) {
                 return new GuiMRUInfo(new ContainerMRUInfo(player.inventory, tile), tile);
             }
             if (tile instanceof TileMoonWell) {
@@ -479,45 +493,45 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerRenderInformation() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityMRUPresence.class, new RenderMRUPresence());
-        RenderingRegistry.registerEntityRenderingHandler(EntityMRUArrow.class, new RenderMRUArrow());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMRUPresence.class, new RenderMRUCU());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMRUArrow.class, new FXArrow());
         RenderingRegistry.registerEntityRenderingHandler(EntitySolarBeam.class, new RenderSolarBeam());
         RenderingRegistry.registerEntityRenderingHandler(EntityWindMage.class, new RenderWindMage());
         RenderingRegistry.registerEntityRenderingHandler(EntityPoisonFume.class, new RenderPoisonFume());
         RenderingRegistry
-            .registerEntityRenderingHandler(EntityShadowKnife.class, new RenderSnowball(ItemsCore.shadeKnife));
+            .registerEntityRenderingHandler(EntityShadowKnife.class, new RenderSnowball(ECItems.shadeKnife));
         RenderingRegistry
-            .registerEntityRenderingHandler(EntityArmorDestroyer.class, new RenderSnowball(ItemsCore.magicalSlag));
+            .registerEntityRenderingHandler(EntityArmorDestroyer.class, new RenderSnowball(ECItems.magicalSlag));
         RenderingRegistry
-            .registerEntityRenderingHandler(EntityDividerProjectile.class, new RenderSnowball(ItemsCore.magicalSlag));
+            .registerEntityRenderingHandler(EntityDividerProjectile.class, new RenderSnowball(ECItems.magicalSlag));
         RenderingRegistry.registerEntityRenderingHandler(EntityMRURay.class, new RenderMRURay());
         RenderingRegistry.registerEntityRenderingHandler(EntityDemon.class, new RenderDemon());
         RenderingRegistry.registerEntityRenderingHandler(EntityHologram.class, new RenderHologram());
         RenderingRegistry.registerEntityRenderingHandler(EntityPlayerClone.class, new RenderPlayerClone());
         RenderingRegistry.registerEntityRenderingHandler(EntityOrbitalStrike.class, new RenderOrbitalStrike());
         RenderingRegistry.registerEntityRenderingHandler(EntityDivider.class, new RenderDivider());
-        RenderingRegistry.registerBlockHandler(new RenderBlocksECIII());
+        RenderingRegistry.registerBlockHandler(new RenderBlocksEC());
         MinecraftForge.EVENT_BUS.register(new ClientRenderHandler());
         FMLCommonHandler.instance()
             .bus()
-            .register(new RenderHandlerEC3());
-        MinecraftForge.EVENT_BUS.register(new RenderHandlerEC3());
+            .register(new RenderHandlerEC());
+        MinecraftForge.EVENT_BUS.register(new RenderHandlerEC());
         MinecraftForgeClient.registerItemRenderer(
-            Item.getItemFromBlock(BlocksCore.elementalCrystal),
+            Item.getItemFromBlock(ECBlocks.elementalCrystal),
             new RenderElementalCrystalAsItem());
         MinecraftForgeClient
-            .registerItemRenderer(Item.getItemFromBlock(BlocksCore.solarPrism), new RenderSolarPrismAsItem());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.pistol, new GunItemRenderHelper());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.rifle, new GunItemRenderHelper());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.sniper, new GunItemRenderHelper());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.gatling, new GunItemRenderHelper());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.magicalBuilder, new RenderMagicalBuilder());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.orbitalRemote, new RenderOrbitalRemote());
+            .registerItemRenderer(Item.getItemFromBlock(ECBlocks.solarPrism), new RenderSolarPrismAsItem());
+        MinecraftForgeClient.registerItemRenderer(ECItems.pistol, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ECItems.rifle, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ECItems.sniper, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ECItems.gatling, new GunItemRenderHelper());
+        MinecraftForgeClient.registerItemRenderer(ECItems.magicalBuilder, new RenderMagicalBuilder());
+        MinecraftForgeClient.registerItemRenderer(ECItems.orbitalRemote, new RenderOrbitalRemote());
         // MinecraftForgeClient.registerItemRenderer(ItemsCore.research_book, new RenderMagicalBook());
-        MinecraftForgeClient.registerItemRenderer(ItemsCore.collectedSpawner, new RenderCollectedSpawner());
-        for (int i = 0; i < ItemsCore.magicArmorItems.length; ++i) {
-            if (ItemsCore.magicArmorItems[i] != null)
-                MinecraftForgeClient.registerItemRenderer(ItemsCore.magicArmorItems[i], new ArmorRenderer());
+        MinecraftForgeClient.registerItemRenderer(ECItems.collectedSpawner, new RenderCollectedSpawner());
+        for (int i = 0; i < ECItems.magicArmorItems.length; ++i) {
+            if (ECItems.magicArmorItems[i] != null)
+                MinecraftForgeClient.registerItemRenderer(ECItems.magicArmorItems[i], new ArmorRenderer());
         }
 
         kbArmorBoost = new KeyBinding("ComputerArmorBoost", Keyboard.KEY_Z, "key.categories.gameplay");
@@ -529,7 +543,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerTileEntitySpecialRenderer() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileRayTower.class, new RenderRayTower());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileecAcceptor.class, new RenderMRULink());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileChamberAcceptor.class, new RenderMRULink());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSolarPrism.class, new RenderSolarPrism());
         ClientRegistry.bindTileEntitySpecialRenderer(TileSunRayAbsorber.class, new RenderSunRayAbsorber());
         ClientRegistry.bindTileEntitySpecialRenderer(TileColdDistillator.class, new RenderColdDistillator());
@@ -552,7 +566,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalController.class, new RenderCrystalController());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalExtractor.class, new RenderCrystalExtractor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileChargingChamber.class, new RenderChargingChamber());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil_Hardener.class, new RenderMRUCoilHardener());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoilHardener.class, new RenderMRUCoilHardener());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMRUCoil.class, new RenderMRUCoil());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCorruptionCleaner.class, new RenderCorruptionCleaner());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMRUReactor.class, new RenderMRUReactor());
@@ -602,11 +616,11 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void spawnParticle(String name, float x, float y, float z, double i, double j, double k) {
         if (name.equals("mruFX"))
-            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityMRUFX(getClientWorld(), x, y, z, i, j, k));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new FXMRU(getClientWorld(), x, y, z, i, j, k));
         if (name.equals("cSpellFX"))
-            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCSpellFX(getClientWorld(), x, y, z, i, j, k));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new FXSpell(getClientWorld(), x, y, z, i, j, k));
         if (name.equals("fogFX"))
-            Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFogFX(getClientWorld(), x, y, z, i, j, k));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new FXFog(getClientWorld(), x, y, z, i, j, k));
     }
 
     @SuppressWarnings("rawtypes")
@@ -668,13 +682,13 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void ItemFX(double... ds) {
         Minecraft.getMinecraft().effectRenderer.addEffect(
-            new EntityItemFX(Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], 1, 0, 1, ds[3], ds[4], ds[5]));
+            new FXItem(Minecraft.getMinecraft().theWorld, ds[0], ds[1], ds[2], 1, 0, 1, ds[3], ds[4], ds[5]));
     }
 
     @Override
     public void FlameFX(double... ds) {
         Minecraft.getMinecraft().effectRenderer.addEffect(
-            new EntityColoredFlameFX(
+            new FXColoredFlame(
                 Minecraft.getMinecraft().theWorld,
                 ds[0],
                 ds[1],
@@ -691,7 +705,7 @@ public class ClientProxy extends CommonProxy {
     public void SmokeFX(double... ds) {
         if (ds.length == 7) {
             Minecraft.getMinecraft().effectRenderer.addEffect(
-                new ec3.client.regular.SmokeFX(
+                new ec3.client.FX.SmokeFX(
                     Minecraft.getMinecraft().theWorld,
                     ds[0],
                     ds[1],
@@ -703,7 +717,7 @@ public class ClientProxy extends CommonProxy {
         }
         if (ds.length == 10) {
             Minecraft.getMinecraft().effectRenderer.addEffect(
-                new ec3.client.regular.SmokeFX(
+                new ec3.client.FX.SmokeFX(
                     Minecraft.getMinecraft().theWorld,
                     ds[0],
                     ds[1],
@@ -722,9 +736,9 @@ public class ClientProxy extends CommonProxy {
     public void MRUFX(double... ds) {
         if (ds.length <= 6) {
             Minecraft.getMinecraft().effectRenderer
-                .addEffect(new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]));
+                .addEffect(new FXMRU(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]));
         } else Minecraft.getMinecraft().effectRenderer.addEffect(
-            new EntityMRUFX(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8]));
+            new FXMRU(getClientWorld(), ds[0], ds[1], ds[2], ds[3], ds[4], ds[5], ds[6], ds[7], ds[8]));
     }
 
     @Override
@@ -748,7 +762,7 @@ public class ClientProxy extends CommonProxy {
             dataString += "||mod:EC3.Item.Wings";
             dataString += "||x:" + pX + "||y:" + pY + "||z:" + pZ;
             dataString += "||playername:" + e.getCommandSenderName();
-            DummyPacketIMSG pkt = new DummyPacketIMSG(dataString);
+            DummyPacket pkt = new DummyPacket(dataString);
             DummyPacketHandler.sendToServer(pkt);
         }
     }
@@ -783,15 +797,15 @@ public class ClientProxy extends CommonProxy {
     public static IIcon frozenIcon;
 
     @SideOnly(Side.CLIENT)
-    private static IRenderHandler skyedRenderer = new RenderSkyFirstWorld();
+    private static IRenderHandler skyedRenderer = new RenderSkyHoanna();
 
     @SideOnly(Side.CLIENT)
-    private static IRenderHandler cloudedRenderer = new RenderCloudsFirstWorld();
+    private static IRenderHandler cloudedRenderer = new RenderCloudsHoanna();
     public static IIcon fogIcon;
 
-    private static final ModelArmorEC3 chest = new ModelArmorEC3(1.0f);
-    private static final ModelArmorEC3 chest1 = new ModelArmorEC3(0.75f);
-    private static final ModelArmorEC3 legs = new ModelArmorEC3(0.5f);
+    private static final ModelArmorEC chest = new ModelArmorEC(1.0f);
+    private static final ModelArmorEC chest1 = new ModelArmorEC(0.75f);
+    private static final ModelArmorEC legs = new ModelArmorEC(0.5f);
 
     public static KeyBinding kbArmorBoost;
     public static KeyBinding kbArmorVision;

@@ -6,17 +6,18 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import ec3.api.MithrilineFurnaceRecipe;
-import ec3.api.MithrilineFurnaceRecipes;
-import ec3.common.tile.TileMithrilineFurnace;
-import ec3.dummycore.utils.MiscUtils;
-import ec3.dummycore.utils.UnformedItemStack;
+import ec3.api.recipes.MithrilineFurnaceRecipe;
+import ec3.api.recipes.MithrilineFurnaceRecipes;
+import ec3.common.tile.crafting.TileMithrilineFurnace;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.UnformedItemStack;
 
 public class MithrilineFurnaceRecipeHandler extends TemplateRecipeHandler {
 
@@ -77,7 +78,7 @@ public class MithrilineFurnaceRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        return "Mithriline Furnace";
+        return new ChatComponentTranslation("essentialcraft.gui.nei.mithrilinefurnace").getFormattedText();
     }
 
     @Override

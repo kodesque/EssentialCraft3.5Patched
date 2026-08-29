@@ -8,8 +8,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.item.ItemBoundGem;
-import ec3.common.tile.TileAMINEjector;
+import ec3.common.items.ItemBoundGem;
+import ec3.common.tile.logistics.TileAMINEjector;
 
 public class ContainerAMINEjector extends Container {
 

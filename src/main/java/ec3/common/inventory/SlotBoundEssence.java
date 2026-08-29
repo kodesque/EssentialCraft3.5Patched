@@ -4,8 +4,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.item.ItemBoundGem;
-import ec3.common.item.ItemDrop;
+import ec3.common.items.ItemBoundGem;
+import ec3.common.items.ItemDrop;
 
 public class SlotBoundEssence extends Slot {
 

@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import ec3.api.book.CategoryEntry;
+import ec3.api.book.DiscoveryEntry;
+import ec3.api.mru.IMRUPresence;
+import ec3.api.player.IPlayerData;
+import ec3.api.structures.EnumStructureType;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +19,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-import ec3.dummycore.utils.Coord3D;
-import ec3.dummycore.utils.DummyDistance;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.DummyDistance;
 
 /**
  *
@@ -56,13 +61,13 @@ public class ApiCore {
 
     /**
      * Use this to get a full information on the player - it's UBMRU, Balance and Corruption status
-     * 
+     *
      * @param p - the player to get the data of. Please check, that it is not null and is not a FakePlayer!
      * @return The corresponding player data, or null if something went wrong
      */
     public static IPlayerData getPlayerData(EntityPlayer p) {
         try {
-            Class<?> ecUtilsClass = Class.forName("ec3.utils.common.ECUtils");
+            Class<?> ecUtilsClass = Class.forName("ec3.utils.ECUtils");
             Method getData = ecUtilsClass.getMethod("getData", EntityPlayer.class);
             return IPlayerData.class.cast(getData.invoke(null, p));
 
@@ -73,14 +78,14 @@ public class ApiCore {
 
     /**
      * Allows a specified block to be a part of a specified structure.
-     * 
+     *
      * @param structure  - the structure the block can be a part of
      * @param registered - the block that is registered. Not metadata sensitive!
      */
     @SuppressWarnings("unchecked")
     public static void registerBlockInAStructure(EnumStructureType structure, Block registered) {
         try {
-            Class<?> ecUtilsClass = Class.forName("ec3.utils.common.ECUtils");
+            Class<?> ecUtilsClass = Class.forName("ec3.utils.ECUtils");
             Field hashTableFld = ecUtilsClass.getDeclaredField("allowedBlocks");
             hashTableFld.setAccessible(true);
             Hashtable<EnumStructureType, List<Block>> hashMap = (Hashtable<EnumStructureType, List<Block>>) hashTableFld
@@ -97,7 +102,7 @@ public class ApiCore {
     /**
      * Allows a block to 'resist' MRUCU effects on the player. Also that block will be tougher for the corruption no
      * grow on
-     * 
+     *
      * @param registered - the block to register
      * @param metadata   - the block's metadata. Use -1 or OreDictionary.WILDCARD_VALUE to make the check ignore
      *                   metadata.
@@ -105,7 +110,7 @@ public class ApiCore {
      */
     public static void registerBlockMRUResistance(Block registered, int metadata, float resistance) {
         try {
-            Class<?> ecUtilsClass = Class.forName("ec3.utils.common.ECUtils");
+            Class<?> ecUtilsClass = Class.forName("ec3.utils.ECUtils");
             Method regBlk = ecUtilsClass.getMethod("registerBlockResistance", Block.class, int.class, float.class);
             regBlk.setAccessible(true);
             regBlk.invoke(null, registered, metadata, resistance);
@@ -117,7 +122,7 @@ public class ApiCore {
     /**
      * Finds a DiscoveryEntry by the given ItemStack. The ItemStack would either be in the list of items at one of the
      * pages, or will be a crafting result.
-     * 
+     *
      * @param referal - the ItemStack to lookup.
      * @return A valid DiscoveryEntry if was found, null otherwise
      */
@@ -132,7 +137,7 @@ public class ApiCore {
 
     /**
      * Registers an item as one allowed to grant the player MRUCU and MRU vision
-     * 
+     *
      * @param i - the item to register
      */
     public static void allowItemToSeeMRU(Item i) {
@@ -149,7 +154,7 @@ public class ApiCore {
 
     public static boolean tryToDecreaseMRUInStorage(EntityPlayer player, int amount) {
         try {
-            Class<?> ecUtilsClass = Class.forName("ec3.utils.common.ECUtils");
+            Class<?> ecUtilsClass = Class.forName("ec3.utils.ECUtils");
             Method tryToDecreaseMRUInStorage = ecUtilsClass
                 .getMethod("tryToDecreaseMRUInStorage", EntityPlayer.class, int.class);
             return Boolean.parseBoolean(
@@ -162,7 +167,7 @@ public class ApiCore {
 
     public static void increaseCorruptionAt(World w, float x, float y, float z, int amount) {
         try {
-            Class<?> ecUtilsClass = Class.forName("ec3.utils.common.ECUtils");
+            Class<?> ecUtilsClass = Class.forName("ec3.utils.ECUtils");
             Method increaseCorruptionAt = ecUtilsClass
                 .getMethod("increaseCorruptionAt", World.class, float.class, float.class, float.class, int.class);
             increaseCorruptionAt.setAccessible(true);
@@ -173,17 +178,17 @@ public class ApiCore {
     }
 
     @SuppressWarnings("unchecked")
-    public static IMRUPressence getClosestMRUCU(World w, Coord3D c, int radius) {
-        List<IMRUPressence> l = w.getEntitiesWithinAABB(
-            IMRUPressence.class,
+    public static IMRUPresence getClosestMRUCU(World w, Coord3D c, int radius) {
+        List<IMRUPresence> l = w.getEntitiesWithinAABB(
+            IMRUPresence.class,
             AxisAlignedBB.getBoundingBox(c.x - 0.5, c.y - 0.5, c.z - 0.5, c.x + 0.5, c.y + 0.5, c.z + 0.5)
                 .expand(radius, radius / 2, radius));
-        IMRUPressence ret = null;
+        IMRUPresence ret = null;
         if (!l.isEmpty()) {
-            if (!(l.get(0) instanceof IMRUPressence)) {
-                ret = (IMRUPressence) l.get(0);
+            if (!(l.get(0) instanceof IMRUPresence)) {
+                ret = (IMRUPresence) l.get(0);
             } else {
-                List<IMRUPressence> actualList = l;
+                List<IMRUPresence> actualList = l;
                 double currentDistance = 0;
                 double dominatingDistance = 0;
                 int dominatingIndex = 0;

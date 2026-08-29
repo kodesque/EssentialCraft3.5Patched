@@ -1,16 +1,40 @@
 # Essential Craft 3.5 Changelog
-## v4.6.8
+## 4.6.9
 
+---
+
+### Added:
+- Chat command: removeClosestMRUCU
+
+### Changed:
+- Unhardcoded all GUI strings
+- Chat command names: setMRU -> setMRUClosestMRUCU; setBalance -> setBalanceClosestMRUCU
+- Chat commands syntax: "/command" -> "/essentialcraft (command)" or "/ec (command)"
+
+### Removed:
+- ru_RU.lang; to be rewritten
+- Flickering creative tabs icons; replaced with simple items
+
+### Fixed:
+- Lots of mistakes and typos in en_US.lang
+- Optimized TileEntity render: MRU Coil, Magical Enchanter, Charging Chamber, Monster Holder
+- (Crash) DummyCore exchanging packets through a non-existent network
+- (EC3 GitHub) Magician Table slots being inaccessible for hoppers
+- (EC3 GitHub) MRU-powered items having broken MRU storage when crafted by non-players
+- (EC3 GitHub) MRUCU spawn egg summoning invalid entity (no MRU/balance)
+
+## 4.6.8
+
+---
 ### Changed:
 - Merged DummyCore; updated to ALPHA-2.0
 
----
 ### Removed:
 - Custom font used by Knowledge book; now uses default MC's one
 - Alternative Main Menu GUIs
 - WAILA compat; to be rewritten
 - Automatic version checker; to be updated
-## v4.6.7
+## 4.6.7
 
 ---
 ### Changed:

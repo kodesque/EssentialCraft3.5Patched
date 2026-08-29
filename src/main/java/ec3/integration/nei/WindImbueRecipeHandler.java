@@ -7,16 +7,17 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import ec3.api.WindImbueRecipe;
-import ec3.common.block.BlocksCore;
-import ec3.common.item.ItemSoulStone;
-import ec3.dummycore.utils.MiscUtils;
+import ec3.api.recipes.WindImbueRecipe;
+import ec3.common.init.ECBlocks;
+import ec3.common.items.ItemSoulStone;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class WindImbueRecipeHandler extends TemplateRecipeHandler {
 
@@ -49,7 +50,7 @@ public class WindImbueRecipeHandler extends TemplateRecipeHandler {
             }
 
             PositionedStack stack = new PositionedStack(possibleStacks, 92 - 36, 1, false);
-            PositionedStack rune = new PositionedStack(new ItemStack(BlocksCore.windRune), 92 - 18, 19, false);
+            PositionedStack rune = new PositionedStack(new ItemStack(ECBlocks.windRune), 92 - 18, 19, false);
             ingredients.add(stack);
             ingredients.add(rune);
 
@@ -79,7 +80,7 @@ public class WindImbueRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        return "Wind Imbue";
+        return new ChatComponentTranslation("essentialcraft.gui.nei.windimbue").getFormattedText();
     }
 
     @Override

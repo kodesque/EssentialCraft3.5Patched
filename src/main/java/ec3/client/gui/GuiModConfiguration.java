@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 
 import cpw.mods.fml.client.config.GuiConfig;
-import ec3.utils.cfg.Config;
+import ec3.api.config.Config;
 
 public class GuiModConfiguration extends GuiConfig {
 
@@ -20,7 +20,6 @@ public class GuiModConfiguration extends GuiConfig {
             false,
             false,
             GuiConfig.getAbridgedConfigPath(Config.config.toString()));
-        // TODO Auto-generated constructor stub
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

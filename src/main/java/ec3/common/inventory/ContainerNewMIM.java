@@ -8,12 +8,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.item.ItemBoundGem;
-import ec3.common.tile.TileNewMIMCraftingManager;
-import ec3.common.tile.TileNewMIMExportNode;
-import ec3.common.tile.TileNewMIMImportNode;
-import ec3.common.tile.TileNewMIMInventoryStorage;
-import ec3.common.tile.TileNewMIMScreen;
+import ec3.common.items.ItemBoundGem;
+import ec3.common.tile.logistics.TileNewMIMCraftingManager;
+import ec3.common.tile.logistics.TileNewMIMExportNode;
+import ec3.common.tile.logistics.TileNewMIMImportNode;
+import ec3.common.tile.logistics.TileNewMIMInventoryStorage;
+import ec3.common.tile.logistics.TileNewMIMScreen;
 
 public class ContainerNewMIM extends Container {
 

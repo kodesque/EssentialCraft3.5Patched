@@ -9,15 +9,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.ChatComponentTranslation;
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import ec3.common.block.BlocksCore;
-import ec3.common.item.ItemDrop;
-import ec3.common.item.ItemGenericEC3;
-import ec3.common.item.ItemsCore;
-import ec3.dummycore.utils.MiscUtils;
+import ec3.common.init.ECBlocks;
+import ec3.common.items.ItemDrop;
+import ec3.common.items.ItemGenericEC;
+import ec3.common.init.ECItems;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class WorldgenRecipeHandler extends TemplateRecipeHandler {
 
@@ -55,8 +56,8 @@ public class WorldgenRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        // TODO Auto-generated method stub
-        return "EssentialCraft Worldgen";
+
+        return new ChatComponentTranslation("essentialcraft.gui.nei.worldgen").getFormattedText();
     }
 
     @Override
@@ -74,7 +75,7 @@ public class WorldgenRecipeHandler extends TemplateRecipeHandler {
                     Item itm = stk.getItem();
                     int meta = stk.getItemDamage();
 
-                    if (itm instanceof ItemGenericEC3) {
+                    if (itm instanceof ItemGenericEC) {
                         if (meta == 51) {
                             this.arecipes
                                 .add(new WorldgenCraftingPair(new ItemStack(Blocks.lapis_ore), stk, 3, 10, true));
@@ -84,7 +85,7 @@ public class WorldgenRecipeHandler extends TemplateRecipeHandler {
                     if (itm instanceof ItemDrop) {
                         this.arecipes.add(
                             new WorldgenCraftingPair(
-                                new ItemStack(BlocksCore.oreDrops, 1, meta == 4 ? 0 : meta + 1),
+                                new ItemStack(ECBlocks.oreDrops, 1, meta == 4 ? 0 : meta + 1),
                                 stk,
                                 1,
                                 2,
@@ -97,14 +98,14 @@ public class WorldgenRecipeHandler extends TemplateRecipeHandler {
                 this.arecipes.add(
                     new WorldgenCraftingPair(
                         new ItemStack(Blocks.lapis_ore),
-                        new ItemStack(ItemsCore.genericItem, 1, 51),
+                        new ItemStack(ECItems.genericItem, 1, 51),
                         12,
                         21,
                         true));
                 for (int meta = 0; meta < 5; ++meta) this.arecipes.add(
                     new WorldgenCraftingPair(
-                        new ItemStack(BlocksCore.oreDrops, 1, meta == 4 ? 0 : meta + 1),
-                        new ItemStack(ItemsCore.drops, 1, meta),
+                        new ItemStack(ECBlocks.oreDrops, 1, meta == 4 ? 0 : meta + 1),
+                        new ItemStack(ECItems.drops, 1, meta),
                         1,
                         2,
                         false));

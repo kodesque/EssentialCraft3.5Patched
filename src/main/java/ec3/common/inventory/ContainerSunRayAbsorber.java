@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.tile.TileSunRayAbsorber;
+import ec3.common.tile.producers.TileSunRayAbsorber;
 
 public class ContainerSunRayAbsorber extends Container {
 

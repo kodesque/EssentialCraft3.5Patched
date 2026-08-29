@@ -5,8 +5,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import ec3.common.item.ItemsCore;
-import ec3.common.mod.EssentialCraftCore;
+import ec3.common.init.ECItems;
+import ec3.root.EssentialCraftCore;
 
 public class NEIEssentialCraftConfig implements IConfigureNEI {
 
@@ -26,18 +26,16 @@ public class NEIEssentialCraftConfig implements IConfigureNEI {
         API.registerRecipeHandler(new WorldgenRecipeHandler());
         API.registerRecipeHandler(new DemonRecipeHandler());
 
-        API.hideItem(new ItemStack(ItemsCore.secret, 1, OreDictionary.WILDCARD_VALUE));
+        API.hideItem(new ItemStack(ECItems.secret, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
         return "EssentialCraft";
     }
 
     @Override
     public String getVersion() {
-        // TODO Auto-generated method stub
         return EssentialCraftCore.version;
     }
 

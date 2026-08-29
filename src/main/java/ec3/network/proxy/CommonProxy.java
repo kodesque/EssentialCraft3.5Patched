@@ -9,7 +9,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import ec3.common.entity.EntityDemon;
+import ec3.common.entities.EntityDemon;
 import ec3.common.inventory.ContainerAMINEjector;
 import ec3.common.inventory.ContainerAMINInjector;
 import ec3.common.inventory.ContainerChargingChamber;
@@ -65,61 +65,61 @@ import ec3.common.inventory.ContainerUltraHeatGenerator;
 import ec3.common.inventory.ContainerWeaponBench;
 import ec3.common.inventory.InventoryCraftingFrame;
 import ec3.common.inventory.InventoryMagicFilter;
-import ec3.common.tile.TileAMINEjector;
-import ec3.common.tile.TileAMINInjector;
-import ec3.common.tile.TileAdvancedBlockBreaker;
-import ec3.common.tile.TileAnimalSeparator;
-import ec3.common.tile.TileChargingChamber;
-import ec3.common.tile.TileColdDistillator;
-import ec3.common.tile.TileCorruptionCleaner;
-import ec3.common.tile.TileCrafter;
-import ec3.common.tile.TileCrystalController;
-import ec3.common.tile.TileCrystalExtractor;
-import ec3.common.tile.TileCrystalFormer;
-import ec3.common.tile.TileDarknessObelisk;
-import ec3.common.tile.TileEnderGenerator;
-import ec3.common.tile.TileFlowerBurner;
-import ec3.common.tile.TileFurnaceMagic;
-import ec3.common.tile.TileHeatGenerator;
-import ec3.common.tile.TileMIM;
-import ec3.common.tile.TileMINEjector;
-import ec3.common.tile.TileMINInjector;
-import ec3.common.tile.TileMRUCoil;
-import ec3.common.tile.TileMagicalAssembler;
-import ec3.common.tile.TileMagicalChest;
-import ec3.common.tile.TileMagicalEnchanter;
-import ec3.common.tile.TileMagicalFurnace;
-import ec3.common.tile.TileMagicalHopper;
-import ec3.common.tile.TileMagicalJukebox;
-import ec3.common.tile.TileMagicalQuarry;
-import ec3.common.tile.TileMagicalRepairer;
-import ec3.common.tile.TileMagicalTeleporter;
-import ec3.common.tile.TileMagicianTable;
-import ec3.common.tile.TileMagmaticSmelter;
-import ec3.common.tile.TileMatrixAbsorber;
-import ec3.common.tile.TileMithrilineFurnace;
-import ec3.common.tile.TileMonsterHarvester;
-import ec3.common.tile.TileMonsterHolder;
-import ec3.common.tile.TileMoonWell;
-import ec3.common.tile.TileNewMIM;
-import ec3.common.tile.TileNewMIMCraftingManager;
-import ec3.common.tile.TileNewMIMExportNode;
-import ec3.common.tile.TileNewMIMImportNode;
-import ec3.common.tile.TileNewMIMInventoryStorage;
-import ec3.common.tile.TileNewMIMScreen;
-import ec3.common.tile.TilePotionSpreader;
-import ec3.common.tile.TileRadiatingChamber;
-import ec3.common.tile.TileRayTower;
-import ec3.common.tile.TileRedstoneTransmitter;
-import ec3.common.tile.TileRightClicker;
-import ec3.common.tile.TileSunRayAbsorber;
-import ec3.common.tile.TileUltraFlowerBurner;
-import ec3.common.tile.TileUltraHeatGenerator;
-import ec3.common.tile.TileWeaponMaker;
-import ec3.common.tile.TileecAcceptor;
-import ec3.common.tile.TileecStateChecker;
-import ec3.dummycore.utils.DummyData;
-import ec3.utils.cfg.Config;
+import ec3.common.tile.logistics.TileAMINEjector;
+import ec3.common.tile.logistics.TileAMINInjector;
+import ec3.common.tile.redstone.TileAdvancedBlockBreaker;
+import ec3.common.tile.redstone.TileAnimalSeparator;
+import ec3.common.tile.consumers.TileChargingChamber;
+import ec3.common.tile.producers.TileColdDistillator;
+import ec3.common.tile.consumers.TileCorruptionCleaner;
+import ec3.common.tile.consumers.TileCrafter;
+import ec3.common.tile.consumers.TileCrystalController;
+import ec3.common.tile.consumers.TileCrystalExtractor;
+import ec3.common.tile.crafting.TileCrystalFormer;
+import ec3.common.tile.producers.TileDarknessObelisk;
+import ec3.common.tile.producers.TileEnderGenerator;
+import ec3.common.tile.producers.TileFlowerBurner;
+import ec3.common.tile.consumers.TileFurnaceMagic;
+import ec3.common.tile.producers.TileHeatGenerator;
+import ec3.common.tile.logistics.TileMIM;
+import ec3.common.tile.logistics.TileMINEjector;
+import ec3.common.tile.logistics.TileMINInjector;
+import ec3.common.tile.consumers.TileMRUCoil;
+import ec3.common.tile.consumers.TileMagicalAssembler;
+import ec3.common.tile.storage.TileMagicalChest;
+import ec3.common.tile.consumers.TileMagicalEnchanter;
+import ec3.common.tile.consumers.TileMagicalFurnace;
+import ec3.common.tile.redstone.TileMagicalHopper;
+import ec3.common.tile.consumers.TileMagicalJukebox;
+import ec3.common.tile.consumers.TileMagicalQuarry;
+import ec3.common.tile.consumers.TileMagicalRepairer;
+import ec3.common.tile.consumers.TileMagicalTeleporter;
+import ec3.common.tile.crafting.TileMagicianTable;
+import ec3.common.tile.consumers.TileMagmaticSmelter;
+import ec3.common.tile.producers.TileMatrixAbsorber;
+import ec3.common.tile.crafting.TileMithrilineFurnace;
+import ec3.common.tile.consumers.TileMonsterHarvester;
+import ec3.common.tile.consumers.TileMonsterHolder;
+import ec3.common.tile.producers.TileMoonWell;
+import ec3.common.tile.logistics.TileNewMIM;
+import ec3.common.tile.logistics.TileNewMIMCraftingManager;
+import ec3.common.tile.logistics.TileNewMIMExportNode;
+import ec3.common.tile.logistics.TileNewMIMImportNode;
+import ec3.common.tile.logistics.TileNewMIMInventoryStorage;
+import ec3.common.tile.logistics.TileNewMIMScreen;
+import ec3.common.tile.consumers.TilePotionSpreader;
+import ec3.common.tile.crafting.TileRadiatingChamber;
+import ec3.common.tile.transport.TileRayTower;
+import ec3.common.tile.redstone.TileRedstoneTransmitter;
+import ec3.common.tile.consumers.TileRightClicker;
+import ec3.common.tile.producers.TileSunRayAbsorber;
+import ec3.common.tile.producers.TileUltraFlowerBurner;
+import ec3.common.tile.producers.TileUltraHeatGenerator;
+import ec3.common.tile.crafting.TileWeaponMaker;
+import ec3.common.tile.storage.TileChamberAcceptor;
+import ec3.common.tile.storage.TileChamberStateChecker;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.api.config.Config;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -143,10 +143,10 @@ public class CommonProxy implements IGuiHandler {
             if (tile instanceof TileRayTower) {
                 return new ContainerRayTower(player.inventory, tile);
             }
-            if (tile instanceof TileecAcceptor) {
+            if (tile instanceof TileChamberAcceptor) {
                 return new ContainerMRUAcceptor(player.inventory, tile);
             }
-            if (tile instanceof TileecStateChecker) {
+            if (tile instanceof TileChamberStateChecker) {
                 return new ContainerMRUInfo(player.inventory, tile);
             }
             if (tile instanceof TileMoonWell) {

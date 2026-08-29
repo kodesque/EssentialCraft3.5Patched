@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import ec3.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class InventoryMagicFilter implements IInventory {
 

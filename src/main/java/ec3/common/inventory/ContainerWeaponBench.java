@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.tile.TileWeaponMaker;
+import ec3.common.tile.crafting.TileWeaponMaker;
 
 public class ContainerWeaponBench extends Container {
 

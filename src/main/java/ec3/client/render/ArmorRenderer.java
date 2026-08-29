@@ -7,13 +7,13 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import ec3.client.model.ModelArmorEC3;
-import ec3.common.item.ItemArmorMod;
-import ec3.dummycore.utils.MiscUtils;
+import ec3.client.models.ModelArmorEC;
+import ec3.common.templates.ItemArmorMod;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ArmorRenderer implements IItemRenderer {
 
-    public static final ModelArmorEC3 theModel = new ModelArmorEC3(1.0F);
+    public static final ModelArmorEC theModel = new ModelArmorEC(1.0F);
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {

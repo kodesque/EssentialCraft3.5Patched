@@ -7,8 +7,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.item.ItemCraftingFrame;
-import ec3.common.tile.TileNewMIMCraftingManager;
+import ec3.common.items.ItemCraftingFrame;
+import ec3.common.tile.logistics.TileNewMIMCraftingManager;
 
 public class ContainerMIMCraftingManager extends Container {
 

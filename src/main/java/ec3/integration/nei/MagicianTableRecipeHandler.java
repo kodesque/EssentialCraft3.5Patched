@@ -8,18 +8,19 @@ import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import ec3.api.MagicianTableRecipe;
-import ec3.api.MagicianTableRecipes;
-import ec3.common.mod.EssentialCraftCore;
-import ec3.dummycore.utils.MathUtils;
-import ec3.dummycore.utils.MiscUtils;
-import ec3.dummycore.utils.UnformedItemStack;
+import ec3.api.recipes.MagicianTableRecipe;
+import ec3.api.recipes.MagicianTableRecipes;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.UnformedItemStack;
 
 public class MagicianTableRecipeHandler extends TemplateRecipeHandler {
 
@@ -101,7 +102,7 @@ public class MagicianTableRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        return "Magician Table";
+        return new ChatComponentTranslation("essentialcraft.gui.nei.magiciantable").getFormattedText();
     }
 
     @Override

@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.tile.TileNewMIMScreen;
+import ec3.common.tile.logistics.TileNewMIMScreen;
 
 public class ContainerNewMIMScreen extends Container {
 

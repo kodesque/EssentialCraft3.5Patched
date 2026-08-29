@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import ec3.common.item.ItemBoundGem;
+import ec3.common.items.ItemBoundGem;
 
 public class ContainerMonsterHolder extends Container {
 

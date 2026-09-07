@@ -6,20 +6,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.storage.TileChamberStateChecker;
 import ec3.api.config.Config;
+import ec3.common.tile.storage.TileChamberStateChecker;
+import ec3.root.EssentialCraftCore;
 
 public class BlockecStateChecker extends BlockContainer {
 
     public BlockecStateChecker(Material p_i45386_1_) {
         super(p_i45386_1_);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) {
-        // TODO Auto-generated method stub
         return new TileChamberStateChecker();
     }
 

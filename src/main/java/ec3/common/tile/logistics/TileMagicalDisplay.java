@@ -11,8 +11,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.dummycore.utils.system.Notifier;
 import ec3.utils.dummycore.utils.TileStatTracker;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class TileMagicalDisplay extends TileEntity implements IInventory {
 

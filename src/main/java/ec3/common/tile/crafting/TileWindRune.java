@@ -1,6 +1,5 @@
 package ec3.common.tile.crafting;
 
-import ec3.common.tile.consumers.TileMithrilineCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -10,9 +9,10 @@ import net.minecraft.world.World;
 import ec3.api.recipes.WindImbueRecipe;
 import ec3.common.init.ECBlocks;
 import ec3.common.items.ItemSoulStone;
+import ec3.common.tile.consumers.TileMithrilineCrystal;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileWindRune extends TileEntity {
 

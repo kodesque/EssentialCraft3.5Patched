@@ -1,12 +1,5 @@
 package ec3.common.tile.crafting;
 
-import ec3.common.tile.consumers.TileMithrilineCrystal;
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.system.Notifier;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -24,8 +17,15 @@ import ec3.api.recipes.MithrilineFurnaceRecipe;
 import ec3.api.recipes.MithrilineFurnaceRecipes;
 import ec3.common.blocks.BlockMithrilineCrystal;
 import ec3.common.init.ECBlocks;
+import ec3.common.tile.consumers.TileMithrilineCrystal;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class TileMithrilineFurnace extends TileEntity implements IInventory {
 

@@ -2,8 +2,6 @@ package ec3.common.init;
 
 import static ec3.api.config.Config.getIdForItem;
 
-import ec3.common.items.*;
-import ec3.common.templates.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -15,6 +13,8 @@ import net.minecraftforge.common.util.EnumHelper;
 
 import ec3.api.ApiCore;
 import ec3.api.upgrades.MagicianTableUpgrades;
+import ec3.common.items.*;
+import ec3.common.templates.*;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.init.ItemRegistry;
 import ec3.utils.dummycore.utils.MiscUtils;
@@ -25,11 +25,9 @@ public class ECItems {
 
     @SuppressWarnings("deprecation")
     public void loadItems() {
-        // LogManager.getLogger().error("The reason you are about to see TONS of errors in the console is purely because
-        // I do not want you to loose your worlds upon updating to 3.4 version. Thanks!");
-        elemental = EnumHelper.addToolMaterial("elemental", 6, 3568, 15.0F, 5.0F, 36);
-        weakElemental = EnumHelper.addToolMaterial("weakElemental", 3, 754, 7.0F, 2.5F, 36);
-        windElemental = EnumHelper.addToolMaterial("windElemental", 11, 15684, 15.0F, 6F, 42);
+        elemental = EnumHelper.addToolMaterial("elemental", 6, 600, 15.0F, 4.0F, 10);
+        weakElemental = EnumHelper.addToolMaterial("weakElemental", 2, 300, 7.0F, 2.0F, 22);
+        windElemental = EnumHelper.addToolMaterial("windElemental", 11, 15684, 15.0F, 6F, 1);
         shade = EnumHelper.addToolMaterial("shade", 32, 0, 1.0F, 17.0F, 12);
         // System.out.println("registry");
         testingItem = new TestItemEC().setUnlocalizedName("essentialcraft:testItem")
@@ -520,8 +518,7 @@ public class ECItems {
         gatling = new ItemGun("gatling").setUnlocalizedName("ec3.gun.gatling");
         ItemRegistry.registerItem(gatling, "gun.gatling", EssentialCraftCore.class);
 
-        weak_elemental_pick = new ItemPickaxeMod(weakElemental)
-            .setUnlocalizedName("essentialcraft.weak_elemental_pick")
+        weak_elemental_pick = new ItemPickaxeMod(weakElemental).setUnlocalizedName("essentialcraft.weak_elemental_pick")
             .setTextureName("essentialcraft:tools/weak_pickaxe")
             .setMaxStackSize(1)
             .setFull3D();
@@ -542,8 +539,7 @@ public class ECItems {
             .setMaxStackSize(1)
             .setFull3D();
         ItemRegistry.registerItem(weak_elemental_shovel, "weak_elemental_shovel", EssentialCraftCore.class);
-        weak_elemental_sword = new ItemSwordMod(weakElemental)
-            .setUnlocalizedName("essentialcraft.weak_elemental_sword")
+        weak_elemental_sword = new ItemSwordMod(weakElemental).setUnlocalizedName("essentialcraft.weak_elemental_sword")
             .setTextureName("essentialcraft:tools/weak_sword")
             .setMaxStackSize(1)
             .setFull3D();
@@ -874,11 +870,11 @@ public class ECItems {
     public static ArmorMaterial magicArmorMaterial = EnumHelper
         .addArmorMaterial("MRUFortified", 33, new int[] { 3, 8, 6, 3 }, 25);
     public static ArmorMaterial voidArmorMaterial = EnumHelper
-        .addArmorMaterial("VoidFortified", 52, new int[] { 3, 8, 6, 3 }, 40);
+        .addArmorMaterial("VoidFortified", 52, new int[] { 3, 8, 6, 3 }, 1);
     public static ArmorMaterial inquisArmorMaterial = EnumHelper
-        .addArmorMaterial("Inquisitorium", 64, new int[] { 10, 10, 10, 10 }, 60);
+        .addArmorMaterial("Inquisitorium", 64, new int[] { 10, 10, 10, 10 }, 0);
     public static ArmorMaterial windArmorMaterial = EnumHelper
-        .addArmorMaterial("WindElemental", 42, new int[] { 4, 10, 7, 4 }, 40);
+        .addArmorMaterial("WindElemental", 42, new int[] { 4, 10, 7, 4 }, 1);
     public static ArmorMaterial computerArmorMaterial = EnumHelper
         .addArmorMaterial("Computeric", 256, new int[] { 10, 30, 20, 10 }, 127);
 

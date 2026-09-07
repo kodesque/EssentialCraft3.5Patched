@@ -1,6 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.item.EntityItem;
@@ -10,8 +9,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemSpawnerCollector extends ItemStoresMRUInNBT {
 

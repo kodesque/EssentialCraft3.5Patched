@@ -5,9 +5,9 @@ import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState;
 import cpw.mods.fml.common.ModContainer;
+import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.dummycore.creativetabs.CreativePageBlocks;
 import ec3.utils.dummycore.creativetabs.CreativePageItems;
-import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.dummycore.utils.system.Notifier;
 
 public class DCMod {

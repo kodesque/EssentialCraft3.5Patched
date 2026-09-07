@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.common.tile.world.TileElementalCrystal;
+import ec3.common.tile.other.TileElementalCrystal;
 import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemBlockElementalCrystal extends ItemBlock {

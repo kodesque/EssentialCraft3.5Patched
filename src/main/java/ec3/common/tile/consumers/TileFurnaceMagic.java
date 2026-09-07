@@ -9,11 +9,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import ec3.api.ApiCore;
 import ec3.common.init.ECItems;
+import ec3.utils.ECUtils;
+import ec3.utils.EnumOreColoring;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.ECUtils;
-import ec3.utils.EnumOreColoring;
 
 public class TileFurnaceMagic extends TileMRUGeneric {
 

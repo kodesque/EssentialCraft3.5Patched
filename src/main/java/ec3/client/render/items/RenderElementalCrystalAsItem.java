@@ -12,8 +12,8 @@ import org.lwjgl.opengl.GL11;
 
 import ec3.client.models.ModelCrystal;
 import ec3.common.items.ItemBlockElementalCrystal;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class RenderElementalCrystalAsItem implements IItemRenderer {
 

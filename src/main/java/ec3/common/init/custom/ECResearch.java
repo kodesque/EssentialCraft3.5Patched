@@ -3,7 +3,6 @@ package ec3.common.init.custom;
 import java.util.Hashtable;
 import java.util.Random;
 
-import ec3.api.upgrades.MagicianTableUpgrades;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -16,12 +15,13 @@ import ec3.api.book.DiscoveryEntry;
 import ec3.api.book.PageEntry;
 import ec3.api.structures.StructureBlock;
 import ec3.api.structures.StructureRecipe;
+import ec3.api.upgrades.MagicianTableUpgrades;
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECItems;
 import ec3.common.items.ItemBaublesWearable;
 import ec3.common.items.ItemGun;
-import ec3.common.init.ECItems;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ECResearch {
 
@@ -517,8 +517,7 @@ public class ECResearch {
                         .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.bound_gem), 2))
                         .setText(StatCollector.translateToLocal("ec3.page.boundGem_4.txt"))))
             .apendDiscovery(
-                new DiscoveryEntry("ec3.disc.matrixDestructor")
-                    .setReferal(new ItemStack(ECBlocks.matrixAbsorber, 0, 0))
+                new DiscoveryEntry("ec3.disc.matrixDestructor").setReferal(new ItemStack(ECBlocks.matrixAbsorber, 0, 0))
                     .setDisplayStack(new ItemStack(ECBlocks.matrixAbsorber))
                     .apendPage(
                         new PageEntry("ec3.page.matrixDestructor_0")
@@ -712,8 +711,7 @@ public class ECResearch {
                     .apendPage(
                         next("magicMonocle").setText(StatCollector.translateToLocal("ec3.page.magicMonocle_0.txt")))
                     .apendPage(
-                        next("magicMonocle")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.magicMonocle), 2))))
+                        next("magicMonocle").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.magicMonocle), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.mrucumover2").setReferal(new ItemStack(ECItems.mruMover_t2, 0, 0))
                     .setDisplayStack(new ItemStack(ECItems.mruMover_t2, 0, 0))
@@ -723,9 +721,7 @@ public class ECResearch {
                         next("mrucumover2").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.mruMover_t2), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.mrucuec")
-                    .setReferal(
-                        new ItemStack(ECBlocks.magicPlating, 0, 0),
-                        new ItemStack(ECBlocks.ecController, 0, 0))
+                    .setReferal(new ItemStack(ECBlocks.magicPlating, 0, 0), new ItemStack(ECBlocks.ecController, 0, 0))
                     .setDisplayStack(new ItemStack(ECBlocks.ecController, 0, 0))
                     .apendPage(next("mrucuec").setText(StatCollector.translateToLocal("ec3.page.mrucuec_0.txt")))
                     .apendPage(
@@ -798,8 +794,7 @@ public class ECResearch {
                         next("mrucuec.balancer")
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.ecBalancer), 2))))
             .apendDiscovery(
-                new DiscoveryEntry("ec3.disc.mrucuec.redstone")
-                    .setReferal(new ItemStack(ECBlocks.ecRedstoneController))
+                new DiscoveryEntry("ec3.disc.mrucuec.redstone").setReferal(new ItemStack(ECBlocks.ecRedstoneController))
                     .setDisplayStack(new ItemStack(ECBlocks.ecRedstoneController, 0, 0))
                     .apendPage(
                         next("mrucuec.redstone")
@@ -881,8 +876,7 @@ public class ECResearch {
                         next("magicalMirrors")
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.magicalMirror), 2)))
                     .apendPage(
-                        next("magicalMirrors")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.controlRod), 2))))
+                        next("magicalMirrors").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.controlRod), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.magicalAssembler").setReferal(new ItemStack(ECBlocks.assembler))
                     .setDisplayStack(new ItemStack(ECBlocks.assembler, 0, 0))
@@ -920,8 +914,7 @@ public class ECResearch {
                 new DiscoveryEntry("ec3.disc.rayTower").setReferal(new ItemStack(ECBlocks.rayTower))
                     .setDisplayStack(new ItemStack(ECBlocks.rayTower, 0, 0))
                     .apendPage(next("rayTower").setText(StatCollector.translateToLocal("ec3.page.rayTower_0.txt")))
-                    .apendPage(
-                        next("rayTower").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.rayTower), 2))))
+                    .apendPage(next("rayTower").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.rayTower), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.book_t2").setDisplayStack(book_t2)
                     .apendPage(next("book_t2").setText(StatCollector.translateToLocal("ec3.page.book_t2_0.txt")))
@@ -991,8 +984,7 @@ public class ECResearch {
                         next("magicalHopper")
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.magicalHopper), 2))))
             .apendDiscovery(
-                new DiscoveryEntry("ec3.disc.metadataManager")
-                    .setDisplayStack(new ItemStack(ECBlocks.metadataManager))
+                new DiscoveryEntry("ec3.disc.metadataManager").setDisplayStack(new ItemStack(ECBlocks.metadataManager))
                     .setReferal(new ItemStack(ECBlocks.metadataManager))
 
                     .apendPage(
@@ -1082,11 +1074,9 @@ public class ECResearch {
                     .apendPage(
                         next("magicalChest").setText(StatCollector.translateToLocal("ec3.page.magicalChest_0.txt")))
                     .apendPage(
-                        next("magicalChest")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.chest, 1, 0), 2)))
+                        next("magicalChest").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.chest, 1, 0), 2)))
                     .apendPage(
-                        next("magicalChest")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.chest, 1, 1), 2))))
+                        next("magicalChest").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.chest, 1, 1), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.replanter").setDisplayStack(new ItemStack(ECBlocks.device, 1, 0))
                     .setReferal(new ItemStack(ECBlocks.device, 1, 0))
@@ -1160,8 +1150,7 @@ public class ECResearch {
                     .apendPage(
                         next("advBreaker").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.filter, 1, 1), 2)))
                     .apendPage(
-                        next("advBreaker")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.filter, 1, 3), 2))));
+                        next("advBreaker").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.filter, 1, 3), 2))));
     }
 
     public static void registerEngineersCategory() {
@@ -1200,8 +1189,7 @@ public class ECResearch {
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_3.txt")))
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_4.txt")))
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_5.txt")))
-                .apendPage(
-                    next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.crystalFormer), 2)))
+                .apendPage(next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.crystalFormer), 2)))
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_7.txt")))
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_8.txt")))
                 .apendPage(next("crystals").setText(StatCollector.translateToLocal("ec3.page.crystals_9.txt")))
@@ -1224,8 +1212,7 @@ public class ECResearch {
                 .apendPage(next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.fFocus, 1, 0), 2)))
                 .apendPage(next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.wFocus, 1, 0), 2)))
                 .apendPage(next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.eFocus, 1, 0), 2)))
-                .apendPage(
-                    next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.aFocus, 1, 0), 2))))
+                .apendPage(next("crystals").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.aFocus, 1, 0), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.matrixSwitch")
                     .setReferal(
@@ -1261,9 +1248,7 @@ public class ECResearch {
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.coldDistillator")
 
-                    .setReferal(
-                        new ItemStack(ECBlocks.coldStone, 1, 0),
-                        new ItemStack(ECBlocks.coldDistillator, 1, 0))
+                    .setReferal(new ItemStack(ECBlocks.coldStone, 1, 0), new ItemStack(ECBlocks.coldDistillator, 1, 0))
                     .setDisplayStack(new ItemStack(ECBlocks.coldDistillator, 1, 0))
                     .apendPage(
                         next("coldDistillator")
@@ -1302,9 +1287,7 @@ public class ECResearch {
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.coldDistillator, 1, 0), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.solarAbsorber")
-                    .setReferal(
-                        new ItemStack(ECBlocks.solarPrism, 1, 0),
-                        new ItemStack(ECBlocks.sunRayAbsorber, 1, 0))
+                    .setReferal(new ItemStack(ECBlocks.solarPrism, 1, 0), new ItemStack(ECBlocks.sunRayAbsorber, 1, 0))
                     .setDisplayStack(new ItemStack(ECBlocks.solarPrism, 1, 0))
 
                     .apendPage(
@@ -1347,8 +1330,7 @@ public class ECResearch {
                     .apendPage(next("moonWell").setText(StatCollector.translateToLocal("ec3.page.moonWell_1.txt")))
                     .apendPage(next("moonWell").setText(StatCollector.translateToLocal("ec3.page.moonWell_2.txt")))
                     .apendPage(
-                        next("moonWell")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.moonWell, 1, 0), 2))))
+                        next("moonWell").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.moonWell, 1, 0), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.reactor")
 
@@ -1555,9 +1537,7 @@ public class ECResearch {
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.magicalShield")
 
-                    .setReferal(
-                        new ItemStack(ECItems.magicalShield, 1, 0),
-                        new ItemStack(ECItems.spikyShield, 1, 0))
+                    .setReferal(new ItemStack(ECItems.magicalShield, 1, 0), new ItemStack(ECItems.spikyShield, 1, 0))
                     .setDisplayStack(new ItemStack(ECItems.magicalShield, 1, 0))
                     .apendPage(
                         next("magicalShield").setText(StatCollector.translateToLocal("ec3.page.magicalShield_0.txt")))
@@ -1574,8 +1554,7 @@ public class ECResearch {
                     .setDisplayStack(new ItemStack(ECItems.biomeWand, 1, 0))
                     .apendPage(next("biomeWand").setText(StatCollector.translateToLocal("ec3.page.biomeWand_0.txt")))
                     .apendPage(
-                        next("biomeWand")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.biomeWand, 1, 0), 2))))
+                        next("biomeWand").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.biomeWand, 1, 0), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.chaosFork")
 
@@ -1583,8 +1562,7 @@ public class ECResearch {
                     .setDisplayStack(new ItemStack(ECItems.chaosFork, 1, 0))
                     .apendPage(next("chaosFork").setText(StatCollector.translateToLocal("ec3.page.chaosFork_0.txt")))
                     .apendPage(
-                        next("chaosFork")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.chaosFork, 1, 0), 2))))
+                        next("chaosFork").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.chaosFork, 1, 0), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.frozenMace").setReferal(new ItemStack(ECItems.frozenMace, 1, 0))
                     .setDisplayStack(new ItemStack(ECItems.frozenMace, 1, 0))
@@ -1760,8 +1738,7 @@ public class ECResearch {
                         next("magicalJukebox")
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.magicalJukebox, 1, 0), 2))))
             .apendDiscovery(
-                new DiscoveryEntry("ec3.disc.magicalRepairer")
-                    .setReferal(new ItemStack(ECBlocks.magicalRepairer, 1, 0))
+                new DiscoveryEntry("ec3.disc.magicalRepairer").setReferal(new ItemStack(ECBlocks.magicalRepairer, 1, 0))
                     .setDisplayStack(new ItemStack(ECBlocks.magicalRepairer, 1, 0))
                     .apendPage(
                         next("magicalRepairer")
@@ -2159,8 +2136,7 @@ public class ECResearch {
 
                     .apendPage(next("o8elisk").setText(StatCollector.translateToLocal("ec3.page.o8elisk_0.txt")))
                     .apendPage(
-                        next("o8elisk")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.darknessObelisk), 2))))
+                        next("o8elisk").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.darknessObelisk), 2))))
             .apendDiscovery(
                 new DiscoveryEntry("ec3.disc.ultraHeat").setDisplayStack(new ItemStack(ECBlocks.ultraHeatGen, 1, 0))
                     .setReferal(new ItemStack(ECBlocks.ultraHeatGen, 1, 0))
@@ -2283,8 +2259,7 @@ public class ECResearch {
                         next("redSuit")
                             .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.computer_chestplate), 2)))
                     .apendPage(
-                        next("redSuit")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.computer_leggings), 2)))
+                        next("redSuit").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.computer_leggings), 2)))
                     .apendPage(
                         next("redSuit").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECItems.computer_boots), 2)))
                     .apendPage(
@@ -2309,13 +2284,10 @@ public class ECResearch {
                     .apendPage(next("newMim").setText(StatCollector.translateToLocal("ec3.page.newMim_5.txt")))
                     .apendPage(next("newMim").setText(StatCollector.translateToLocal("ec3.page.newMim_6.txt")))
                     .apendPage(next("newMim").setText(StatCollector.translateToLocal("ec3.page.newMim_7.txt")))
-                    .apendPage(
-                        next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimEjector), 2)))
-                    .apendPage(
-                        next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimInjector), 2)))
+                    .apendPage(next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimEjector), 2)))
+                    .apendPage(next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimInjector), 2)))
                     .apendPage(next("newMim").setText(StatCollector.translateToLocal("ec3.page.newMim_8.txt")))
-                    .apendPage(
-                        next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimEjectorP), 2)))
+                    .apendPage(next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimEjectorP), 2)))
                     .apendPage(
                         next("newMim").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimInjectorP), 2))))
             .apendDiscovery(
@@ -2348,8 +2320,7 @@ public class ECResearch {
                     .apendPage(
                         next("newMimScreen").setText(StatCollector.translateToLocal("ec3.page.newMimScreen_2.txt")))
                     .apendPage(
-                        next("newMimScreen")
-                            .setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimScreen), 2))));
+                        next("newMimScreen").setRecipe(ECUtils.findRecipeByIS(new ItemStack(ECBlocks.mimScreen), 2))));
     }
 
     public static ItemStack generic(int meta) {

@@ -16,8 +16,8 @@ import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import ec3.api.items.IItemRequiresMRU;
 import ec3.api.mru.IMRUStorage;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class ItemMRUStorageNBTTag extends Item implements IMRUStorage, IItemRequiresMRU, IBauble {
 

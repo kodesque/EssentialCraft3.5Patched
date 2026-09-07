@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import ec3.client.render.world.RenderSkyParadox;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -67,8 +66,11 @@ import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.recipes.WindImbueRecipe;
+import ec3.client.render.world.RenderSkyParadox;
 import ec3.common.blocks.BlockWindRune;
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECItems;
+import ec3.common.init.ECPotions;
 import ec3.common.items.ItemBoundGem;
 import ec3.common.items.ItemComputerArmor;
 import ec3.common.items.ItemComputerBoard;
@@ -76,15 +78,13 @@ import ec3.common.items.ItemGenericArmor;
 import ec3.common.items.ItemInventoryGem;
 import ec3.common.items.ItemMagicalBuilder;
 import ec3.common.items.ItemOrbitalRemote;
-import ec3.common.init.ECItems;
-import ec3.root.EssentialCraftCore;
-import ec3.common.init.ECPotions;
 import ec3.common.tile.crafting.TileWindRune;
+import ec3.network.proxy.ClientProxy;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.network.proxy.ClientProxy;
-import ec3.utils.ECUtils;
 
 public class RenderHandlerEC {
 
@@ -777,8 +777,7 @@ public class RenderHandlerEC {
                         IInventory inv = getInventoryFromContainer(gc);
                         if (inv != null && inv instanceof ISidedInventory) {
                             ISidedInventory sided = (ISidedInventory) inv;
-                            if (RenderHandlerEC.slotsTable.isEmpty()
-                                || !RenderHandlerEC.slotsTable.containsKey(inv)) {
+                            if (RenderHandlerEC.slotsTable.isEmpty() || !RenderHandlerEC.slotsTable.containsKey(inv)) {
                                 RenderHandlerEC.slotsTable.clear();
                                 Hashtable<Integer, List<ForgeDirection>> accessibleSlots = new Hashtable<Integer, List<ForgeDirection>>();
                                 for (int j = 0; j < 6; ++j) {
@@ -866,8 +865,7 @@ public class RenderHandlerEC {
             if (event.player instanceof EntityClientPlayerMP) {
                 EntityClientPlayerMP player = (EntityClientPlayerMP) event.player;
 
-                if (ECPotions.paradox != null
-                    && mc.thePlayer.getActivePotionEffect(ECPotions.paradox) != null) {
+                if (ECPotions.paradox != null && mc.thePlayer.getActivePotionEffect(ECPotions.paradox) != null) {
                     int duration = mc.thePlayer.getActivePotionEffect(ECPotions.paradox)
                         .getDuration();
                     if (duration > 100) {
@@ -1130,8 +1128,7 @@ public class RenderHandlerEC {
             }
 
             if (event.type == ElementType.HEALTH) {
-                if (Minecraft.getMinecraft().thePlayer.getActivePotionEffect(ECPotions.mruCorruptionPotion)
-                    != null) {
+                if (Minecraft.getMinecraft().thePlayer.getActivePotionEffect(ECPotions.mruCorruptionPotion) != null) {
                     Minecraft.getMinecraft().renderEngine.bindTexture(iconsEC);
 
                 }
@@ -1289,8 +1286,7 @@ public class RenderHandlerEC {
                 }
             }
             if (event.type == ElementType.HEALTH) {
-                if (Minecraft.getMinecraft().thePlayer.getActivePotionEffect(ECPotions.mruCorruptionPotion)
-                    != null) {
+                if (Minecraft.getMinecraft().thePlayer.getActivePotionEffect(ECPotions.mruCorruptionPotion) != null) {
                     Minecraft.getMinecraft().renderEngine.bindTexture(Gui.icons);
                 }
             }

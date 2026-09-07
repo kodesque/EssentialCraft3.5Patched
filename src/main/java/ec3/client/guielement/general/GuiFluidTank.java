@@ -6,8 +6,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 import ec3.utils.dummycore.client.GuiElement;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiFluidTank extends GuiElement {
 

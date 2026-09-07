@@ -1,6 +1,5 @@
 package ec3.client.render;
 
-import ec3.client.render.tiles.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -17,7 +16,9 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import ec3.client.render.tiles.*;
 import ec3.common.blocks.BlockChargingChamber;
+import ec3.common.blocks.BlockChestEC;
 import ec3.common.blocks.BlockColdDistillator;
 import ec3.common.blocks.BlockCorruptionCleaner;
 import ec3.common.blocks.BlockCorruptionLight;
@@ -27,7 +28,6 @@ import ec3.common.blocks.BlockCrystalFormer;
 import ec3.common.blocks.BlockDarknessObelisk;
 import ec3.common.blocks.BlockDrops;
 import ec3.common.blocks.BlockDropsOre;
-import ec3.common.blocks.BlockChestEC;
 import ec3.common.blocks.BlockEnderGenerator;
 import ec3.common.blocks.BlockFancy;
 import ec3.common.blocks.BlockFlowerBurner;

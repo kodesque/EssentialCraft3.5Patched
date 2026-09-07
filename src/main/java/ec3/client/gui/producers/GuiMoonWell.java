@@ -5,10 +5,10 @@ import net.minecraft.tileentity.TileEntity;
 
 import ec3.api.mru.ITEHasMRU;
 import ec3.client.guielement.general.GuiBalanceState;
-import ec3.client.guielement.specific.GuiHeightState;
 import ec3.client.guielement.general.GuiMRUGenerated;
 import ec3.client.guielement.general.GuiMRUState;
 import ec3.client.guielement.general.GuiMRUStorage;
+import ec3.client.guielement.specific.GuiHeightState;
 import ec3.client.guielement.specific.GuiMoonState;
 import ec3.utils.dummycore.client.GuiCommon;
 

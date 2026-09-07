@@ -22,10 +22,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
+import ec3.api.config.Config;
 import ec3.common.init.ECBlocks;
 import ec3.utils.ECExplosion;
 import ec3.utils.dummycore.utils.math.Coord2D;
-import ec3.api.config.Config;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class StructureTownPieces {

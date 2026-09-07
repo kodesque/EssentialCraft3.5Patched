@@ -24,11 +24,11 @@ import ec3.api.ApiCore;
 import ec3.common.init.ECBlocks;
 import ec3.common.items.ItemBoundGem;
 import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.ECUtils;
 
 public class TileMagicalTeleporter extends TileMRUGeneric {
 

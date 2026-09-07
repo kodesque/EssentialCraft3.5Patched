@@ -1,12 +1,12 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.consumers.TileFurnaceMagic;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiProgressBarFurnace extends GuiTextField {
 

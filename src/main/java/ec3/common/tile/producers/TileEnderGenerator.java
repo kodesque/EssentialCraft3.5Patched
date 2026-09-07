@@ -2,7 +2,6 @@ package ec3.common.tile.producers;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -10,6 +9,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import cpw.mods.fml.common.Loader;
 import ec3.api.ApiCore;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 
@@ -17,7 +17,7 @@ public class TileEnderGenerator extends TileMRUGeneric {
 
     public static float cfgMaxMRU = ApiCore.GENERATOR_MAX_MRU_GENERIC;
     public static float cfgBalance = -1F;
-    public static float mruGenerated = 500;
+    public static float mruGenerated = 5;
     public static int endermenCatchRadius = 8;
 
     public TileEnderGenerator() {

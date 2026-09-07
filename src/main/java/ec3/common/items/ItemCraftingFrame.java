@@ -11,10 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import ec3.api.config.Config;
 import ec3.common.inventory.ContainerCraftingFrame;
 import ec3.common.inventory.InventoryCraftingFrame;
 import ec3.root.EssentialCraftCore;
-import ec3.api.config.Config;
 
 public class ItemCraftingFrame extends Item {
 

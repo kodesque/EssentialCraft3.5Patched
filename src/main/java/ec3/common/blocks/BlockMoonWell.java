@@ -6,9 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.producers.TileMoonWell;
 import ec3.api.config.Config;
+import ec3.common.tile.producers.TileMoonWell;
+import ec3.root.EssentialCraftCore;
 
 public class BlockMoonWell extends BlockContainer {
 
@@ -35,7 +35,6 @@ public class BlockMoonWell extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        // TODO Auto-generated method stub
         return new TileMoonWell();
     }
 

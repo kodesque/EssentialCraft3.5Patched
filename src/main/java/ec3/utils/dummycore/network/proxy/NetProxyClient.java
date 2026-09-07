@@ -3,13 +3,8 @@ package ec3.utils.dummycore.network.proxy;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Hashtable;
-import java.util.Random;
 import java.util.Set;
 
-import ec3.utils.dummycore.config.DummyConfig;
-import ec3.utils.dummycore.utils.GuiContainerLibrary;
-import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.utils.dummycore.utils.TimerHijack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -18,7 +13,6 @@ import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetHandler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -31,9 +25,11 @@ import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Table;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import ec3.utils.dummycore.config.DummyConfig;
 import ec3.utils.dummycore.core.CoreInitializer;
-import ec3.utils.dummycore.creativetabs.CreativePageBlocks;
-import ec3.utils.dummycore.creativetabs.CreativePageItems;
+import ec3.utils.dummycore.utils.GuiContainerLibrary;
+import ec3.utils.dummycore.utils.TimerHijack;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class NetProxyClient extends NetProxyServer {
 

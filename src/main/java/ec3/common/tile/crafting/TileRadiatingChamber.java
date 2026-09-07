@@ -1,6 +1,5 @@
 package ec3.common.tile.crafting;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.config.Configuration;
@@ -10,9 +9,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
 import ec3.api.recipes.RadiatingChamberRecipe;
 import ec3.api.recipes.RadiatingChamberRecipes;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.ECUtils;
 
 public class TileRadiatingChamber extends TileMRUGeneric {
 

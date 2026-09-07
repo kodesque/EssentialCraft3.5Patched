@@ -1,9 +1,9 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.utils.dummycore.utils.MiscUtils;
 
 public class GuiMoonState extends GuiTextField {

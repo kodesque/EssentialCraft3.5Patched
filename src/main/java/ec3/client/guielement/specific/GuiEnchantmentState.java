@@ -1,6 +1,5 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.inventory.IInventory;
@@ -8,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.consumers.TileMagicalEnchanter;
 
 public class GuiEnchantmentState extends GuiTextField {
@@ -58,34 +58,69 @@ public class GuiEnchantmentState extends GuiTextField {
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         IInventory inventory = (IInventory) tile;
         if (inventory.getStackInSlot(1) == null) {
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.none").getFormattedText(), posX + 4, posY + 5, 0xffff00);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.enchanter.none").getFormattedText(),
+                posX + 4,
+                posY + 5,
+                0xffff00);
         } else {
             if (inventory.getStackInSlot(2) != null) {
-                fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.obstructed").getFormattedText(), posX + 4, posY + 5, 0x00ff00);
+                fontRenderer.drawStringWithShadow(
+                    new ChatComponentTranslation("essentialcraft.gui.enchanter.obstructed").getFormattedText(),
+                    posX + 4,
+                    posY + 5,
+                    0x00ff00);
             } else {
                 if (((TileMagicalEnchanter) tile).getMRU() < 100) {
-                    fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.noenergy").getFormattedText(), posX + 4, posY + 5, 0xff0000);
+                    fontRenderer.drawStringWithShadow(
+                        new ChatComponentTranslation("essentialcraft.gui.enchanter.noenergy").getFormattedText(),
+                        posX + 4,
+                        posY + 5,
+                        0xff0000);
                 } else {
                     if (!inventory.getStackInSlot(1)
                         .isItemEnchantable()) {
-                        fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.invalid").getFormattedText(), posX + 4, posY + 5, 0xff0000);
+                        fontRenderer.drawStringWithShadow(
+                            new ChatComponentTranslation("essentialcraft.gui.enchanter.invalid").getFormattedText(),
+                            posX + 4,
+                            posY + 5,
+                            0xff0000);
                     } else {
                         try {
                             if (((TileMagicalEnchanter) tile).getEnchantmentsForStack(inventory.getStackInSlot(1))
                                 == null
                                 || ((TileMagicalEnchanter) tile).getEnchantmentsForStack(inventory.getStackInSlot(1))
                                     .isEmpty()) {
-                                fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.invalid").getFormattedText(), posX + 4, posY + 5, 0xff0000);
+                                fontRenderer.drawStringWithShadow(
+                                    new ChatComponentTranslation("essentialcraft.gui.enchanter.invalid")
+                                        .getFormattedText(),
+                                    posX + 4,
+                                    posY + 5,
+                                    0xff0000);
                             } else {
                                 if (((TileMagicalEnchanter) tile).getMaxPower() <= 0) {
-                                    fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.nobookshelves").getFormattedText(), posX + 4, posY + 5, 0xff0000);
+                                    fontRenderer.drawStringWithShadow(
+                                        new ChatComponentTranslation("essentialcraft.gui.enchanter.nobookshelves")
+                                            .getFormattedText(),
+                                        posX + 4,
+                                        posY + 5,
+                                        0xff0000);
                                 } else {
-                                    fontRenderer
-                                        .drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.working").getFormattedText(), posX + 4, posY + 5, 0x00ff00);
+                                    fontRenderer.drawStringWithShadow(
+                                        new ChatComponentTranslation("essentialcraft.gui.enchanter.working")
+                                            .getFormattedText(),
+                                        posX + 4,
+                                        posY + 5,
+                                        0x00ff00);
                                 }
                             }
                         } catch (Exception e) {
-                            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.enchanter.nobookshelves").getFormattedText(), posX + 4, posY + 5, 0xff0000);
+                            fontRenderer.drawStringWithShadow(
+                                new ChatComponentTranslation("essentialcraft.gui.enchanter.nobookshelves")
+                                    .getFormattedText(),
+                                posX + 4,
+                                posY + 5,
+                                0xff0000);
                             return;
                         }
                     }

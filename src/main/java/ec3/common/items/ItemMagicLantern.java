@@ -1,6 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
 
 public class ItemMagicLantern extends ItemStoresMRUInNBT {

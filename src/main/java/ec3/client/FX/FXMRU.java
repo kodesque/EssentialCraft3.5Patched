@@ -39,8 +39,7 @@ public class FXMRU extends EntityFX {
         this.setParticleTextureIndex((int) (Math.random() * 8.0D));
     }
 
-    public FXMRU(World w, double x, double y, double z, double i, double j, double k, double cR, double cG,
-                 double cB) {
+    public FXMRU(World w, double x, double y, double z, double i, double j, double k, double cR, double cG, double cB) {
         this(w, x, y, z, i, j, k);
         this.particleRed = (float) cR;
         this.particleGreen = (float) cG;

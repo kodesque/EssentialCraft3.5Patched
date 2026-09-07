@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemStoresMRUInNBT extends Item implements IItemRequiresMRU {
 

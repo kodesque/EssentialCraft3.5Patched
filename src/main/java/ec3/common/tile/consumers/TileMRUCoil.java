@@ -3,12 +3,6 @@ package ec3.common.tile.consumers;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.FX.ArcFX;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
@@ -22,11 +16,17 @@ import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
-import ec3.api.structures.EnumStructureType;
 import ec3.api.mru.IMRUPresence;
+import ec3.api.structures.EnumStructureType;
 import ec3.common.init.ECBlocks;
 import ec3.common.items.ItemPlayerList;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.FX.ArcFX;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileMRUCoil extends TileMRUGeneric {
 

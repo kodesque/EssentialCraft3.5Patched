@@ -19,9 +19,9 @@ import ec3.api.corruption.ICorruptionEffect;
 import ec3.client.render.handlers.RenderHandlerEC;
 import ec3.client.render.tiles.RenderPlayerPentacle;
 import ec3.common.tile.consumers.TilePlayerPentacle;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.player.PlayerGenericData;
 
 public class GuiPlayerPentacle extends GuiScreen {

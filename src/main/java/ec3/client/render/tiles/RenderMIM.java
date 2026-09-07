@@ -9,9 +9,9 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.common.tile.logistics.TileMIM;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.math.Coord2D;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
 
 @SideOnly(Side.CLIENT)
 public class RenderMIM extends TileEntitySpecialRenderer {

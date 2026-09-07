@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import ec3.api.book.CategoryEntry;
-import ec3.api.book.DiscoveryEntry;
-import ec3.api.mru.IMRUPresence;
-import ec3.api.player.IPlayerData;
-import ec3.api.structures.EnumStructureType;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
+import ec3.api.book.CategoryEntry;
+import ec3.api.book.DiscoveryEntry;
+import ec3.api.mru.IMRUPresence;
+import ec3.api.player.IPlayerData;
+import ec3.api.structures.EnumStructureType;
 import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.DummyDistance;
 

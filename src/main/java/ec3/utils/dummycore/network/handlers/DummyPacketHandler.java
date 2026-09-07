@@ -1,6 +1,5 @@
 package ec3.utils.dummycore.network.handlers;
 
-import ec3.utils.dummycore.network.packets.DummyPacket;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -11,6 +10,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import ec3.utils.dummycore.core.CoreInitializer;
 import ec3.utils.dummycore.events.OnPacketRecieved;
+import ec3.utils.dummycore.network.packets.DummyPacket;
 import io.netty.channel.ChannelHandler;
 
 @ChannelHandler.Sharable

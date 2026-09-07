@@ -2,11 +2,11 @@ package ec3.utils.commands;
 
 import java.util.List;
 
-import ec3.utils.commands.handlers.CommandEC;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import ec3.common.entities.EntityMRUPresence;
+import ec3.utils.commands.handlers.CommandEC;
 
 public class CommandCreateMRUCU extends CommandEC {
 

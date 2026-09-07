@@ -9,8 +9,8 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import ec3.common.init.ECBlocks;
 import ec3.api.config.Config;
+import ec3.common.init.ECBlocks;
 
 public class WorldGenElementalDrops extends WorldGenerator {
 

@@ -19,8 +19,8 @@ public class DummyConfig implements IDummyConfig {
         removeMissingTexturesErrors = config.getBoolean("removeMissingTexturesErrors", "GLOBAL", true, "");
         enableNotifierLogging = config.getBoolean("enableNotifierLogging", "GLOBAL", true, "");
         shouldChangeImage = config.getBoolean("shouldChangeImageInCreativeTabs", "GLOBAL", true, "");
-//        allowCustomMainMenu = config.getBoolean("allowCustomMainMenu", "GLOBAL", true, "");
-//        mainMenuID = config.getInt("mainMenuID", "GLOBAL", 0, 0, Integer.MAX_VALUE, "");
+        // allowCustomMainMenu = config.getBoolean("allowCustomMainMenu", "GLOBAL", true, "");
+        // mainMenuID = config.getInt("mainMenuID", "GLOBAL", 0, 0, Integer.MAX_VALUE, "");
         dummyCoreSyncTimer = config.getInt(
             "syncTimer",
             "GLOBAL",
@@ -30,15 +30,15 @@ public class DummyConfig implements IDummyConfig {
             "Time inbetween syncing of data. The more the number is, the worse the sync is going to be, hwever, the less packets will be sent, and, therefore, the less annoying the server lag will be.");
     }
 
-//    public static void setMainMenu(int i) {
-//        cfg.load();
-//        cfg.get("GLOBAL", "mainMenuID", 0, "")
-//            .set(i);
-//        mainMenuID = i;
-//        cfg.save();
-//    }
-//
-//    public static int getMainMenu() {
-//        return mainMenuID;
-//    }
+    // public static void setMainMenu(int i) {
+    // cfg.load();
+    // cfg.get("GLOBAL", "mainMenuID", 0, "")
+    // .set(i);
+    // mainMenuID = i;
+    // cfg.save();
+    // }
+    //
+    // public static int getMainMenu() {
+    // return mainMenuID;
+    // }
 }

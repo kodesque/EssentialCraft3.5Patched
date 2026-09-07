@@ -6,11 +6,11 @@ import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
 import ec3.common.blocks.BlockCorruptionLight;
-import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.ECUtils;
 
 public class TileCorruptionCleaner extends TileMRUGeneric {
 

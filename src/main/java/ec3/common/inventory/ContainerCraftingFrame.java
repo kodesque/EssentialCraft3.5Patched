@@ -14,8 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import ec3.utils.dummycore.utils.UnformedItemStack;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.UnformedItemStack;
 
 public class ContainerCraftingFrame extends Container {
 

@@ -12,7 +12,6 @@ public class BlockecEjector extends BlockContainer {
 
     public BlockecEjector(Material p_i45386_1_) {
         super(p_i45386_1_);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

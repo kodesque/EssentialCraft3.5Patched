@@ -4,8 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-import ec3.api.world.IWorldEvent;
 import ec3.api.config.Config;
+import ec3.api.world.IWorldEvent;
 import ec3.utils.ECUtils;
 
 public class WorldEventEarthquake implements IWorldEvent {

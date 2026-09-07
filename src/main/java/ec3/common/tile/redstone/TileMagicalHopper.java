@@ -2,7 +2,6 @@ package ec3.common.tile.redstone;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,9 +10,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemFilter;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.ECUtils;
 
 public class TileMagicalHopper extends TileMRUGeneric {
 

@@ -11,12 +11,12 @@ public class BlockMRUReactor extends BlockContainer {
 
     protected BlockMRUReactor(Material p_i45386_1_) {
         super(p_i45386_1_);
-        // TODO Auto-generated constructor stub
+
     }
 
     public BlockMRUReactor() {
         super(Material.rock);
-        // TODO Auto-generated constructor stub
+
     }
 
     public boolean isOpaqueCube() {
@@ -38,7 +38,6 @@ public class BlockMRUReactor extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) {
-        // TODO Auto-generated method stub
         return new TileMRUReactor();
     }
 }

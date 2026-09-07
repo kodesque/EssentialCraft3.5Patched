@@ -8,15 +8,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import ec3.api.book.DiscoveryEntry;
-import ec3.api.book.PageEntry;
-import ec3.api.corruption.CorruptionEffectLibrary;
-import ec3.api.corruption.ICorruptionEffect;
-import ec3.api.world.WorldEventLibrary;
-import ec3.common.init.ECItems;
-import ec3.utils.ECUtils;
-import ec3.utils.RadiationUtils;
-import ec3.utils.WindUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -48,15 +39,24 @@ import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.*;
+import ec3.api.book.DiscoveryEntry;
+import ec3.api.book.PageEntry;
+import ec3.api.config.Config;
+import ec3.api.corruption.CorruptionEffectLibrary;
+import ec3.api.corruption.ICorruptionEffect;
+import ec3.api.world.WorldEventLibrary;
 import ec3.client.gui.items.GuiResearchBook;
 import ec3.common.init.ECBlocks;
-import ec3.common.items.*;
-import ec3.root.EssentialCraftCore;
+import ec3.common.init.ECItems;
 import ec3.common.init.custom.ECResearch;
+import ec3.common.items.*;
 import ec3.common.world.hoanna.WorldProviderHoanna;
-import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
+import ec3.utils.RadiationUtils;
+import ec3.utils.WindUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.api.config.Config;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class PlayerTickHandler {
 

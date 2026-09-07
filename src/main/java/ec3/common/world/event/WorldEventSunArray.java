@@ -11,11 +11,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import baubles.api.BaublesApi;
+import ec3.api.config.Config;
 import ec3.api.world.IWorldEvent;
 import ec3.common.items.BaublesAccessory;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.api.config.Config;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class WorldEventSunArray implements IWorldEvent {
 

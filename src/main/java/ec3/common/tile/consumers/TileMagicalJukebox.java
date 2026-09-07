@@ -19,8 +19,8 @@ import net.minecraft.util.EnumChatFormatting;
 
 import ec3.api.ApiCore;
 import ec3.common.init.ECItems;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileMagicalJukebox extends TileMRUGeneric {
 

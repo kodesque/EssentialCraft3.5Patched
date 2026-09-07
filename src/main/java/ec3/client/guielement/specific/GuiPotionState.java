@@ -1,6 +1,5 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.init.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
@@ -9,9 +8,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.consumers.TilePotionSpreader;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiPotionState extends GuiTextField {
 

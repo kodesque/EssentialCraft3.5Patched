@@ -2,12 +2,6 @@ package ec3.utils.dummycore.events;
 
 import java.util.Arrays;
 
-import ec3.utils.dummycore.config.DummyConfig;
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.system.ModVersionChecker;
-import ec3.utils.dummycore.utils.system.ScheduledServerAction;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
@@ -23,6 +17,12 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.relauncher.Side;
+import ec3.utils.dummycore.config.DummyConfig;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.system.ModVersionChecker;
+import ec3.utils.dummycore.utils.system.ScheduledServerAction;
 
 /**
  * @author Modbder
@@ -119,8 +119,7 @@ public class DummyEventHandler {
                         MinecraftServer server = MinecraftServer.getServer();
                         ServerConfigurationManager manager = server.getConfigurationManager();
                         EntityPlayer player = manager.func_152612_a(username);
-                        MinecraftForge.EVENT_BUS
-                            .post(new OnServerKeyboardKeyPressed(id, name, player, pressed));
+                        MinecraftForge.EVENT_BUS.post(new OnServerKeyboardKeyPressed(id, name, player, pressed));
                     }
                 }
                 if (modData.fieldName.equalsIgnoreCase("mod")

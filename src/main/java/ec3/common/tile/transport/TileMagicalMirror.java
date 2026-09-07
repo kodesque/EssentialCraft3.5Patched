@@ -3,13 +3,6 @@ package ec3.common.tile.transport;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
-import ec3.common.tile.consumers.TileMagicalAssembler;
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +14,14 @@ import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import ec3.api.ApiCore;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.common.tile.consumers.TileMagicalAssembler;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileMagicalMirror extends TileMRUGeneric {
 

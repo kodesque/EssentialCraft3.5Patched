@@ -1,9 +1,9 @@
 package ec3.utils.dummycore.utils;
 
-import ec3.utils.dummycore.utils.system.Notifier;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class GuiContainerLibrary {
 

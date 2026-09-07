@@ -2,11 +2,11 @@ package ec3.common.tile.logistics;
 
 import java.util.ArrayList;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.item.ItemStack;
 
 import ec3.common.inventory.InventoryCraftingFrame;
 import ec3.common.items.ItemCraftingFrame;
+import ec3.common.tile.consumers.TileMRUGeneric;
 
 public class TileNewMIMCraftingManager extends TileMRUGeneric {
 

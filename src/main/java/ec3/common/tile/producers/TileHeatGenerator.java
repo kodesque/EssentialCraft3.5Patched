@@ -1,6 +1,5 @@
 package ec3.common.tile.producers;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -12,6 +11,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import ec3.api.ApiCore;
 import ec3.api.machines.IHotBlock;
 import ec3.common.init.ECItems;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;

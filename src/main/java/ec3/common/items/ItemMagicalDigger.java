@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,9 +17,10 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.Coord3D;
 
 public class ItemMagicalDigger extends ItemPickaxe implements IItemRequiresMRU {
 

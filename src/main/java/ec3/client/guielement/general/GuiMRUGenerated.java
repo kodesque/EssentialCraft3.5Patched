@@ -18,8 +18,8 @@ import ec3.common.tile.producers.TileMoonWell;
 import ec3.common.tile.producers.TileSunRayAbsorber;
 import ec3.common.tile.producers.TileUltraFlowerBurner;
 import ec3.common.tile.producers.TileUltraHeatGenerator;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiMRUGenerated extends GuiTextField {
 

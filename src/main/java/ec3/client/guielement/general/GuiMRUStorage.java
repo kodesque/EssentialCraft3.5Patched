@@ -6,8 +6,8 @@ import net.minecraft.util.ResourceLocation;
 import ec3.api.mru.ITEHasMRU;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.client.GuiElement;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiMRUStorage extends GuiElement {
 

@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import ec3.common.init.ECBlocks;
-import ec3.common.items.ItemBaublesWearable;
 import ec3.common.init.ECItems;
+import ec3.common.items.ItemBaublesWearable;
 
 public class WorldGenMRUTower extends WorldGenerator {
 

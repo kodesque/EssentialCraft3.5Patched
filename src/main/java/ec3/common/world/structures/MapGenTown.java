@@ -15,15 +15,15 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 
-import ec3.common.init.ECBiomes;
 import ec3.api.config.Config;
+import ec3.common.init.ECBiomes;
 
 public class MapGenTown extends MapGenStructure {
 
     /** A list of all the biomes villages can spawn in. */
     @SuppressWarnings("rawtypes")
-    public static List villageSpawnBiomes = Arrays.asList(
-        new BiomeGenBase[] { BiomeGenBase.plains, ECBiomes.chaosCorruption, ECBiomes.frozenCorruption });
+    public static List villageSpawnBiomes = Arrays
+        .asList(new BiomeGenBase[] { BiomeGenBase.plains, ECBiomes.chaosCorruption, ECBiomes.frozenCorruption });
     /** World terrain type, 0 for normal, 1 for flat map */
     private int terrainType;
     private int field_82665_g;

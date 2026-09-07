@@ -9,8 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import ec3.common.init.ECBlocks;
 import ec3.common.init.ECEntities;
 import ec3.common.init.ECTiles;
-import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.EnumOreColoring;
+import ec3.utils.dummycore.config.IDummyConfig;
 
 public class Config implements IDummyConfig {
 

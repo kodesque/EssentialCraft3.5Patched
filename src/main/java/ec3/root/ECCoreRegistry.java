@@ -1,27 +1,27 @@
 package ec3.root;
 
-import ec3.common.init.ECBiomes;
-import ec3.common.init.ECDimensions;
-import ec3.common.init.ECRecipes;
-import ec3.common.init.ECTiles;
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
+import ec3.api.config.Config;
 import ec3.api.world.WorldEventLibrary;
+import ec3.common.init.ECBiomes;
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECDimensions;
 import ec3.common.init.ECItems;
+import ec3.common.init.ECRecipes;
+import ec3.common.init.ECTiles;
 import ec3.common.world.event.WorldEventDarkness;
 import ec3.common.world.event.WorldEventEarthquake;
 import ec3.common.world.event.WorldEventFumes;
 import ec3.common.world.event.WorldEventSunArray;
+import ec3.events.ECEventHandler;
 import ec3.network.PacketNBT;
 import ec3.network.proxy.ClientProxy;
 import ec3.network.proxy.CommonProxy;
 import ec3.network.proxy.PacketDispatcherEC;
-import ec3.api.config.Config;
-import ec3.events.ECEventHandler;
 import ec3.utils.player.PlayerTickHandler;
 import ec3.utils.player.PlayerTracker;
 

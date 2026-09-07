@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import ec3.common.tile.world.TileElementalCrystal;
+import ec3.common.tile.other.TileElementalCrystal;
 import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockElementalCrystal extends BlockContainer {

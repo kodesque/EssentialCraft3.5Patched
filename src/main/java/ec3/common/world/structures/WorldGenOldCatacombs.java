@@ -17,8 +17,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import ec3.common.init.ECBlocks;
-import ec3.common.items.ItemBaublesWearable;
 import ec3.common.init.ECItems;
+import ec3.common.items.ItemBaublesWearable;
 import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class WorldGenOldCatacombs extends WorldGenerator {

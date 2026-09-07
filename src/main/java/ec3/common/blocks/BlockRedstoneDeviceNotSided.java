@@ -32,12 +32,12 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.redstone.TileAnimalSeparator;
+import ec3.api.config.Config;
 import ec3.common.tile.consumers.TileCrafter;
 import ec3.common.tile.producers.TileCreativeMRUSource;
+import ec3.common.tile.redstone.TileAnimalSeparator;
+import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.api.config.Config;
 
 public class BlockRedstoneDeviceNotSided extends BlockContainer {
 

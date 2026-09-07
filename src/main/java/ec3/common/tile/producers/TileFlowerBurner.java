@@ -1,6 +1,5 @@
 package ec3.common.tile.producers;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSapling;
@@ -12,10 +11,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 
 import ec3.api.ApiCore;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileFlowerBurner extends TileMRUGeneric {

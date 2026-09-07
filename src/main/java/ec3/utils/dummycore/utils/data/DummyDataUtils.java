@@ -7,10 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
 
-import ec3.utils.dummycore.utils.system.LoadingUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.utils.dummycore.utils.SyncUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +19,10 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.relauncher.Side;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.SyncUtils;
+import ec3.utils.dummycore.utils.system.LoadingUtils;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 /**
  *

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import ec3.common.init.ECItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -31,8 +30,9 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemElementalSword extends ItemSword implements IItemRequiresMRU /* ItemStoresMRUInNBT */ {
 
@@ -72,7 +72,7 @@ public class ItemElementalSword extends ItemSword implements IItemRequiresMRU /*
 
     @Override
     public int getMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return MiscUtils.getStackTag(stack)
             .getInteger("mru");
     }
@@ -253,7 +253,7 @@ public class ItemElementalSword extends ItemSword implements IItemRequiresMRU /*
 
     @Override
     public int getMaxMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return this.maxMRU;
     }
 

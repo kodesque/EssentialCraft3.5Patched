@@ -2,7 +2,6 @@ package ec3.common.tile.producers;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +14,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
 import ec3.api.machines.IColdBlock;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 

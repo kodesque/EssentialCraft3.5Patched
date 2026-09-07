@@ -21,9 +21,9 @@ import ec3.api.recipes.MithrilineFurnaceRecipes;
 import ec3.api.recipes.RadiatingChamberRecipes;
 import ec3.api.recipes.WindImbueRecipe;
 import ec3.common.entities.EntityWindMage;
+import ec3.utils.RecipeArmorDyesHandler;
 import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.UnformedItemStack;
-import ec3.utils.RecipeArmorDyesHandler;
 
 public class ECRecipes {
 
@@ -564,8 +564,8 @@ public class ECRecipes {
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECBlocks.magicalHopper, 1, 0),
-                new Object[] { "SHS", "SCS", "SDS", 'S', ECBlocks.fortifiedStone, 'H', Blocks.hopper, 'C',
-                    Blocks.chest, 'D', Blocks.dropper }));
+                new Object[] { "SHS", "SCS", "SDS", 'S', ECBlocks.fortifiedStone, 'H', Blocks.hopper, 'C', Blocks.chest,
+                    'D', Blocks.dropper }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECBlocks.rightClicker, 1, 0),
@@ -675,18 +675,14 @@ public class ECRecipes {
                 new ItemStack(ECBlocks.weaponMaker, 1, 0),
                 new Object[] { "SIS", "SCS", "SSS", 'S', ECBlocks.fortifiedStone, 'I',
                     Blocks.heavy_weighted_pressure_plate, 'C', Blocks.crafting_table }));
-        GameRegistry.addShapelessRecipe(
-            new ItemStack(ECBlocks.weaponMaker, 1, 1),
-            new ItemStack(ECBlocks.weaponMaker, 1, 0));
-        GameRegistry.addShapelessRecipe(
-            new ItemStack(ECBlocks.weaponMaker, 1, 2),
-            new ItemStack(ECBlocks.weaponMaker, 1, 1));
-        GameRegistry.addShapelessRecipe(
-            new ItemStack(ECBlocks.weaponMaker, 1, 3),
-            new ItemStack(ECBlocks.weaponMaker, 1, 2));
-        GameRegistry.addShapelessRecipe(
-            new ItemStack(ECBlocks.weaponMaker, 1, 0),
-            new ItemStack(ECBlocks.weaponMaker, 1, 3));
+        GameRegistry
+            .addShapelessRecipe(new ItemStack(ECBlocks.weaponMaker, 1, 1), new ItemStack(ECBlocks.weaponMaker, 1, 0));
+        GameRegistry
+            .addShapelessRecipe(new ItemStack(ECBlocks.weaponMaker, 1, 2), new ItemStack(ECBlocks.weaponMaker, 1, 1));
+        GameRegistry
+            .addShapelessRecipe(new ItemStack(ECBlocks.weaponMaker, 1, 3), new ItemStack(ECBlocks.weaponMaker, 1, 2));
+        GameRegistry
+            .addShapelessRecipe(new ItemStack(ECBlocks.weaponMaker, 1, 0), new ItemStack(ECBlocks.weaponMaker, 1, 3));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.wind_elemental_hoe, 1, 0),
@@ -978,14 +974,14 @@ public class ECRecipes {
         addRecipe(
             new ItemStack(ECItems.magicalDigger, 1, 0),
             10000,
-            new Object[] { Blocks.tnt, "focusEarth", "redSoulMatter", "focusFire", ECItems.elemental_pick,
-                "focusEarth", "plateMagic", "focusFire", Blocks.tnt, });
+            new Object[] { Blocks.tnt, "focusEarth", "redSoulMatter", "focusFire", ECItems.elemental_pick, "focusEarth",
+                "plateMagic", "focusFire", Blocks.tnt, });
 
         addRecipe(
             new ItemStack(ECItems.staffOfLife, 1, 0),
             1000,
-            new Object[] { ECItems.elemental_hoe, "focusEarth", new ItemStack(ECItems.genericItem, 1, 4),
-                "focusEarth", "redSoulMatter", "focusEarth", "plateMagic", "focusEarth", ECItems.elemental_hoe, });
+            new Object[] { ECItems.elemental_hoe, "focusEarth", new ItemStack(ECItems.genericItem, 1, 4), "focusEarth",
+                "redSoulMatter", "focusEarth", "plateMagic", "focusEarth", ECItems.elemental_hoe, });
 
         addRecipe(
             new ItemStack(ECItems.emeraldHeart, 1, 0),
@@ -1149,7 +1145,7 @@ public class ECRecipes {
         addRecipe(
             new ItemStack(ECItems.magmaticStaff, 1, 0),
             1000,
-            new Object[] { "focusFire", "focusFire", ECBlocks.magmaticSmeltery, "dustCrystal", "matterOfEternity",
+            new Object[] { "focusFire", "focusFire", ECBlocks.magmaticSmeltery, "dustCrystal", "redSoulMatter",
                 "focusFire", "plateMagic", "dustCrystal", "focusFire", });
 
         addRecipe(
@@ -1673,10 +1669,7 @@ public class ECRecipes {
 
     @SuppressWarnings("unused")
     public static void registerWindRecipes() {
-        new WindImbueRecipe(
-            new ItemStack(ECItems.soulStone, 1, 0),
-            new ItemStack(ECItems.soulStone, 1, 0),
-            10000 * 4);
+        new WindImbueRecipe(new ItemStack(ECItems.soulStone, 1, 0), new ItemStack(ECItems.soulStone, 1, 0), 10000 * 4);
         new WindImbueRecipe(new ItemStack(Items.diamond, 1, 0), new ItemStack(ECItems.genericItem, 1, 55), 10000);
         new WindImbueRecipe(new ItemStack(Items.potionitem, 1, 0), new ItemStack(ECItems.air_potion, 1, 0), 250);
         // TODO wind recipes
@@ -1778,23 +1771,19 @@ public class ECRecipes {
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.elementalFuel, 1, 1),
-                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 1), 'C',
-                    Items.snowball }));
+                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 1), 'C', Items.snowball }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.elementalFuel, 4, 1),
-                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 5), 'C',
-                    Items.snowball }));
+                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 5), 'C', Items.snowball }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.elementalFuel, 8, 1),
-                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 9), 'C',
-                    Items.snowball }));
+                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 9), 'C', Items.snowball }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.elementalFuel, 16, 1),
-                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 13), 'C',
-                    Items.snowball }));
+                new Object[] { " E ", "ECE", " E ", 'E', new ItemStack(ECItems.essence, 1, 13), 'C', Items.snowball }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.elementalFuel, 1, 2),
@@ -1857,98 +1846,98 @@ public class ECRecipes {
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 0),
-                new Object[] { "SGS", "FRF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "FRF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 1),
-                new Object[] { "SGS", "WRW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "WRW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 2),
-                new Object[] { "SGS", "ERE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ERE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 3),
-                new Object[] { "SGS", "ARA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ARA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 4),
-                new Object[] { "SGS", "FRA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "FRA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 4),
-                new Object[] { "SGS", "ARF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ARF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 5),
-                new Object[] { "SGS", "FRE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "FRE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 5),
-                new Object[] { "SGS", "ERF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ERF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 6),
-                new Object[] { "SGS", "FRW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "FRW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 6),
-                new Object[] { "SGS", "WRF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "WRF", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 7),
-                new Object[] { "SGS", "ERW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ERW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 7),
-                new Object[] { "SGS", "WRE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "WRE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 8),
-                new Object[] { "SGS", "WRA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "WRA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 8),
-                new Object[] { "SGS", "ARW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ARW", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 9),
-                new Object[] { "SGS", "ERA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ERA", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
                 new ItemStack(ECItems.charm, 1, 9),
-                new Object[] { "SGS", "ARE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus,
-                    'A', ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
+                new Object[] { "SGS", "ARE", "@G@", 'F', ECItems.fFocus, 'W', ECItems.wFocus, 'E', ECItems.eFocus, 'A',
+                    ECItems.aFocus, 'S', Items.string, 'G', getItemByNameEC3("genericItem", 10), 'R',
                     new ItemStack(ECItems.storage, 1, 3), '@', "magicWater" }));
     }
 

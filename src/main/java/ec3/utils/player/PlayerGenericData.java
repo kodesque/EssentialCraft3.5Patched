@@ -3,12 +3,12 @@ package ec3.utils.player;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.utils.NBTCorruptionEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import ec3.api.corruption.ICorruptionEffect;
 import ec3.api.player.IPlayerData;
+import ec3.utils.NBTCorruptionEffects;
 
 public class PlayerGenericData implements IPlayerData {
 

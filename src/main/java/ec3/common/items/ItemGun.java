@@ -33,10 +33,10 @@ import ec3.api.weapons.GunRegistry.LenseMaterial;
 import ec3.api.weapons.GunRegistry.ScopeMaterial;
 import ec3.common.entities.EntityMRURay;
 import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.data.DummyData;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.ECUtils;
 
 public class ItemGun extends ItemStoresMRUInNBT {
 

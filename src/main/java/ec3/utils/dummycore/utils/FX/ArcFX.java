@@ -2,9 +2,10 @@ package ec3.utils.dummycore.utils.FX;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import org.lwjgl.opengl.GL11;
 
 /**
  *

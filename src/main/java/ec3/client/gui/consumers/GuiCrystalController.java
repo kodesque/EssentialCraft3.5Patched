@@ -5,9 +5,9 @@ import net.minecraft.tileentity.TileEntity;
 
 import ec3.api.mru.ITEHasMRU;
 import ec3.client.guielement.general.GuiBoundGemState;
-import ec3.client.guielement.specific.GuiCrystalState;
 import ec3.client.guielement.general.GuiMRUState;
 import ec3.client.guielement.general.GuiMRUStorage;
+import ec3.client.guielement.specific.GuiCrystalState;
 import ec3.utils.dummycore.client.GuiCommon;
 
 public class GuiCrystalController extends GuiCommon {

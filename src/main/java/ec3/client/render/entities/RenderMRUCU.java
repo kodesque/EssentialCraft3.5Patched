@@ -2,7 +2,6 @@ package ec3.client.render.entities;
 
 import java.util.Random;
 
-import ec3.client.render.handlers.RenderHandlerEC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -11,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import ec3.client.render.handlers.RenderHandlerEC;
 import ec3.common.entities.EntityMRUPresence;
 import ec3.utils.ECUtils;
 

@@ -26,8 +26,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileRightClicker extends TileMRUGeneric {
 

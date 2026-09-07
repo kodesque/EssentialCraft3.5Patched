@@ -11,9 +11,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import ec3.common.init.ECBlocks;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.ECUtils;
 import ec3.utils.WindUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class ItemWindTablet extends ItemStoresMRUInNBT {
 

@@ -1,4 +1,47 @@
 # Essential Craft 3.5 Changelog
+## 4.7.0
+
+---
+
+### Changed:
+- Armor set vis discounts:
+  - MHS: 20% -> 10% (=Thaumaturge's)
+  - Void: 30% ->  15% (=Void Thaumaturge's)
+  - Wind Mage's : 8% -> 12% (=Thaumaturge's + 2)
+  - Computer: 70% -> 100%
+- Armor stats:
+  - Void:
+    - (enchantability) 40 -> 1 (leather)
+  - Wind:
+    - (enchantability) 40 -> 1
+  - Inquisitorium:
+    - (enchantability) 60 -> 0
+- Tool stats:
+  - Weak elemental:
+    - (enchantability) 14 -> 22 (gold)
+    - (durability) 750 -> 300 (iron * 2)
+    - (harvest level) 3 (diamond) -> 2 (iron)
+    - (damage) 6.5 -> 6 (iron)
+  - Elemental:
+    - (enchantability) 36 -> 10
+    - (durability) 1568 -> 500
+    - (damage) 9 -> 8 (diamond + 1)
+  - Wind:
+    - (enchantability) 42 -> 1
+    - (durability) 15684 -> 1561 (diamond)
+- Special tool stats:
+  - Frost Mace: (damage) 16 -> 12
+  - Holy Mace: (damage) 12 -> 9
+- Crafts:
+  - Magmatic Staff: Matter of Eternity -> Red Soul Matter
+
+- Energy generation:
+  - Ender Generator: 500 MRU/hit (20000/kill) -> 5 MRU/hit (200/kill)
+
+### Fixed:
+- Magical device models optimized/mapping fixed/partially reworked
+
+
 ## 4.6.9
 
 ---

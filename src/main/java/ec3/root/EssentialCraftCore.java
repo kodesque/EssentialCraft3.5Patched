@@ -2,10 +2,7 @@ package ec3.root;
 
 import java.util.Arrays;
 
-import cpw.mods.fml.common.event.*;
-import ec3.utils.commands.handlers.CommandEC;
-import ec3.utils.commands.handlers.CommandECSimple;
-import ec3.utils.dummycore.core.CoreInitializer;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.server.MinecraftServer;
 
@@ -14,27 +11,31 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
-import ec3.common.init.ECBlocks;
-import ec3.common.init.ECEntities;
-import ec3.common.init.ECItems;
+import ec3.api.config.Config;
 import ec3.common.init.ECAchievements;
 import ec3.common.init.ECBiomes;
-import ec3.common.init.compat.ECCompatBloodMagic;
-import ec3.common.init.custom.ECCorruptionEffects;
+import ec3.common.init.ECBlocks;
 import ec3.common.init.ECDimensions;
-import ec3.common.init.custom.ECWeapons;
+import ec3.common.init.ECEntities;
+import ec3.common.init.ECItems;
 import ec3.common.init.ECPotions;
 import ec3.common.init.ECRecipes;
-import ec3.common.init.custom.ECResearch;
 import ec3.common.init.ECStructures;
+import ec3.common.init.compat.ECCompatBloodMagic;
+import ec3.common.init.custom.ECCorruptionEffects;
+import ec3.common.init.custom.ECResearch;
+import ec3.common.init.custom.ECWeapons;
 import ec3.common.world.structures.WorldGenManager;
-import ec3.utils.dummycore.core.Core;
 import ec3.integration.versionChecker.Check;
 import ec3.integration.waila.WailaInitializer;
 import ec3.network.proxy.CommonProxy;
-import ec3.api.config.Config;
+import ec3.utils.commands.handlers.CommandEC;
+import ec3.utils.commands.handlers.CommandECSimple;
+import ec3.utils.dummycore.core.Core;
+import ec3.utils.dummycore.core.CoreInitializer;
 
 @Mod(
     modid = EssentialCraftCore.modid,
@@ -61,6 +62,10 @@ public class EssentialCraftCore {
     public static ModMetadata metadata;
     public static SimpleNetworkWrapper network;
     // ============================================CORE FUNCTIONS=============================================//
+
+    public static boolean isThaumcraftLoaded() {
+        return Loader.isModLoaded("thaumcraft");
+    }
 
     // ============================================CORE MOD===================================================//
     @EventHandler

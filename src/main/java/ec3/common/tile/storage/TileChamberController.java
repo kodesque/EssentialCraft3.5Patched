@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import ec3.common.tile.consumers.TileHoldingChamber;
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -18,11 +13,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.config.Configuration;
 
-import ec3.api.structures.EnumStructureType;
 import ec3.api.mru.IMRUPresence;
-import ec3.api.structures.IStructurePiece;
 import ec3.api.mru.ITEHasMRU;
+import ec3.api.structures.EnumStructureType;
+import ec3.api.structures.IStructurePiece;
+import ec3.common.tile.consumers.TileHoldingChamber;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
 
 public class TileChamberController extends TileEntity implements ITEHasMRU {
 
@@ -340,8 +340,7 @@ public class TileChamberController extends TileEntity implements ITEHasMRU {
                     for (int z = minZ; z <= maxZ; ++z) {
                         if (z == minZ || z == maxZ || x == minX || x == maxX || y == minY || y == maxY) {
                             if (allowedBlocks.contains(this.worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z))) {
-                                this.blocksInStructure
-                                    .add(new BlockPos(worldObj, xCoord + x, yCoord + y, zCoord + z));
+                                this.blocksInStructure.add(new BlockPos(worldObj, xCoord + x, yCoord + y, zCoord + z));
                                 int meta = this.worldObj.getBlockMetadata(xCoord + x, yCoord + y, zCoord + z);
                                 if (ECUtils.ignoreMeta.containsKey(
                                     this.worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z)

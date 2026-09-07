@@ -8,10 +8,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.logistics.TileNewMIM;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.api.config.Config;
+import ec3.common.tile.logistics.TileNewMIM;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockNewMIM extends BlockContainer {
 

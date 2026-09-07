@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,8 +20,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemChaosFork extends ItemSword implements IItemRequiresMRU {
 

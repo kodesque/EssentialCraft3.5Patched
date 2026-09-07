@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import ec3.client.guielement.specific.GuiButtonNoSound;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -36,17 +35,18 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import ec3.api.ApiCore;
 import ec3.api.book.CategoryEntry;
 import ec3.api.book.DiscoveryEntry;
-import ec3.api.recipes.MagicianTableRecipe;
 import ec3.api.book.PageEntry;
+import ec3.api.config.Config;
+import ec3.api.recipes.MagicianTableRecipe;
 import ec3.api.recipes.RadiatingChamberRecipe;
 import ec3.api.recipes.ShapedAssemblerRecipe;
 import ec3.api.structures.StructureBlock;
 import ec3.api.structures.StructureRecipe;
+import ec3.client.guielement.specific.GuiButtonNoSound;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.api.config.Config;
 
 public class GuiResearchBook extends GuiScreen {
 

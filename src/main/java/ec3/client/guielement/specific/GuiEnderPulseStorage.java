@@ -1,10 +1,10 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.crafting.TileMithrilineFurnace;
 
 public class GuiEnderPulseStorage extends GuiTextField {

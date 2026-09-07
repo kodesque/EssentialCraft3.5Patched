@@ -16,9 +16,9 @@ import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.ECUtils;
 
 public class TileMagicalEnchanter extends TileMRUGeneric {
 

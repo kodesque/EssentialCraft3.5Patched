@@ -2,12 +2,12 @@ package ec3.common.tile.producers;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
 import ec3.common.entities.EntitySolarBeam;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 

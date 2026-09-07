@@ -2,8 +2,6 @@ package ec3.utils.player;
 
 import java.util.ArrayList;
 
-import ec3.utils.ECUtils;
-import ec3.utils.WindUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,12 +19,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import ec3.api.ApiCore;
 import ec3.api.items.IWindResistance;
-import ec3.common.items.ItemComputerArmor;
-import ec3.common.items.ItemGenericArmor;
 import ec3.common.init.ECItems;
 import ec3.common.init.ECPotions;
-import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.common.items.ItemComputerArmor;
+import ec3.common.items.ItemGenericArmor;
+import ec3.utils.ECUtils;
+import ec3.utils.WindUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class PlayerTracker {
 

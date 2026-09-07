@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,8 +20,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemFrostMace extends ItemSword implements IItemRequiresMRU {
 
@@ -60,7 +60,7 @@ public class ItemFrostMace extends ItemSword implements IItemRequiresMRU {
 
     @Override
     public int getMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return MiscUtils.getStackTag(stack)
             .getInteger("mru");
     }
@@ -100,7 +100,7 @@ public class ItemFrostMace extends ItemSword implements IItemRequiresMRU {
 
     @Override
     public int getMaxMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return this.maxMRU;
     }
 
@@ -156,7 +156,7 @@ public class ItemFrostMace extends ItemSword implements IItemRequiresMRU {
         Multimap multimap = HashMultimap.create();
         multimap.put(
             SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-            new AttributeModifier(field_111210_e, "Weapon modifier", 16, 0));
+            new AttributeModifier(field_111210_e, "Weapon modifier", 12, 0));
         return multimap;
     }
 

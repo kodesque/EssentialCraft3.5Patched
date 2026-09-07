@@ -11,8 +11,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
-import ec3.root.EssentialCraftCore;
 import ec3.api.config.Config;
+import ec3.root.EssentialCraftCore;
 
 public class ECEntities {
 
@@ -35,8 +35,15 @@ public class ECEntities {
         registerEntity(ec3.common.entities.EntityArmorDestroyer.class, 32, 1, true);
         registerEntity(ec3.common.entities.EntityDividerProjectile.class, 32, 1, true);
 
-        EntityRegistry.addSpawn(ec3.common.entities.EntityWindMage.class, 2, 1, 6, EnumCreatureType.monster, biomesToSpawn());
-        EntityRegistry.addSpawn(ec3.common.entities.EntityPoisonFume.class, 100, 8, 16, EnumCreatureType.monster, biomesToSpawn());
+        EntityRegistry
+            .addSpawn(ec3.common.entities.EntityWindMage.class, 2, 1, 6, EnumCreatureType.monster, biomesToSpawn());
+        EntityRegistry.addSpawn(
+            ec3.common.entities.EntityPoisonFume.class,
+            100,
+            8,
+            16,
+            EnumCreatureType.monster,
+            biomesToSpawn());
     }
 
     public static void registerEntity(Class<? extends Entity> entityClass, int trackingRange, int tickDelay,

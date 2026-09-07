@@ -15,11 +15,11 @@ import net.minecraft.tileentity.TileEntity;
 
 import ec3.api.mru.ITileRequiresMRU;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.utils.dummycore.utils.TileStatTracker;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.TileStatTracker;
+import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public abstract class TileMRUGeneric extends TileEntity implements ITileRequiresMRU, IInventory, ISidedInventory {
 
@@ -62,7 +62,9 @@ public abstract class TileMRUGeneric extends TileEntity implements ITileRequires
     public void updateEntity() {
         ++this.innerRotation;
 
-        if (this.worldObj == null || this.worldObj.provider == null) {return;}
+        if (this.worldObj == null || this.worldObj.provider == null) {
+            return;
+        }
 
         // Sending the sync packets to the CLIENT.
         if (syncTick == 0) {
@@ -213,6 +215,7 @@ public abstract class TileMRUGeneric extends TileEntity implements ITileRequires
     public boolean hasCustomInventoryName() {
         return false;
     }
+
     @Override
     public int getInventoryStackLimit() {
         return 64;

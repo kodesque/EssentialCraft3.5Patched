@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import ec3.utils.dummycore.utils.system.Notifier;
 import ec3.utils.dummycore.utils.UnformedItemStack;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class MagicianTableRecipes {
 

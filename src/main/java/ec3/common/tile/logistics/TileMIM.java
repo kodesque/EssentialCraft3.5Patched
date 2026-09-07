@@ -1,6 +1,5 @@
 package ec3.common.tile.logistics;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,8 +9,9 @@ import ec3.api.ApiCore;
 import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemBoundGem;
 import ec3.common.items.ItemFilter;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class TileMIM extends TileMRUGeneric {
 

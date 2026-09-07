@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import net.minecraft.tileentity.TileEntity;
 
+import ec3.api.mru.ITileRequiresMRU;
 import ec3.api.structures.EnumStructureType;
 import ec3.api.structures.IStructurePiece;
-import ec3.api.mru.ITileRequiresMRU;
 
 public class TileChamberStateChecker extends TileEntity implements IStructurePiece, ITileRequiresMRU {
 

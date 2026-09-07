@@ -10,14 +10,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.ECUtils;
-import ec3.utils.RadiationUtils;
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -91,14 +83,18 @@ import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
+import ec3.api.config.Config;
+import ec3.api.items.IItemRequiresMRU;
+import ec3.api.items.IUBMRUGainModifier;
 import ec3.api.weapons.GunRegistry;
 import ec3.api.weapons.GunRegistry.GunMaterial;
 import ec3.api.weapons.GunRegistry.GunType;
 import ec3.api.weapons.GunRegistry.ScopeMaterial;
-import ec3.api.items.IUBMRUGainModifier;
 import ec3.api.world.IWorldEvent;
 import ec3.api.world.WorldEventLibrary;
 import ec3.client.gui.items.GuiResearchBook;
+import ec3.common.init.ECItems;
+import ec3.common.init.custom.ECResearch;
 import ec3.common.items.BaublesAccessory;
 import ec3.common.items.ItemGun;
 import ec3.common.items.ItemMagicalWings;
@@ -108,21 +104,25 @@ import ec3.common.items.ItemWindHoe;
 import ec3.common.items.ItemWindPickaxe;
 import ec3.common.items.ItemWindShovel;
 import ec3.common.items.ItemWindSword;
-import ec3.common.init.ECItems;
-import ec3.root.EssentialCraftCore;
-import ec3.common.init.custom.ECResearch;
-import ec3.common.tile.logistics.TileAMINEjector;
-import ec3.common.tile.logistics.TileAMINInjector;
 import ec3.common.tile.consumers.TileMagicalAssembler;
-import ec3.common.tile.transport.TileMagicalMirror;
 import ec3.common.tile.consumers.TilePlayerPentacle;
 import ec3.common.tile.crafting.TileWeaponMaker;
+import ec3.common.tile.logistics.TileAMINEjector;
+import ec3.common.tile.logistics.TileAMINInjector;
+import ec3.common.tile.transport.TileMagicalMirror;
 import ec3.common.world.biomes.BiomeCorruptionChaos;
 import ec3.common.world.biomes.BiomeCorruptionFrozen;
 import ec3.common.world.biomes.BiomeCorruptionMagic;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
+import ec3.utils.RadiationUtils;
 import ec3.utils.dummycore.events.OnClientButtonPress;
 import ec3.utils.dummycore.events.OnPacketRecieved;
-import ec3.api.config.Config;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class ECEventHandler {
 
@@ -620,11 +620,13 @@ public class ECEventHandler {
             assembler.currentRecipe = id;
             assembler.formRequiredComponents();
         }
-        if (event.client_ParentClassPath.equalsIgnoreCase("ec3.client.gui.crafting.GuiWeaponBench") && event.buttonID == 0) {
+        if (event.client_ParentClassPath.equalsIgnoreCase("ec3.client.gui.crafting.GuiWeaponBench")
+            && event.buttonID == 0) {
             TileWeaponMaker maker = (TileWeaponMaker) event.presser.worldObj.getTileEntity(event.x, event.y, event.z);
             maker.makeWeapon();
         }
-        if (event.client_ParentClassPath.equalsIgnoreCase("ec3.client.gui.crafting.GuiWeaponBench") && event.buttonID == 1) {
+        if (event.client_ParentClassPath.equalsIgnoreCase("ec3.client.gui.crafting.GuiWeaponBench")
+            && event.buttonID == 1) {
             TileWeaponMaker maker = (TileWeaponMaker) event.presser.worldObj.getTileEntity(event.x, event.y, event.z);
 
             ++maker.index;
@@ -1083,12 +1085,14 @@ public class ECEventHandler {
             if (stack == null) continue;
 
             if (stack.getItem() instanceof IItemRequiresMRU) {
-                int max = ECUtils.getStackTag(stack).getInteger("maxMRU");
+                int max = ECUtils.getStackTag(stack)
+                    .getInteger("maxMRU");
 
                 if (max <= 0) {
-                    IItemRequiresMRU item = ((IItemRequiresMRU)stack.getItem());
+                    IItemRequiresMRU item = ((IItemRequiresMRU) stack.getItem());
                     int realMax = item.getMaxMRU(stack);
-                    MiscUtils.getStackTag(stack).setInteger("maxMRU", realMax);
+                    MiscUtils.getStackTag(stack)
+                        .setInteger("maxMRU", realMax);
                 }
             }
         }
@@ -1128,8 +1132,7 @@ public class ECEventHandler {
         if (player != null) {
             int dimID = player.dimension;
             if (dimID == Config.dimensionID) {
-                if (!(event.biome instanceof BiomeCorruptionChaos)
-                    && !(event.biome instanceof BiomeCorruptionFrozen)
+                if (!(event.biome instanceof BiomeCorruptionChaos) && !(event.biome instanceof BiomeCorruptionFrozen)
                     && !(event.biome instanceof BiomeCorruptionMagic)) {
                     event.newColor = 0x886a58;
                 }
@@ -1144,8 +1147,7 @@ public class ECEventHandler {
         if (player != null) {
             int dimID = player.dimension;
             if (dimID == Config.dimensionID) {
-                if (!(event.biome instanceof BiomeCorruptionChaos)
-                    && !(event.biome instanceof BiomeCorruptionFrozen)
+                if (!(event.biome instanceof BiomeCorruptionChaos) && !(event.biome instanceof BiomeCorruptionFrozen)
                     && !(event.biome instanceof BiomeCorruptionMagic)) {
                     event.newColor = 0x886a58;
                 }

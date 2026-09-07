@@ -2,7 +2,6 @@ package ec3.common.tile.logistics;
 
 import java.util.ArrayList;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -11,6 +10,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemFilter;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.ECUtils;
 
 public class TileNewMIMExportNode extends TileMRUGeneric {

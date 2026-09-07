@@ -1,6 +1,5 @@
 package ec3.common.tile.crafting;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -8,10 +7,11 @@ import ec3.api.weapons.GunRegistry;
 import ec3.api.weapons.GunRegistry.GunMaterial;
 import ec3.api.weapons.GunRegistry.LenseMaterial;
 import ec3.api.weapons.GunRegistry.ScopeMaterial;
+import ec3.common.init.ECItems;
 import ec3.common.items.ItemGenericEC;
 import ec3.common.items.ItemGun;
 import ec3.common.items.ItemMRUStorageNBTTag;
-import ec3.common.init.ECItems;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.UnformedItemStack;
 

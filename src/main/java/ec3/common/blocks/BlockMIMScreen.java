@@ -12,9 +12,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.logistics.TileNewMIMScreen;
 import ec3.api.config.Config;
+import ec3.common.tile.logistics.TileNewMIMScreen;
+import ec3.root.EssentialCraftCore;
 
 public class BlockMIMScreen extends BlockContainer {
 

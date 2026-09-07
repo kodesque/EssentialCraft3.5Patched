@@ -1,11 +1,11 @@
 package ec3.utils.dummycore.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ec3.utils.dummycore.network.handlers.DummyPacketHandler;
 import ec3.utils.dummycore.network.packets.DummyPacket;
 import ec3.utils.dummycore.utils.system.Notifier;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SyncUtils {
 

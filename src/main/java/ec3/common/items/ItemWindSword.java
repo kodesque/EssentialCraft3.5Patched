@@ -1,10 +1,11 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
-import ec3.common.templates.ItemSwordMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import ec3.common.init.ECItems;
+import ec3.common.templates.ItemSwordMod;
 
 public class ItemWindSword extends ItemSwordMod {
 

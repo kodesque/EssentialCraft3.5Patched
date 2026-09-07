@@ -24,7 +24,7 @@ public class RenderMagicalEnchanter extends TileEntitySpecialRenderer {
     public static final IModelCustom model = AdvancedModelLoader
         .loadModel(new ResourceLocation("essentialcraft:textures/special/models/MagicalEnchenter.obj"));
     public static final ResourceLocation bookTextures = new ResourceLocation(
-        "textures/entity/enchanting_table_book.png");
+        "essentialcraft:textures/special/models/enchanterBook.png");
     public static final ModelBook book = new ModelBook();
 
     public RenderMagicalEnchanter() {}

@@ -17,7 +17,6 @@ public class BlockMRUSpreader extends Block {
         super(p_i45394_1_);
         this.setTickRandomly(true);
         this.setLightLevel(1.0F);
-        // TODO Auto-generated constructor stub
     }
 
     @SideOnly(Side.CLIENT)

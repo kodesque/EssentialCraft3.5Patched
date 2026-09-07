@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ec3.common.tile.transport.TileMagicalMirror;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,9 +24,10 @@ import ec3.api.recipes.MagicianTableRecipes;
 import ec3.api.recipes.RadiatingChamberRecipe;
 import ec3.api.recipes.RadiatingChamberRecipes;
 import ec3.api.recipes.ShapedAssemblerRecipe;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.UnformedItemStack;
+import ec3.common.tile.transport.TileMagicalMirror;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.UnformedItemStack;
+import ec3.utils.dummycore.utils.math.Coord3D;
 
 public class TileMagicalAssembler extends TileMRUGeneric {
 

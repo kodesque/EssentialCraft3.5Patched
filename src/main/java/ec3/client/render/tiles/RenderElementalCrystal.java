@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.client.models.ModelCrystal;
-import ec3.common.tile.world.TileElementalCrystal;
+import ec3.common.tile.other.TileElementalCrystal;
 import ec3.utils.dummycore.utils.math.MathUtils;
 
 @SideOnly(Side.CLIENT)

@@ -1,6 +1,5 @@
 package ec3.common.tile.crafting;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,10 +9,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import ec3.api.ApiCore;
 import ec3.common.init.ECBlocks;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.ECUtils;
 
 public class TileCrystalFormer extends TileMRUGeneric {
 

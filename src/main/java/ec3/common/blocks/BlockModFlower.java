@@ -7,7 +7,6 @@ public class BlockModFlower extends BlockBush {
     public BlockModFlower() {
         super();
         this.setStepSound(soundTypeGrass);
-        // TODO Auto-generated constructor stub
     }
 
 }

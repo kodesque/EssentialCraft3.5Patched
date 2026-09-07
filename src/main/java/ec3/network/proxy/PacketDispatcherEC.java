@@ -13,12 +13,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import ec3.client.gui.logistics.GuiNewMIMScreen;
-import ec3.root.EssentialCraftCore;
 import ec3.common.tile.consumers.TileMagicalQuarry;
 import ec3.common.tile.logistics.TileNewMIM;
 import ec3.common.tile.logistics.TileNewMIMInventoryStorage;
 import ec3.common.tile.logistics.TileNewMIMScreen;
 import ec3.network.PacketNBT;
+import ec3.root.EssentialCraftCore;
 import ec3.utils.ECUtils;
 import io.netty.channel.ChannelHandler;
 

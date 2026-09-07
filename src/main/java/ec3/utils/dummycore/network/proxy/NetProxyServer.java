@@ -2,8 +2,6 @@ package ec3.utils.dummycore.network.proxy;
 
 import java.lang.reflect.Constructor;
 
-import ec3.utils.dummycore.utils.GuiContainerLibrary;
-import ec3.utils.dummycore.utils.system.Notifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.network.INetHandler;
@@ -15,6 +13,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import ec3.utils.dummycore.creativetabs.CreativePageBlocks;
 import ec3.utils.dummycore.creativetabs.CreativePageItems;
+import ec3.utils.dummycore.utils.GuiContainerLibrary;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class NetProxyServer implements IGuiHandler {
 

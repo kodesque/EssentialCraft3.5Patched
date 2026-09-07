@@ -20,7 +20,6 @@ public class BlockMagicLight extends Block {
         this.setTickRandomly(true);
         this.setLightLevel(1.0F);
         this.setBlockBounds(0.2F, 0.2F, 0.2F, 0.8F, 0.8F, 0.8F);
-        // TODO Auto-generated constructor stub
     }
 
     public int quantityDropped(Random p_149745_1_) {

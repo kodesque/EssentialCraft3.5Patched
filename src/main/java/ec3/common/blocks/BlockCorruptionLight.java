@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.common.tile.world.TileCorruption;
+import ec3.common.tile.other.TileCorruption;
 import ec3.network.proxy.ClientProxy;
 
 public class BlockCorruptionLight extends BlockContainer {

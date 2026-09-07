@@ -6,8 +6,8 @@ import net.minecraftforge.client.IRenderHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.root.EssentialCraftCore;
 import ec3.api.config.Config;
+import ec3.root.EssentialCraftCore;
 import ec3.utils.ECUtils;
 
 public class WorldProviderHoanna extends WorldProvider {

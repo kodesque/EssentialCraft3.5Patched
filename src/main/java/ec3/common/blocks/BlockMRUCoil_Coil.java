@@ -12,24 +12,22 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import ec3.api.config.Config;
 import ec3.common.items.ItemPlayerList;
-import ec3.root.EssentialCraftCore;
 import ec3.common.tile.consumers.TileMRUCoil;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.api.config.Config;
 
 public class BlockMRUCoil_Coil extends BlockContainer {
 
     protected BlockMRUCoil_Coil(Material p_i45386_1_) {
         super(p_i45386_1_);
-        // TODO Auto-generated constructor stub
     }
 
     public BlockMRUCoil_Coil() {
         super(Material.rock);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -57,7 +55,6 @@ public class BlockMRUCoil_Coil extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) {
-        // TODO Auto-generated method stub
         return new TileMRUCoil();
     }
 

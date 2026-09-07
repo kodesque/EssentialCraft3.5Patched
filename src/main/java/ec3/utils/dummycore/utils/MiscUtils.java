@@ -8,14 +8,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.UUID;
 
-import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.network.handlers.DummyPacketHandler;
-import ec3.utils.dummycore.network.packets.DummyPacket;
-import ec3.utils.dummycore.network.packets.DummyPacketTile;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.utils.dummycore.utils.system.ScheduledServerAction;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -55,6 +47,13 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.utils.dummycore.core.CoreInitializer;
+import ec3.utils.dummycore.network.handlers.DummyPacketHandler;
+import ec3.utils.dummycore.network.packets.DummyPacket;
+import ec3.utils.dummycore.network.packets.DummyPacketTile;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.system.Notifier;
+import ec3.utils.dummycore.utils.system.ScheduledServerAction;
 
 /**
  *
@@ -336,7 +335,9 @@ public class MiscUtils {
 
                         TileEntity tile = w.getTileEntity(x, y, z);
 
-                        if (tile == null || player == null) {return;}
+                        if (tile == null || player == null) {
+                            return;
+                        }
 
                         tile.writeToNBT(tileTag);
                         CoreInitializer.network.sendTo(new DummyPacketTile(tileTag, -10), (EntityPlayerMP) player);

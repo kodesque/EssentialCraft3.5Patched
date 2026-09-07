@@ -8,13 +8,13 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import org.apache.logging.log4j.LogManager;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import ec3.api.config.Config;
 import ec3.common.world.biomes.BiomeCorruptionChaos;
 import ec3.common.world.biomes.BiomeCorruptionFrozen;
 import ec3.common.world.biomes.BiomeCorruptionMagic;
 import ec3.common.world.biomes.BiomeCorruptionShadow;
 import ec3.common.world.biomes.BiomeHoannaDesert;
 import ec3.common.world.biomes.BiomeHoannaDreadlands;
-import ec3.api.config.Config;
 
 public class ECBiomes {
 

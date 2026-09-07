@@ -11,11 +11,11 @@ import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
-import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.DummyDistance;
-import ec3.utils.ECUtils;
 
 public class TileMonsterHolder extends TileMRUGeneric {
 

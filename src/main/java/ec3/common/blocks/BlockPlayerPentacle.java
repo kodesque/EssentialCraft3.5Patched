@@ -7,8 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.root.EssentialCraftCore;
 import ec3.common.tile.consumers.TilePlayerPentacle;
+import ec3.root.EssentialCraftCore;
 
 public class BlockPlayerPentacle extends BlockContainer {
 

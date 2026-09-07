@@ -7,21 +7,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.storage.TileChamberAcceptor;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.api.config.Config;
+import ec3.common.tile.storage.TileChamberAcceptor;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockecAcceptor extends BlockContainer {
 
     public BlockecAcceptor(Material p_i45386_1_) {
         super(p_i45386_1_);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) {
-        // TODO Auto-generated method stub
         return new TileChamberAcceptor();
     }
 

@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.entities.EntityMRUPresence;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,6 +21,7 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ec3.common.entities.EntityMRUPresence;
 import ec3.common.init.ECEntities;
 
 public class ItemSpawnEggEC extends ItemMonsterPlacer {
@@ -105,8 +105,7 @@ public class ItemSpawnEggEC extends ItemMonsterPlacer {
         this.itemIcon = p_94581_1_.registerIcon(this.getIconString());
     }
 
-    public static Entity spawnCreature(World world, int id, double x, double y,
-        double z) {
+    public static Entity spawnCreature(World world, int id, double x, double y, double z) {
         try {
             Entity entity = null;
 
@@ -129,7 +128,7 @@ public class ItemSpawnEggEC extends ItemMonsterPlacer {
                         .onSpawnWithEgg((IEntityLivingData) null);
 
                     if (entity instanceof EntityMRUPresence) {
-                        EntityMRUPresence mrucu = ((EntityMRUPresence)entity);
+                        EntityMRUPresence mrucu = ((EntityMRUPresence) entity);
 
                         mrucu.setMRU(2000 * world.rand.nextInt(10));
                         mrucu.setBalance(world.rand.nextFloat());

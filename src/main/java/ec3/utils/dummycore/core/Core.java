@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
+import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.dummycore.creativetabs.CreativePageBlocks;
 import ec3.utils.dummycore.creativetabs.CreativePageItems;
-import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.dummycore.utils.system.LoadingUtils;
 import ec3.utils.dummycore.utils.system.Notifier;
 

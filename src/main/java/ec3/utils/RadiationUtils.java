@@ -7,10 +7,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.FakePlayer;
 
+import ec3.api.config.Config;
 import ec3.common.init.ECBiomes;
 import ec3.common.init.ECPotions;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.api.config.Config;
 
 public class RadiationUtils {
 
@@ -56,8 +56,7 @@ public class RadiationUtils {
                 int currentDuration = amount;
                 int newModifier = currentDuration / 10000;
                 player.removePotionEffect(ECPotions.radiation.id);
-                player
-                    .addPotionEffect(new PotionEffect(ECPotions.radiation.id, currentDuration, newModifier, true));
+                player.addPotionEffect(new PotionEffect(ECPotions.radiation.id, currentDuration, newModifier, true));
             } else {
                 player.addPotionEffect(new PotionEffect(ECPotions.radiation.id, 200, 0, true));
             }

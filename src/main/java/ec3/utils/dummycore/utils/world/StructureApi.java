@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagByte;
@@ -23,6 +21,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.Pair;
 
 public class StructureApi {
 

@@ -1,6 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,9 +10,10 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
-import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
 import ec3.utils.EnumOreColoring;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class ItemMagmaticWand extends ItemStoresMRUInNBT {
 

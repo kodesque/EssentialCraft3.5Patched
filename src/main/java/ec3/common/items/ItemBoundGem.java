@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.machines.IBoundGemClickable;
-import ec3.api.mru.ITileRequiresMRU;
 import ec3.api.mru.ITEStoresMRU;
 import ec3.api.mru.ITETransfersMRU;
+import ec3.api.mru.ITileRequiresMRU;
 import ec3.common.init.ECBlocks;
 import ec3.utils.dummycore.utils.MiscUtils;
 

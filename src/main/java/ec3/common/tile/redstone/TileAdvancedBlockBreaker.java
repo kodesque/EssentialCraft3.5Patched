@@ -1,6 +1,5 @@
 package ec3.common.tile.redstone;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -9,6 +8,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemFilter;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.ECUtils;
 
 public class TileAdvancedBlockBreaker extends TileMRUGeneric {

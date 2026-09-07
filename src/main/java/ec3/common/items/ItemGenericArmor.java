@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.UUID;
 
-import ec3.common.init.ECItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -15,6 +14,7 @@ import com.google.common.collect.Multimap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ec3.common.init.ECItems;
 
 public class ItemGenericArmor extends ItemArmor {
 

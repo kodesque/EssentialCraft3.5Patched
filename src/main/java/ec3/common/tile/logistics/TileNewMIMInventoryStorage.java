@@ -3,7 +3,6 @@ package ec3.common.tile.logistics;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,11 +14,12 @@ import net.minecraft.tileentity.TileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import ec3.common.items.ItemInventoryGem;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.network.PacketNBT;
 import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.math.Pair;
-import ec3.network.PacketNBT;
-import ec3.utils.ECUtils;
 
 public class TileNewMIMInventoryStorage extends TileMRUGeneric {
 

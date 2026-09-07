@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import ec3.common.entity.EntityDemon;
+import ec3.common.entities.EntityDemon;
 
 public class ContainerDemon extends Container {
 

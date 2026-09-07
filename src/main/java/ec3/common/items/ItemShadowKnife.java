@@ -1,7 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
-import ec3.common.templates.ItemSwordMod;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,8 +18,10 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.common.entities.EntityShadowKnife;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
+import ec3.common.templates.ItemSwordMod;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemShadowKnife extends ItemSwordMod {
 
@@ -35,7 +35,8 @@ public class ItemShadowKnife extends ItemSwordMod {
     }
 
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
-        if (stack.stackSize >= 2 && ((entityLiving instanceof EntityPlayer && ECUtils.getData(EntityPlayer.class.cast(entityLiving))
+        if (stack.stackSize >= 2
+            && ((entityLiving instanceof EntityPlayer && ECUtils.getData(EntityPlayer.class.cast(entityLiving))
                 .getMatrixTypeID() == 4))) {
             if (!(entityLiving instanceof EntityPlayer
                 && EntityPlayer.class.cast(entityLiving).capabilities.isCreativeMode)) --stack.stackSize;

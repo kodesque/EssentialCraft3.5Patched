@@ -1,17 +1,19 @@
 package ec3.utils.commands.handlers;
 
-import ec3.utils.commands.CommandCreateMRUCU;
-import ec3.utils.commands.CommandRemoveMRUCU;
-import ec3.utils.commands.CommandSetBalance;
-import ec3.utils.commands.CommandSetMRU;
+import java.util.List;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
 
-import java.util.List;
+import ec3.utils.commands.CommandCreateMRUCU;
+import ec3.utils.commands.CommandRemoveMRUCU;
+import ec3.utils.commands.CommandSetBalance;
+import ec3.utils.commands.CommandSetMRU;
 
 public class CommandEC extends CommandBase {
+
     public static CommandEC instance;
 
     public CommandEC() {
@@ -68,15 +70,11 @@ public class CommandEC extends CommandBase {
             return;
         }
 
-        throw new WrongUsageException(
-            "commands.summon.usage", new Object[0]
-        );
+        throw new WrongUsageException("commands.summon.usage", new Object[0]);
     }
 
     @Override
-    public List addTabCompletionOptions(
-        ICommandSender sender,
-        String[] args) {
+    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
 
         if (args.length == 1) {
 
@@ -85,8 +83,7 @@ public class CommandEC extends CommandBase {
                 "setMRUClosestMRUCU",
                 "setBalanceClosestMRUCU",
                 "createMRUCU",
-                "removeClosestMRUCU"
-            );
+                "removeClosestMRUCU");
         }
 
         String subCommand = args[0];
@@ -95,30 +92,18 @@ public class CommandEC extends CommandBase {
 
         if (subCommand.equalsIgnoreCase("setMRUClosestMRUCU")) {
 
-            return CommandSetMRU.complete(
-                sender,
-                subArgs
-            );
+            return CommandSetMRU.complete(sender, subArgs);
 
         } else if (subCommand.equalsIgnoreCase("setBalanceClosestMRUCU")) {
 
-            return CommandSetBalance.complete(
-                sender,
-                subArgs
-            );
+            return CommandSetBalance.complete(sender, subArgs);
 
         } else if (subCommand.equalsIgnoreCase("createMRUCU")) {
 
-            return CommandCreateMRUCU.complete(
-                sender,
-                subArgs
-            );
+            return CommandCreateMRUCU.complete(sender, subArgs);
         } else if (subCommand.equalsIgnoreCase("removeClosestMRUCU")) {
 
-            return CommandRemoveMRUCU.complete(
-                sender,
-                subArgs
-            );
+            return CommandRemoveMRUCU.complete(sender, subArgs);
         }
 
         return null;
@@ -128,13 +113,7 @@ public class CommandEC extends CommandBase {
 
         String[] subArgs = new String[args.length - 1];
 
-        System.arraycopy(
-            args,
-            1,
-            subArgs,
-            0,
-            subArgs.length
-        );
+        System.arraycopy(args, 1, subArgs, 0, subArgs.length);
 
         return subArgs;
     }

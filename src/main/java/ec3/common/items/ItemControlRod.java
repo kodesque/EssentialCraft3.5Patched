@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 
 import ec3.common.tile.consumers.TileMagicalAssembler;
 import ec3.common.tile.transport.TileMagicalMirror;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.math.Coord3D;
 import ec3.utils.dummycore.utils.math.DummyDistance;
-import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemControlRod extends Item {
 

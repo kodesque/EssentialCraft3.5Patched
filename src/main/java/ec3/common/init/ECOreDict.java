@@ -14,23 +14,18 @@ public class ECOreDict {
         OreDictionary.registerOre("blockDropsWater", new ItemStack(ECBlocks.drops, 1, 1));
         OreDictionary.registerOre("blockDropsEarth", new ItemStack(ECBlocks.drops, 1, 2));
         OreDictionary.registerOre("blockDropsAir", new ItemStack(ECBlocks.drops, 1, 3));
-        OreDictionary.registerOre(
-            "blockMagicalPlating",
-            new ItemStack(ECBlocks.magicPlating, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary
+            .registerOre("blockMagicalPlating", new ItemStack(ECBlocks.magicPlating, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("glass", new ItemStack(ECBlocks.fortifiedGlass, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("stone", new ItemStack(ECBlocks.fortifiedStone, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary
-            .registerOre("iceCompressed", new ItemStack(ECBlocks.coldStone, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("iceCompressed", new ItemStack(ECBlocks.coldStone, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("blockVoid", new ItemStack(ECBlocks.voidStone, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary
-            .registerOre("blockVoidStone", new ItemStack(ECBlocks.voidStone, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("blockVoidStone", new ItemStack(ECBlocks.voidStone, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("voidStone", new ItemStack(ECBlocks.voidStone, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("glassVoid", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary
-            .registerOre("blockGlassVoid", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("blockGlassVoid", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("voidGlass", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary
-            .registerOre("blockVoidGlass", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("blockVoidGlass", new ItemStack(ECBlocks.voidGlass, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("blockConcrete", new ItemStack(ECBlocks.concrete, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("concrete", new ItemStack(ECBlocks.concrete, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("cacti", new ItemStack(ECBlocks.cacti, 1, OreDictionary.WILDCARD_VALUE));

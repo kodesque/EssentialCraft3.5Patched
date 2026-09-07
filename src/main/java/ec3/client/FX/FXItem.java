@@ -13,7 +13,7 @@ public class FXItem extends EntityFX {
     public double red, green, blue;
 
     public FXItem(World w, double x, double y, double z, double r, double g, double b, double mX, double mY,
-                  double mZ) {
+        double mZ) {
         super(w, x, y, z, 0, 0, 0);
         red = r;
         green = g;

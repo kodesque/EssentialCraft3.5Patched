@@ -2,12 +2,12 @@ package ec3.common.tile.redstone;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.AxisAlignedBB;
 
 import ec3.api.ApiCore;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.utils.ECUtils;
 
 public class TileAnimalSeparator extends TileMRUGeneric {

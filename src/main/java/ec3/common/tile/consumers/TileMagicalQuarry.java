@@ -25,13 +25,13 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import ec3.api.ApiCore;
-import ec3.common.items.ItemGenericEC;
 import ec3.common.init.ECItems;
+import ec3.common.items.ItemGenericEC;
+import ec3.network.PacketNBT;
 import ec3.root.EssentialCraftCore;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.network.PacketNBT;
-import ec3.utils.ECUtils;
 
 public class TileMagicalQuarry extends TileMRUGeneric {
 

@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 import ec3.api.recipes.DemonTradeRecipe;
 import ec3.common.init.ECBlocks;
-import ec3.common.items.ItemGenericEC;
 import ec3.common.init.ECItems;
-import net.minecraft.util.ChatComponentTranslation;
+import ec3.common.items.ItemGenericEC;
 
 public class DemonRecipeHandler extends TemplateRecipeHandler {
 
@@ -75,7 +75,8 @@ public class DemonRecipeHandler extends TemplateRecipeHandler {
         if (results.length > 0 && results != null && results[0] instanceof ItemStack) {
             ItemStack stk = ItemStack.class.cast(results[0]);
             if (stk != null && stk.getItem() instanceof ItemGenericEC && stk.getItemDamage() == 52) {
-                arecipes.add(new DemonCraftingPair(DemonTradeRecipe.trades.get(rnd.nextInt(DemonTradeRecipe.trades.size()))));
+                arecipes.add(
+                    new DemonCraftingPair(DemonTradeRecipe.trades.get(rnd.nextInt(DemonTradeRecipe.trades.size()))));
             }
         }
     }
@@ -83,7 +84,8 @@ public class DemonRecipeHandler extends TemplateRecipeHandler {
     public void drawExtras(int recipe) {
         if (this.cycleticks % 20 == 0) {
             arecipes.remove(0);
-            arecipes.add(new DemonCraftingPair(DemonTradeRecipe.trades.get(rnd.nextInt(DemonTradeRecipe.trades.size()))));
+            arecipes
+                .add(new DemonCraftingPair(DemonTradeRecipe.trades.get(rnd.nextInt(DemonTradeRecipe.trades.size()))));
         }
         super.drawExtras(recipe);
     }

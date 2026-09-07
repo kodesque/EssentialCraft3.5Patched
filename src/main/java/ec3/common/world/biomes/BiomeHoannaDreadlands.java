@@ -1,9 +1,9 @@
 package ec3.common.world.biomes;
 
-import ec3.common.world.structures.WorldGenDeadCacti;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import ec3.common.init.ECBlocks;
+import ec3.common.world.structures.WorldGenDeadCacti;
 
 public class BiomeHoannaDreadlands extends BiomeGenBase {
 

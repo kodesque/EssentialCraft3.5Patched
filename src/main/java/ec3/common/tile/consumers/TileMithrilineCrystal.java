@@ -1,9 +1,5 @@
 package ec3.common.tile.consumers;
 
-import ec3.utils.dummycore.utils.*;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.system.Notifier;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -14,6 +10,10 @@ import net.minecraftforge.common.config.Configuration;
 
 import ec3.root.EssentialCraftCore;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.*;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class TileMithrilineCrystal extends TileEntity {
 

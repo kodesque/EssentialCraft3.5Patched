@@ -3,7 +3,6 @@ package ec3.common.items;
 import java.util.Arrays;
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +18,7 @@ import baubles.api.BaublesApi;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
+import ec3.common.init.ECItems;
 
 public class ItemGenericEC extends Item {
 

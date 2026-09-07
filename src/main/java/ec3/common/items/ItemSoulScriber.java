@@ -1,7 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
-import ec3.common.templates.ItemSwordMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -14,6 +12,8 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import ec3.api.recipes.DemonTradeRecipe;
+import ec3.common.init.ECItems;
+import ec3.common.templates.ItemSwordMod;
 
 public class ItemSoulScriber extends ItemSwordMod {
 

@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,8 +17,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import ec3.api.items.IItemRequiresMRU;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemHolyMace extends ItemSword implements IItemRequiresMRU/* ItemStoresMRUInNBT */ {
 
@@ -57,7 +57,7 @@ public class ItemHolyMace extends ItemSword implements IItemRequiresMRU/* ItemSt
 
     @Override
     public int getMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return MiscUtils.getStackTag(stack)
             .getInteger("mru");
     }
@@ -97,7 +97,7 @@ public class ItemHolyMace extends ItemSword implements IItemRequiresMRU/* ItemSt
 
     @Override
     public int getMaxMRU(ItemStack stack) {
-        // TODO Auto-generated method stub
+
         return this.maxMRU;
     }
 
@@ -120,7 +120,7 @@ public class ItemHolyMace extends ItemSword implements IItemRequiresMRU/* ItemSt
         Multimap multimap = HashMultimap.create();
         multimap.put(
             SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-            new AttributeModifier(field_111210_e, "Weapon modifier", 12, 0));
+            new AttributeModifier(field_111210_e, "Weapon modifier", 9, 0));
         return multimap;
     }
 }

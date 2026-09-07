@@ -17,7 +17,6 @@ public class BlockMRULevitator extends Block {
     public BlockMRULevitator(Material p_i45394_1_) {
         super(p_i45394_1_);
         this.setTickRandomly(true);
-        // TODO Auto-generated constructor stub
     }
 
     @SideOnly(Side.CLIENT)

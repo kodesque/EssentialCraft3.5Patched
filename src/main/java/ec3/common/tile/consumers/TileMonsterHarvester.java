@@ -12,10 +12,10 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.FakePlayer;
 
 import ec3.api.ApiCore;
+import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.ECUtils;
 
 public class TileMonsterHarvester extends TileMRUGeneric {
 

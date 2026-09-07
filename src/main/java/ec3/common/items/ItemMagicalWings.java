@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class ItemMagicalWings extends ItemStoresMRUInNBT implements IBauble {
 

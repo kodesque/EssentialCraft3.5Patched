@@ -12,12 +12,12 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
+import ec3.api.mru.ITileRequiresMRU;
 import ec3.api.structures.EnumStructureType;
 import ec3.api.structures.IStructurePiece;
-import ec3.api.mru.ITileRequiresMRU;
 import ec3.common.items.ItemBoundGem;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class TileChamberAcceptor extends TileEntity implements ITileRequiresMRU, IStructurePiece, IInventory {
 

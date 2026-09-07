@@ -3,13 +3,13 @@ package ec3.common.tile.logistics;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import ec3.common.items.ItemBoundGem;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.common.tile.logistics.TileNewMIMCraftingManager.CraftingPattern;
 import ec3.utils.ECUtils;
 

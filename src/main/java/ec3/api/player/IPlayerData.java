@@ -2,9 +2,10 @@ package ec3.api.player;
 
 import java.util.List;
 
-import ec3.api.corruption.ICorruptionEffect;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+
+import ec3.api.corruption.ICorruptionEffect;
 
 public interface IPlayerData {
 

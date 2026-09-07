@@ -3,8 +3,6 @@ package ec3.common.items;
 import java.util.List;
 import java.util.UUID;
 
-import cpw.mods.fml.common.Optional;
-import ec3.common.init.ECItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,10 +20,12 @@ import net.minecraftforge.common.ISpecialArmor;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import cpw.mods.fml.common.Optional;
 import ec3.api.items.IItemRequiresMRU;
+import ec3.common.init.ECItems;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import thaumcraft.api.IGoggles;
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.IVisDiscountGear;
@@ -33,27 +33,11 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.nodes.IRevealer;
 
 @Optional.InterfaceList({
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IRepairable"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IVisDiscountGear"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.nodes.IRevealer"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IGoggles"
-    )
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IRepairable"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IVisDiscountGear"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.nodes.IRevealer"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IGoggles")
 })
-//@DCASMCheck
-//@ExistanceCheck(
-//    classPath = { "thaumcraft.api.IRepairable", "thaumcraft.api.IVisDiscountGear", "thaumcraft.api.nodes.IRevealer",
-//        "thaumcraft.api.IGoggles" })
 public class ItemComputerArmor extends ItemArmor
     implements IRepairable, IVisDiscountGear, IRevealer, IGoggles, ISpecialArmor, IItemRequiresMRU {
 
@@ -89,13 +73,16 @@ public class ItemComputerArmor extends ItemArmor
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         super.addInformation(stack, player, list, par4);
-        if (EssentialCraftCore.clazzExists("thaumcraft.api.IVisDiscountGear")) list.add(
-            (new StringBuilder()).append(EnumChatFormatting.DARK_PURPLE)
-                .append(StatCollector.translateToLocal("tc.visdiscount"))
-                .append(": ")
-                .append(getVisDiscount(stack, player, null))
-                .append("%")
-                .toString());
+
+        if (EssentialCraftCore.isThaumcraftLoaded()) {
+            list.add(
+                (new StringBuilder()).append(EnumChatFormatting.DARK_PURPLE)
+                    .append(StatCollector.translateToLocal("tc.visdiscount"))
+                    .append(": ")
+                    .append(getVisDiscount(stack, player, null))
+                    .append("%")
+                    .toString());
+        }
 
         list.add(this.getMRU(stack) + "/" + this.getMaxMRU(stack) + " MRU");
 
@@ -166,7 +153,7 @@ public class ItemComputerArmor extends ItemArmor
         return type == 0;
     }
 
-    public static int[] discount = new int[] { 18, 25, 12, 15 };
+    public static int[] discount = new int[] { 30, 50, 20, 10 };
 
     public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect) {
         int type = ((ItemArmor) stack.getItem()).armorType;

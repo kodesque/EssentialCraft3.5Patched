@@ -3,12 +3,6 @@ package ec3.common.tile.producers;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
-import ec3.utils.dummycore.utils.FX.ArcFX;
-import ec3.utils.dummycore.utils.data.DataStorage;
-import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.math.Coord3D;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -18,6 +12,12 @@ import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
 import ec3.common.init.ECBlocks;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.utils.dummycore.utils.FX.ArcFX;
+import ec3.utils.dummycore.utils.data.DataStorage;
+import ec3.utils.dummycore.utils.data.DummyData;
+import ec3.utils.dummycore.utils.math.Coord3D;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class TileMRUReactor extends TileMRUGeneric {
 

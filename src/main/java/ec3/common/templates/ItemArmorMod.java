@@ -3,8 +3,7 @@ package ec3.common.templates;
 import java.util.List;
 import java.util.UUID;
 
-import cpw.mods.fml.common.Optional;
-import ec3.common.init.ECItems;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,12 +25,14 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.items.IItemRequiresMRU;
+import ec3.common.init.ECItems;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 import thaumcraft.api.IGoggles;
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.IVisDiscountGear;
@@ -39,27 +40,11 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.nodes.IRevealer;
 
 @Optional.InterfaceList({
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IRepairable"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IVisDiscountGear"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.nodes.IRevealer"
-    ),
-    @Optional.Interface(
-        modid = "thaumcraft",
-        iface = "thaumcraft.api.IGoggles"
-    )
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IRepairable"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IVisDiscountGear"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.nodes.IRevealer"),
+    @Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IGoggles")
 })
-//@Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IRepairable")
-//@Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IVisDiscountGear")
-//@Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.nodes.IRevealer")
-//@Optional.Interface(modid = "thaumcraft", iface = "thaumcraft.api.IGoggles")
 public class ItemArmorMod extends ItemArmor
     implements IRepairable, IVisDiscountGear, IRevealer, IGoggles, ISpecialArmor, IItemRequiresMRU {
 
@@ -81,13 +66,20 @@ public class ItemArmorMod extends ItemArmor
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         super.addInformation(stack, player, list, par4);
-        list.add(
-            (new StringBuilder()).append(EnumChatFormatting.DARK_PURPLE)
-                .append(StatCollector.translateToLocal("tc.visdiscount"))
-                .append(": ")
-                .append(getVisDiscount(stack, player, null))
-                .append("%")
-                .toString());
+
+        if (EssentialCraftCore.isThaumcraftLoaded()) {
+
+            if (getVisDiscount(stack, player, null) != 0) {
+                list.add(
+                    (new StringBuilder()).append(EnumChatFormatting.DARK_PURPLE)
+                        .append(StatCollector.translateToLocal("tc.visdiscount"))
+                        .append(": ")
+                        .append(getVisDiscount(stack, player, null))
+                        .append("%")
+                        .toString());
+            }
+        }
+
         if (this.aType == 1) {
             list.add(this.getMRU(stack) + "/" + this.getMaxMRU(stack) + " MRU");
         }
@@ -201,7 +193,7 @@ public class ItemArmorMod extends ItemArmor
         return discount[aType][type];
     }
 
-    public static int[][] discount = new int[][] { { 5, 5, 3, 2 }, { 8, 10, 7, 5 }, { 10, 15, 8, 7 }, { 2, 3, 2, 1 } };
+    public static int[][] discount = new int[][] { { 5, 2, 2, 1 }, { 5, 5, 3, 2 }, { 0, 0, 0, 0 }, { 5, 3, 3, 2 } };
 
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,

@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import ec3.common.init.ECItems;
-import ec3.common.templates.ItemAxeMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
@@ -19,6 +17,8 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import ec3.common.init.ECItems;
+import ec3.common.templates.ItemAxeMod;
 import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemWindAxe extends ItemAxeMod {
@@ -122,16 +122,12 @@ public class ItemWindAxe extends ItemAxeMod {
                         } else {
                             if (clazz.equalsIgnoreCase("pickaxe"))
                                 efficent = new ItemStack(ECItems.wind_elemental_pick, 1, currentTool.getItemDamage());
-                            if (clazz.equalsIgnoreCase("shovel")) efficent = new ItemStack(
-                                ECItems.wind_elemental_shovel,
-                                1,
-                                currentTool.getItemDamage());
+                            if (clazz.equalsIgnoreCase("shovel"))
+                                efficent = new ItemStack(ECItems.wind_elemental_shovel, 1, currentTool.getItemDamage());
                             if (clazz.equalsIgnoreCase("hoe"))
                                 efficent = new ItemStack(ECItems.wind_elemental_hoe, 1, currentTool.getItemDamage());
-                            if (clazz.equalsIgnoreCase("sword")) efficent = new ItemStack(
-                                ECItems.wind_elemental_sword,
-                                1,
-                                currentTool.getItemDamage());
+                            if (clazz.equalsIgnoreCase("sword"))
+                                efficent = new ItemStack(ECItems.wind_elemental_sword, 1, currentTool.getItemDamage());
                             if (clazz.equalsIgnoreCase("axe"))
                                 efficent = new ItemStack(ECItems.wind_elemental_axe, 1, currentTool.getItemDamage());
                         }

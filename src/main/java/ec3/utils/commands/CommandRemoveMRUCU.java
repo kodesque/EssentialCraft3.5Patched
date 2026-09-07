@@ -1,15 +1,16 @@
 package ec3.utils.commands;
 
-import ec3.utils.ECUtils;
-import ec3.utils.commands.handlers.CommandEC;
-import ec3.utils.dummycore.utils.math.Coord3D;
+import java.util.List;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-import java.util.List;
+import ec3.utils.ECUtils;
+import ec3.utils.commands.handlers.CommandEC;
+import ec3.utils.dummycore.utils.math.Coord3D;
 
-public class CommandRemoveMRUCU extends CommandEC  {
+public class CommandRemoveMRUCU extends CommandEC {
 
     public static void handle(ICommandSender par1ICommandSender, String[] par2ArrayOfStr) {
         EntityPlayerMP player = par2ArrayOfStr.length == 0 ? getCommandSenderAsPlayer(par1ICommandSender)
@@ -21,9 +22,7 @@ public class CommandRemoveMRUCU extends CommandEC  {
         if (mru != null) {
             mru.setDead();
         } else {
-            throw new WrongUsageException(
-                "commands.balance.noMRU", new Object[0]
-            );
+            throw new WrongUsageException("commands.balance.noMRU", new Object[0]);
         }
 
         player.worldObj.spawnEntityInWorld(mru);

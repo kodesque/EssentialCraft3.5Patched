@@ -1,6 +1,5 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
@@ -10,8 +9,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.consumers.TileCrystalController;
-import ec3.common.tile.world.TileElementalCrystal;
+import ec3.common.tile.other.TileElementalCrystal;
 
 public class GuiCrystalState extends GuiTextField {
 
@@ -72,16 +72,52 @@ public class GuiCrystalState extends GuiTextField {
         TileElementalCrystal crystal = tile.getCrystal();
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         if (crystal != null) {
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.fire").getFormattedText() + " " + (int) crystal.fire + "%", posX + 2, posY + 4, 0xffffff);
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.water").getFormattedText() + " " + (int) crystal.water + "%", posX + 2, posY + 14, 0xffffff);
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.earth").getFormattedText() + " " + (int) crystal.earth + "%", posX + 2, posY + 24, 0xffffff);
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.air").getFormattedText() + " " + (int) crystal.air + "%", posX + 50, posY + 4, 0xffffff);
-            fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.size").getFormattedText() + " " + (int) crystal.size + "%", posX + 50, posY + 14, 0xffffff);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.elemental.fire").getFormattedText() + " "
+                    + (int) crystal.fire
+                    + "%",
+                posX + 2,
+                posY + 4,
+                0xffffff);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.elemental.water").getFormattedText() + " "
+                    + (int) crystal.water
+                    + "%",
+                posX + 2,
+                posY + 14,
+                0xffffff);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.elemental.earth").getFormattedText() + " "
+                    + (int) crystal.earth
+                    + "%",
+                posX + 2,
+                posY + 24,
+                0xffffff);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.elemental.air").getFormattedText() + " "
+                    + (int) crystal.air
+                    + "%",
+                posX + 50,
+                posY + 4,
+                0xffffff);
+            fontRenderer.drawStringWithShadow(
+                new ChatComponentTranslation("essentialcraft.gui.elemental.size").getFormattedText() + " "
+                    + (int) crystal.size
+                    + "%",
+                posX + 50,
+                posY + 14,
+                0xffffff);
             ItemStack e = tile.getStackInSlot(1);
             if (e != null) {
                 int rarity = (int) ((float) e.getItemDamage() / 4);
                 float chance = (float) (2 * (rarity + 1));
-                fontRenderer.drawStringWithShadow(new ChatComponentTranslation("essentialcraft.gui.elemental.chance").getFormattedText() + " " + (int) chance + "%", posX + 50, posY + 24, 0xffffff);
+                fontRenderer.drawStringWithShadow(
+                    new ChatComponentTranslation("essentialcraft.gui.elemental.chance").getFormattedText() + " "
+                        + (int) chance
+                        + "%",
+                    posX + 50,
+                    posY + 24,
+                    0xffffff);
             }
         }
     }

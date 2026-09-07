@@ -14,8 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 
 import ec3.api.mru.ITETransfersMRU;
 import ec3.common.items.ItemBoundGem;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class TileRayTower extends TileEntity implements IInventory, ITETransfersMRU {
 

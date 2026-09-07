@@ -2,7 +2,6 @@ package ec3.common.items;
 
 import java.util.List;
 
-import ec3.common.init.ECItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,8 +20,9 @@ import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.root.EssentialCraftCore;
 import ec3.common.init.ECAchievements;
+import ec3.common.init.ECItems;
+import ec3.root.EssentialCraftCore;
 
 public class ItemSecret extends Item {
 

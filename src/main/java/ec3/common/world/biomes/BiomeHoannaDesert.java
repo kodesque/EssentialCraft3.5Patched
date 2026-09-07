@@ -2,10 +2,11 @@ package ec3.common.world.biomes;
 
 import java.util.Random;
 
-import ec3.common.world.structures.WorldGenDeadCacti;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import ec3.common.world.structures.WorldGenDeadCacti;
 
 public class BiomeHoannaDesert extends BiomeGenBase {
 

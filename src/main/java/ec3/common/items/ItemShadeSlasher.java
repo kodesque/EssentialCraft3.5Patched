@@ -1,7 +1,5 @@
 package ec3.common.items;
 
-import ec3.common.init.ECItems;
-import ec3.common.templates.ItemSwordMod;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,8 +20,10 @@ import com.google.common.collect.Multimap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.common.init.ECItems;
+import ec3.common.templates.ItemSwordMod;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class ItemShadeSlasher extends ItemSwordMod {
 
@@ -94,7 +94,7 @@ public class ItemShadeSlasher extends ItemSwordMod {
 
     public boolean hitEntity(ItemStack weapon, EntityLivingBase attacked, EntityLivingBase attacker) {
         if ((attacker instanceof EntityPlayer && ECUtils.getData(EntityPlayer.class.cast(attacker))
-                .getMatrixTypeID() == 4)) {
+            .getMatrixTypeID() == 4)) {
             if (!attacker.worldObj.isRemote) {
                 if (attacker.worldObj.rand.nextFloat() <= 0.6F) {
                     // knockback

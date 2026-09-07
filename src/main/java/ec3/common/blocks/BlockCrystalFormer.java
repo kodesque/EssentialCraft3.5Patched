@@ -7,10 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.crafting.TileCrystalFormer;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.api.config.Config;
+import ec3.common.tile.crafting.TileCrystalFormer;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockCrystalFormer extends BlockContainer {
 

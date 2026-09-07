@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.consumers.TileMagicalTeleporter;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.api.config.Config;
+import ec3.common.tile.consumers.TileMagicalTeleporter;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockMagicalTeleporter extends BlockContainer {
 

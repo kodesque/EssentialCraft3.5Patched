@@ -2,7 +2,6 @@ package ec3.client.guielement.specific;
 
 import java.util.Random;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -10,8 +9,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import ec3.utils.dummycore.utils.math.MathUtils;
+import ec3.client.guielement.general.GuiTextField;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiHeightState extends GuiTextField {
 

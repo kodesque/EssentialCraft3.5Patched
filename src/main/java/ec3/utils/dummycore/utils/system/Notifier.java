@@ -1,9 +1,10 @@
 package ec3.utils.dummycore.utils.system;
 
-import ec3.utils.dummycore.config.DummyConfig;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import ec3.utils.dummycore.config.DummyConfig;
 
 public class Notifier {
 

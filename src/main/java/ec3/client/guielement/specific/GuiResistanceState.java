@@ -1,10 +1,10 @@
 package ec3.client.guielement.specific;
 
-import ec3.client.guielement.general.GuiTextField;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import ec3.client.guielement.general.GuiTextField;
 import ec3.common.tile.storage.TileChamberController;
 import ec3.common.tile.storage.TileChamberStateChecker;
 
@@ -43,7 +43,8 @@ public class GuiResistanceState extends GuiTextField {
     @Override
     public void drawText(int posX, int posY) {
         if (tile instanceof TileChamberStateChecker) {
-            TileChamberController controllerTile = (TileChamberController) ((TileChamberStateChecker) tile).structureController();
+            TileChamberController controllerTile = (TileChamberController) ((TileChamberStateChecker) tile)
+                .structureController();
             if (controllerTile != null) Minecraft.getMinecraft().fontRenderer
                 .drawString(controllerTile.resistance + " MROV", posX + 2, posY + 5, 0xffffff, true);
         }

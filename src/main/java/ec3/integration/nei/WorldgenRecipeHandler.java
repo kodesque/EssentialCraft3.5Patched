@@ -8,16 +8,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.ChatComponentTranslation;
+
 import org.lwjgl.opengl.GL11;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECItems;
 import ec3.common.items.ItemDrop;
 import ec3.common.items.ItemGenericEC;
-import ec3.common.init.ECItems;
 import ec3.utils.dummycore.utils.MiscUtils;
 
 public class WorldgenRecipeHandler extends TemplateRecipeHandler {

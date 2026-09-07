@@ -13,10 +13,10 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.utils.dummycore.utils.system.Notifier;
-import ec3.utils.dummycore.utils.TileStatTracker;
 import ec3.utils.ECUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.TileStatTracker;
+import ec3.utils.dummycore.utils.system.Notifier;
 
 public class TileMagicalChest extends TileEntity implements IInventory, ISidedInventory {
 

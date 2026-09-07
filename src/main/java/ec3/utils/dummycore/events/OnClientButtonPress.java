@@ -15,7 +15,7 @@ public class OnClientButtonPress extends Event {
     public DummyData[] additionalData;
 
     public OnClientButtonPress(int bID, String s, String s_1, EntityPlayer player, int dx, int dy, int dz,
-                               DummyData[] data) {
+        DummyData[] data) {
         buttonID = bID;
         client_ParentClassPath = s;
         client_ButtonClassPath = s_1;

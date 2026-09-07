@@ -5,9 +5,9 @@ import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
 import ec3.api.items.IItemRequiresMRU;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.ECUtils;
 
 public class TileChargingChamber extends TileMRUGeneric {
 

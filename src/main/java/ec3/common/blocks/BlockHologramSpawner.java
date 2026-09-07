@@ -5,8 +5,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import ec3.common.entities.EntityHologram;
 import ec3.api.config.Config;
+import ec3.common.entities.EntityHologram;
 
 public class BlockHologramSpawner extends Block {
 

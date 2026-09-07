@@ -13,9 +13,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import ec3.api.config.Config;
 import ec3.common.inventory.ContainerFilter;
 import ec3.root.EssentialCraftCore;
-import ec3.api.config.Config;
 
 public class ItemFilter extends Item {
 

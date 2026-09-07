@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 import ec3.api.weapons.GunRegistry.GunMaterial;
 import ec3.api.weapons.GunRegistry.LenseMaterial;
 import ec3.api.weapons.GunRegistry.ScopeMaterial;
-import ec3.common.items.ItemGenericEC;
 import ec3.common.init.ECItems;
+import ec3.common.items.ItemGenericEC;
 
 public class ECWeapons {
 

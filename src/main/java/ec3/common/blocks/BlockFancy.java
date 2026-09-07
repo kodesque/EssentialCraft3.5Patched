@@ -2,7 +2,6 @@ package ec3.common.blocks;
 
 import java.util.List;
 
-import ec3.common.init.ECBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,6 +16,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.machines.IColdBlock;
+import ec3.common.init.ECBlocks;
 
 public class BlockFancy extends Block implements IColdBlock {
 

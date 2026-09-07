@@ -1,16 +1,16 @@
 package ec3.common.tile.consumers;
 
-import ec3.common.tile.world.TileElementalCrystal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
 
 import ec3.api.ApiCore;
-import ec3.common.items.ItemEssence;
 import ec3.common.init.ECItems;
+import ec3.common.items.ItemEssence;
+import ec3.common.tile.other.TileElementalCrystal;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.ECUtils;
 
 public class TileCrystalExtractor extends TileMRUGeneric {
 

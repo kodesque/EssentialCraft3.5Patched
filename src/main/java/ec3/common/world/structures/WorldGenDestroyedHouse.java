@@ -2,7 +2,6 @@ package ec3.common.world.structures;
 
 import java.util.Random;
 
-import ec3.utils.ECExplosion;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
@@ -10,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import ec3.common.init.ECBlocks;
 import ec3.common.init.ECItems;
+import ec3.utils.ECExplosion;
 
 public class WorldGenDestroyedHouse extends WorldGenerator {
 

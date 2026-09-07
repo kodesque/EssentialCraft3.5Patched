@@ -2,7 +2,6 @@ package ec3.common.tile.producers;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.entity.Entity;
@@ -19,10 +18,11 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import ec3.api.ApiCore;
+import ec3.common.tile.consumers.TileMRUGeneric;
+import ec3.utils.ECUtils;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
 import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.ECUtils;
 
 public class TileDarknessObelisk extends TileMRUGeneric {
 

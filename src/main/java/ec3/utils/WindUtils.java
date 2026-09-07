@@ -12,9 +12,9 @@ import net.minecraftforge.common.util.FakePlayer;
 import baubles.api.BaublesApi;
 import ec3.api.items.IWindModifier;
 import ec3.api.items.IWindResistance;
-import ec3.common.items.BaublesAccessory;
 import ec3.common.init.ECItems;
 import ec3.common.init.ECPotions;
+import ec3.common.items.BaublesAccessory;
 
 public class WindUtils {
 

@@ -2,7 +2,6 @@ package ec3.common.tile.crafting;
 
 import java.util.List;
 
-import ec3.common.tile.consumers.TileMRUGeneric;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -11,10 +10,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.config.Configuration;
 
 import ec3.common.init.ECBlocks;
+import ec3.common.init.ECItems;
 import ec3.common.items.ItemElementalFocus;
 import ec3.common.items.ItemElementalSword;
 import ec3.common.items.ItemEmber;
-import ec3.common.init.ECItems;
+import ec3.common.tile.consumers.TileMRUGeneric;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;

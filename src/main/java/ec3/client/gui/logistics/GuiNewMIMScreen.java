@@ -5,7 +5,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
-import ec3.client.gui.items.GuiResearchBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -23,15 +22,16 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import ec3.client.gui.items.GuiResearchBook;
 import ec3.client.guielement.general.GuiMRUStorage;
 import ec3.common.inventory.ContainerNewMIMScreen;
-import ec3.root.EssentialCraftCore;
 import ec3.common.tile.logistics.TileNewMIMCraftingManager.CraftingPattern;
 import ec3.common.tile.logistics.TileNewMIMScreen;
-import ec3.utils.dummycore.client.GuiElement;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.network.PacketNBT;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.client.GuiElement;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class GuiNewMIMScreen extends GuiContainer {
 

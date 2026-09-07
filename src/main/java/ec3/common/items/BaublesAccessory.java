@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import ec3.common.init.ECItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,14 +28,15 @@ import baubles.api.IBauble;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ec3.api.ApiCore;
-import ec3.api.mru.IMRUStorage;
+import ec3.api.config.Config;
 import ec3.api.items.IUBMRUGainModifier;
 import ec3.api.items.IWindModifier;
 import ec3.api.items.IWindResistance;
-import ec3.utils.dummycore.utils.math.MathUtils;
-import ec3.utils.dummycore.utils.MiscUtils;
-import ec3.api.config.Config;
+import ec3.api.mru.IMRUStorage;
+import ec3.common.init.ECItems;
 import ec3.utils.RadiationUtils;
+import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class BaublesAccessory extends Item
     implements IBauble, IUBMRUGainModifier, IMRUStorage, IWindResistance, IWindModifier {

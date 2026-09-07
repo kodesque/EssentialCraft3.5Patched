@@ -1,8 +1,18 @@
 package ec3.utils.dummycore.core;
 
-import java.util.Arrays;
+import net.minecraft.command.CommandHandler;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.MinecraftForge;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 import ec3.utils.dummycore.config.DummyConfig;
 import ec3.utils.dummycore.config.IDummyConfig;
 import ec3.utils.dummycore.events.DummyEventHandler;
@@ -13,23 +23,7 @@ import ec3.utils.dummycore.network.packets.DummyPacketTile;
 import ec3.utils.dummycore.network.proxy.NetProxyServer;
 import ec3.utils.dummycore.utils.*;
 import ec3.utils.dummycore.utils.data.DummyDataUtils;
-import ec3.utils.dummycore.utils.system.LoadingUtils;
 import ec3.utils.dummycore.utils.system.ModVersionChecker;
-import net.minecraft.command.CommandHandler;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.MinecraftForge;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.event.FMLServerStoppedEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
 
 /**
  * @author Modbder
@@ -40,7 +34,9 @@ public class CoreInitializer {
     public static CoreInitializer instance;
     public static IDummyConfig cfg = new DummyConfig();
     public static SimpleNetworkWrapper network;
-    @SidedProxy(clientSide = "ec3.utils.dummycore.network.proxy.NetProxyClient", serverSide = "ec3.utils.dummycore.network.proxy.NetProxyServer")
+    @SidedProxy(
+        clientSide = "ec3.utils.dummycore.network.proxy.NetProxyClient",
+        serverSide = "ec3.utils.dummycore.network.proxy.NetProxyServer")
     public static NetProxyServer proxy;
     public static final DummyPacketHandler packetHandler = new DummyPacketHandler();
 
@@ -68,7 +64,8 @@ public class CoreInitializer {
 
         proxy.registerInfo();
 
-        ModVersionChecker.addRequest(CoreInitializer.class, "https://www.dropbox.com/s/iwdfv0mc4qns00f/DummyCoreVersion.txt?dl=1");
+        ModVersionChecker
+            .addRequest(CoreInitializer.class, "https://www.dropbox.com/s/iwdfv0mc4qns00f/DummyCoreVersion.txt?dl=1");
     }
 
     public static void init(FMLInitializationEvent e) {

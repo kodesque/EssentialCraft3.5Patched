@@ -9,11 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import ec3.api.upgrades.MagicianTableUpgrades;
-import ec3.root.EssentialCraftCore;
-import ec3.common.tile.crafting.TileMagicianTable;
-import ec3.utils.dummycore.utils.MiscUtils;
 import ec3.api.config.Config;
+import ec3.api.upgrades.MagicianTableUpgrades;
+import ec3.common.tile.crafting.TileMagicianTable;
+import ec3.root.EssentialCraftCore;
+import ec3.utils.dummycore.utils.MiscUtils;
 
 public class BlockMagicianTable extends BlockContainer {
 

@@ -2,7 +2,6 @@ package ec3.common.world.hoanna;
 
 import java.util.Random;
 
-import ec3.common.world.structures.WorldGenOldCatacombs;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -11,6 +10,7 @@ import net.minecraft.world.gen.ChunkProviderGenerate;
 
 import ec3.common.world.structures.MapGenModernShafts;
 import ec3.common.world.structures.MapGenTown;
+import ec3.common.world.structures.WorldGenOldCatacombs;
 
 public class ChunkProviderHoanna extends ChunkProviderGenerate {
 

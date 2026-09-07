@@ -27,8 +27,8 @@ public class FXColoredFlame extends EntityFX {
         this.setParticleTextureIndex(48);
     }
 
-    public FXColoredFlame(World w, double x, double y, double z, double mX, double mY, double mZ, double r,
-                          double g, double b, double scale) {
+    public FXColoredFlame(World w, double x, double y, double z, double mX, double mY, double mZ, double r, double g,
+        double b, double scale) {
         super(w, x, y, z, mX, mY, mZ);
         this.motionX = this.motionX * 0.009999999776482582D + mX;
         this.motionY = this.motionY * 0.009999999776482582D + mY;

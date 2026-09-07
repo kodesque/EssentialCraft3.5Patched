@@ -3,8 +3,6 @@ package ec3.common.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.common.blocks.*;
-import ec3.common.templates.ModBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
@@ -14,11 +12,13 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ec3.common.blocks.*;
 import ec3.common.items.ItemBlockElementalCrystal;
 import ec3.common.items.ItemBlockFancy;
 import ec3.common.items.ItemBlockGeneric;
 import ec3.common.items.ItemBlockMithrilineCrystal;
 import ec3.common.items.ItemBlockRDNS;
+import ec3.common.templates.ModBlock;
 import ec3.root.EssentialCraftCore;
 import ec3.utils.dummycore.init.BlocksRegistry;
 

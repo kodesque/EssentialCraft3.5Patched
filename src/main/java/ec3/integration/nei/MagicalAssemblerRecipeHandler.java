@@ -16,8 +16,8 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 import ec3.api.recipes.MagicalAssemblerRecipes;
 import ec3.api.recipes.ShapedAssemblerRecipe;
 import ec3.root.EssentialCraftCore;
-import ec3.utils.dummycore.utils.math.MathUtils;
 import ec3.utils.dummycore.utils.MiscUtils;
+import ec3.utils.dummycore.utils.math.MathUtils;
 
 public class MagicalAssemblerRecipeHandler extends TemplateRecipeHandler {
 

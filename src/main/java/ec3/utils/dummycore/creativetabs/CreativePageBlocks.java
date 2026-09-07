@@ -3,7 +3,6 @@ package ec3.utils.dummycore.creativetabs;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec3.common.init.ECBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -12,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ec3.utils.dummycore.core.CoreInitializer;
+import ec3.common.init.ECBlocks;
 
 /**
  * @version From DummyCore 1.0

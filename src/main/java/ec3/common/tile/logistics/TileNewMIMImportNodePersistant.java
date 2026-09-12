@@ -8,9 +8,9 @@ import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemFilter;
 import ec3.utils.ECUtils;
 
-public class TileNewMIMImportNode_Persistant extends TileNewMIMImportNode {
+public class TileNewMIMImportNodePersistant extends TileNewMIMImportNode {
 
-    public TileNewMIMImportNode_Persistant() {
+    public TileNewMIMImportNodePersistant() {
         super();
     }
 

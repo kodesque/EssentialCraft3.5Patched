@@ -2,13 +2,13 @@ package ec3.utils.dummycore.init;
 
 import java.util.Hashtable;
 
+import ec3.root.EssentialCraftCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import ec3.utils.dummycore.core.Core;
 
 /**
  *
@@ -43,11 +43,10 @@ public class BlocksRegistry {
         Side s = FMLCommonHandler.instance()
             .getEffectiveSide();
         if (s == Side.CLIENT) {
-            b.setCreativeTab(Core.getBlockTabForMod(modClass));
+            b.setCreativeTab(EssentialCraftCore.modTabBlocks);
             blocksList.put(
                 b,
-                Core.getBlockTabForMod(modClass)
-                    .getTabLabel());
+                EssentialCraftCore.modTabBlocks.getTabLabel());
         }
     }
 

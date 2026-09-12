@@ -1,15 +1,6 @@
-newmtl blinn1SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
+# Made in Blockbench 5.1.6
+newmtl m_803b4a6a-37a7-8ce5-bbbd-6f5e8d4f1341
+map_Kd magicPlatingBlock.png
+newmtl m_1325351c-148c-3a9b-064e-e1e2ba5556e4
 map_Kd mirror.png
-Ni 1.00
-Ks 0.50 0.50 0.50
-newmtl lambert2SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd armTextures.png
-Ni 1.00
+newmtl none

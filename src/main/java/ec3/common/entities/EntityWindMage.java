@@ -132,9 +132,9 @@ public class EntityWindMage extends EntityMob implements IRangedAttackMob {
      * par2 - Level of Looting used to kill this mob.
      */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
-        if (this.getSkeletonType() == 0) this.dropItem(getDropItem(), 1);
-        if (this.getSkeletonType() == 1) this.dropItem(ECItems.imprisonedWind, 1);
-        if (this.getSkeletonType() == 2) {
+        if (this.getType() == 0) this.dropItem(getDropItem(), 1);
+        if (this.getType() == 1) this.dropItem(ECItems.imprisonedWind, 1);
+        if (this.getType() == 2) {
             this.dropItem(ECItems.windKeeper, 1);
             if (this.worldObj.rand.nextFloat() < 0.1F) {
                 int i = this.worldObj.rand.nextInt(4);
@@ -173,22 +173,23 @@ public class EntityWindMage extends EntityMob implements IRangedAttackMob {
      * Attack the specified entity using a ranged attack.
      */
     public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_) {
-        EntityMRUArrow entityarrow = new EntityMRUArrow(this.worldObj, this, 1.6F);
-        entityarrow.setDamage((this.getSkeletonType() + 1) * 3);
+        EntityMRUArrow entityarrow = new EntityMRUArrow(this.worldObj, this, p_82196_1_, 1.6F, (float)(14 - this.worldObj.difficultySetting.getDifficultyId() * 4));
+
+        entityarrow.setDamage((this.getType() + 1) * 3);
         this.worldObj.spawnEntityInWorld(entityarrow);
     }
 
     /**
      * Return this skeleton's type.
      */
-    public int getSkeletonType() {
+    public int getType() {
         return this.dataWatcher.getWatchableObjectByte(13);
     }
 
     /**
      * Set this skeleton's type.
      */
-    public void setSkeletonType(int p_82201_1_) {
+    public void setType(int p_82201_1_) {
         this.dataWatcher.updateObject(13, Byte.valueOf((byte) p_82201_1_));
     }
 
@@ -200,7 +201,7 @@ public class EntityWindMage extends EntityMob implements IRangedAttackMob {
 
         if (p_70037_1_.hasKey("SkeletonType", 99)) {
             byte b0 = p_70037_1_.getByte("SkeletonType");
-            this.setSkeletonType(b0);
+            this.setType(b0);
         }
 
         this.setCombatTask();
@@ -211,7 +212,7 @@ public class EntityWindMage extends EntityMob implements IRangedAttackMob {
      */
     public void writeEntityToNBT(NBTTagCompound p_70014_1_) {
         super.writeEntityToNBT(p_70014_1_);
-        p_70014_1_.setByte("SkeletonType", (byte) this.getSkeletonType());
+        p_70014_1_.setByte("SkeletonType", (byte) this.getType());
     }
 
     /**
@@ -223,7 +224,7 @@ public class EntityWindMage extends EntityMob implements IRangedAttackMob {
 
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_) {
         p_110161_1_ = super.onSpawnWithEgg(p_110161_1_);
-        this.setSkeletonType(this.worldObj.rand.nextInt(3));
+        this.setType(this.worldObj.rand.nextInt(3));
         return p_110161_1_;
     }
 

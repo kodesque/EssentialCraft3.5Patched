@@ -35,8 +35,8 @@ public class ECEntities {
         registerEntity(ec3.common.entities.EntityArmorDestroyer.class, 32, 1, true);
         registerEntity(ec3.common.entities.EntityDividerProjectile.class, 32, 1, true);
 
-        EntityRegistry
-            .addSpawn(ec3.common.entities.EntityWindMage.class, 2, 1, 6, EnumCreatureType.monster, biomesToSpawn());
+        EntityRegistry.addSpawn(ec3.common.entities.EntityWindMage.class, 15, 1, 6, EnumCreatureType.monster, biomesToSpawn());
+
         EntityRegistry.addSpawn(
             ec3.common.entities.EntityPoisonFume.class,
             100,

@@ -25,11 +25,23 @@ public class ECItems {
 
     @SuppressWarnings("deprecation")
     public void loadItems() {
+
         elemental = EnumHelper.addToolMaterial("elemental", 6, 600, 15.0F, 4.0F, 10);
-        weakElemental = EnumHelper.addToolMaterial("weakElemental", 2, 300, 7.0F, 2.0F, 22);
-        windElemental = EnumHelper.addToolMaterial("windElemental", 11, 15684, 15.0F, 6F, 1);
+        weakElemental = EnumHelper.addToolMaterial("weakElemental", 2, 64, 30.0F, 2.0F, 22);
+        windElemental = EnumHelper.addToolMaterial("windElemental", 11, 15684, 15.0F, 6F, 10);
         shade = EnumHelper.addToolMaterial("shade", 32, 0, 1.0F, 17.0F, 12);
-        // System.out.println("registry");
+
+        magicArmorMaterial = EnumHelper
+            .addArmorMaterial("MRUFortified", 33, new int[] { 3, 8, 6, 3 }, 25);
+        voidArmorMaterial = EnumHelper
+            .addArmorMaterial("VoidFortified", 52, new int[] { 3, 8, 6, 3 }, 1);
+        inquisArmorMaterial = EnumHelper
+            .addArmorMaterial("Inquisitorium", 64, new int[] { 10, 10, 10, 10 }, 0);
+        windArmorMaterial = EnumHelper
+            .addArmorMaterial("WindElemental", 42, new int[] { 4, 10, 7, 4 }, 10);
+        computerArmorMaterial = EnumHelper
+            .addArmorMaterial("Computeric", 256, new int[] { 10, 30, 20, 10 }, 127);
+
         testingItem = new TestItemEC().setUnlocalizedName("essentialcraft:testItem")
             .setTextureName("minecraft:blaze_rod")
             .setMaxStackSize(1);
@@ -614,7 +626,7 @@ public class ECItems {
             magicalBuilder,
             ItemMagicalBuilder.class,
             "magicalBuilder",
-            "spells/staff_void",
+            "tools/magicalBuilder",
             0,
             true,
             1);
@@ -867,16 +879,11 @@ public class ECItems {
     public static Item craftingFrame;
     public static Item collectedSpawner;
 
-    public static ArmorMaterial magicArmorMaterial = EnumHelper
-        .addArmorMaterial("MRUFortified", 33, new int[] { 3, 8, 6, 3 }, 25);
-    public static ArmorMaterial voidArmorMaterial = EnumHelper
-        .addArmorMaterial("VoidFortified", 52, new int[] { 3, 8, 6, 3 }, 1);
-    public static ArmorMaterial inquisArmorMaterial = EnumHelper
-        .addArmorMaterial("Inquisitorium", 64, new int[] { 10, 10, 10, 10 }, 0);
-    public static ArmorMaterial windArmorMaterial = EnumHelper
-        .addArmorMaterial("WindElemental", 42, new int[] { 4, 10, 7, 4 }, 1);
-    public static ArmorMaterial computerArmorMaterial = EnumHelper
-        .addArmorMaterial("Computeric", 256, new int[] { 10, 30, 20, 10 }, 127);
+    public static ArmorMaterial magicArmorMaterial;
+    public static ArmorMaterial voidArmorMaterial;
+    public static ArmorMaterial windArmorMaterial;
+    public static ArmorMaterial inquisArmorMaterial;
+    public static ArmorMaterial computerArmorMaterial;
 
     public static ToolMaterial elemental;
     public static ToolMaterial weakElemental;

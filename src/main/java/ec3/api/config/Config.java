@@ -186,25 +186,25 @@ public class Config implements IDummyConfig {
     }
 
     public void postInitParseDecorativeBlocks() {
-        config.load();
-        String[] cfgCustomFancy = config.getStringList(
-            "Custom Fancy Blocks",
-            "Misc",
-            new String[] { "Thaumcraft:blockCosmeticOpaque?0", "Thaumcraft:blockCosmeticSolid?1" },
-            "Allows to add custom Fancy Blocks to the game, where string before : is the modname, String after :, but before ? is the block name, and int after ? is metadata.");
-        for (String s : cfgCustomFancy) {
-            int index_0 = s.indexOf(":");
-            int index_1 = s.indexOf("?");
-            if (index_0 == -1 || index_1 == -1) continue;
-            String modname = s.substring(0, index_0);
-            String blockname = s.substring(index_0 + 1, index_1);
-            int metadata = Integer.parseInt(s.substring(index_1 + 1));
-            Block added = GameRegistry.findBlock(modname, blockname);
-            if (added != null) {
-                ECBlocks.createFancyBlock(added, blockname, metadata);
-            }
-        }
-        config.save();
+//        config.load();
+//        String[] cfgCustomFancy = config.getStringList(
+//            "Custom Fancy Blocks",
+//            "Misc",
+//            new String[] { "Thaumcraft:blockCosmeticOpaque?0", "Thaumcraft:blockCosmeticSolid?1" },
+//            "Allows to add custom Fancy Blocks to the game, where string before : is the modname, String after :, but before ? is the block name, and int after ? is metadata.");
+//        for (String s : cfgCustomFancy) {
+//            int index_0 = s.indexOf(":");
+//            int index_1 = s.indexOf("?");
+//            if (index_0 == -1 || index_1 == -1) continue;
+//            String modname = s.substring(0, index_0);
+//            String blockname = s.substring(index_0 + 1, index_1);
+//            int metadata = Integer.parseInt(s.substring(index_1 + 1));
+//            Block added = GameRegistry.findBlock(modname, blockname);
+//            if (added != null) {
+//                ECBlocks.createFancyBlock(added, blockname, metadata);
+//            }
+//        }
+//        config.save();
     }
 
 }

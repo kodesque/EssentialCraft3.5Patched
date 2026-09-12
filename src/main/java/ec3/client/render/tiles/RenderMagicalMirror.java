@@ -21,7 +21,7 @@ import ec3.utils.dummycore.utils.MiscUtils;
 public class RenderMagicalMirror extends TileEntitySpecialRenderer {
 
     public static final ResourceLocation textures = new ResourceLocation(
-        "essentialcraft:textures/special/models/assembler/armTextures.png");
+        "essentialcraft:textures/blocks/magicPlatingBlock.png");
     public static final ResourceLocation glass = new ResourceLocation(
         "essentialcraft:textures/special/models/assembler/mirror.png");
     public static final IModelCustom model = AdvancedModelLoader

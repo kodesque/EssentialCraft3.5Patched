@@ -23,7 +23,6 @@ import ec3.utils.dummycore.network.packets.DummyPacketTile;
 import ec3.utils.dummycore.network.proxy.NetProxyServer;
 import ec3.utils.dummycore.utils.*;
 import ec3.utils.dummycore.utils.data.DummyDataUtils;
-import ec3.utils.dummycore.utils.system.ModVersionChecker;
 
 /**
  * @author Modbder
@@ -42,13 +41,13 @@ public class CoreInitializer {
 
     public static void preInit(FMLPreInitializationEvent e) {
 
-        Core.registerModAbsolute(
-            CoreInitializer.class,
-            "DummyCore",
-            e.getModConfigurationDirectory()
-                .getAbsolutePath(),
-            cfg,
-            false);
+//        Core.registerModAbsolute(
+//            CoreInitializer.class,
+//            "DummyCore",
+//            e.getModConfigurationDirectory()
+//                .getAbsolutePath(),
+//            cfg,
+//            false);
 
         network = NetworkRegistry.INSTANCE.newSimpleChannel("DummyCore");
         network.registerMessage(DummyPacketHandler.class, DummyPacket.class, 0, Side.SERVER);
@@ -64,8 +63,8 @@ public class CoreInitializer {
 
         proxy.registerInfo();
 
-        ModVersionChecker
-            .addRequest(CoreInitializer.class, "https://www.dropbox.com/s/iwdfv0mc4qns00f/DummyCoreVersion.txt?dl=1");
+//        ModVersionChecker
+//            .addRequest(CoreInitializer.class, "https://www.dropbox.com/s/iwdfv0mc4qns00f/DummyCoreVersion.txt?dl=1");
     }
 
     public static void init(FMLInitializationEvent e) {

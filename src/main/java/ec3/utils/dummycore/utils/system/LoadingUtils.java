@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
-import ec3.utils.dummycore.core.Core;
-import ec3.utils.dummycore.core.DCMod;
 
 public class LoadingUtils {
 
@@ -25,13 +23,13 @@ public class LoadingUtils {
             Notifier.error,
             "[DummyCoreLoader]",
             "The class that has thrown the error: " + thrower);
-        DCMod[] ofsetters = tryDetermineOffendorsFromClasses(tryDetermineOffendorsFromTrace(t));
-        for (DCMod mod : ofsetters) Notifier.notify(
-            shutdown ? Level.FATAL : Level.ERROR,
-            "",
-            Notifier.error,
-            "[DummyCoreLoader]",
-            "Likely involved mod registered via DummyCore: " + mod);
+//        DCMod[] ofsetters = tryDetermineOffendorsFromClasses(tryDetermineOffendorsFromTrace(t));
+//        for (DCMod mod : ofsetters) Notifier.notify(
+//            shutdown ? Level.FATAL : Level.ERROR,
+//            "",
+//            Notifier.error,
+//            "[DummyCoreLoader]",
+//            "Likely involved mod registered via DummyCore: " + mod);
         for (ModContainer mCon : tryDetermineModOffendorsFromClasses(tryDetermineOffendorsFromTrace(t)))
             Notifier.notify(
                 shutdown ? Level.FATAL : Level.ERROR,
@@ -59,13 +57,13 @@ public class LoadingUtils {
             "[DummyCoreLoader]",
             "Loading errors were detected at state " + Loader.instance()
                 .getLoaderState() + "!");
-        DCMod[] ofsetters = tryDetermineOffendorsFromClasses(tryDetermineOffendorsFromTrace(t));
-        for (DCMod mod : ofsetters) Notifier.notify(
-            shutdown ? Level.FATAL : Level.ERROR,
-            "",
-            Notifier.error,
-            "[DummyCoreLoader]",
-            "Likely involved mod registered via DummyCore: " + mod);
+//        DCMod[] ofsetters = tryDetermineOffendorsFromClasses(tryDetermineOffendorsFromTrace(t));
+//        for (DCMod mod : ofsetters) Notifier.notify(
+//            shutdown ? Level.FATAL : Level.ERROR,
+//            "",
+//            Notifier.error,
+//            "[DummyCoreLoader]",
+//            "Likely involved mod registered via DummyCore: " + mod);
         for (ModContainer mCon : tryDetermineModOffendorsFromClasses(tryDetermineOffendorsFromTrace(t)))
             Notifier.notify(
                 shutdown ? Level.FATAL : Level.ERROR,
@@ -102,20 +100,20 @@ public class LoadingUtils {
         return offendors;
     }
 
-    public static DCMod[] tryDetermineOffendorsFromClasses(Class<?>... detectedInTrace) {
-        DCMod[] retMods = new DCMod[0];
-
-        for (Class<?> clazz : detectedInTrace) {
-            if (Core.isModRegistered(clazz)) {
-                DCMod[] newArray = new DCMod[retMods.length + 1];
-                System.arraycopy(retMods, 0, newArray, 0, retMods.length);
-                newArray[newArray.length - 1] = Core.getModFromClass(clazz);
-                retMods = newArray;
-            }
-        }
-
-        return retMods;
-    }
+//    public static DCMod[] tryDetermineOffendorsFromClasses(Class<?>... detectedInTrace) {
+//        DCMod[] retMods = new DCMod[0];
+//
+//        for (Class<?> clazz : detectedInTrace) {
+//            if (Core.isModRegistered(clazz)) {
+//                DCMod[] newArray = new DCMod[retMods.length + 1];
+//                System.arraycopy(retMods, 0, newArray, 0, retMods.length);
+//                newArray[newArray.length - 1] = Core.getModFromClass(clazz);
+//                retMods = newArray;
+//            }
+//        }
+//
+//        return retMods;
+//    }
 
     public static ModContainer[] tryDetermineModOffendorsFromClasses(Class<?>... detectedInTrace) {
         ModContainer[] retMods = new ModContainer[0];

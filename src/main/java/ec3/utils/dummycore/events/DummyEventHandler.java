@@ -21,7 +21,6 @@ import ec3.utils.dummycore.config.DummyConfig;
 import ec3.utils.dummycore.utils.*;
 import ec3.utils.dummycore.utils.data.DataStorage;
 import ec3.utils.dummycore.utils.data.DummyData;
-import ec3.utils.dummycore.utils.system.ModVersionChecker;
 import ec3.utils.dummycore.utils.system.ScheduledServerAction;
 
 /**
@@ -172,11 +171,6 @@ public class DummyEventHandler {
                 MiscUtils.actions.remove(i);
             }
         }
-    }
-
-    @SubscribeEvent
-    public void clientWorldLoad(EntityJoinWorldEvent event) {
-        if (event.entity instanceof EntityPlayer && event.world.isRemote) ModVersionChecker.dispatchModChecks();
     }
 
 }

@@ -1,9 +1,14 @@
 package ec3.root;
 
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import cpw.mods.fml.common.Loader;
+import ec3.utils.dummycore.creativetabs.CreativePageBlocks;
+import ec3.utils.dummycore.creativetabs.CreativePageItems;
 import net.minecraft.command.CommandHandler;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 
 import cpw.mods.fml.common.Mod;
@@ -34,7 +39,6 @@ import ec3.integration.waila.WailaInitializer;
 import ec3.network.proxy.CommonProxy;
 import ec3.utils.commands.handlers.CommandEC;
 import ec3.utils.commands.handlers.CommandECSimple;
-import ec3.utils.dummycore.core.Core;
 import ec3.utils.dummycore.core.CoreInitializer;
 
 @Mod(
@@ -56,11 +60,14 @@ public class EssentialCraftCore {
     public static CommonProxy proxy;
     public static Config cfg = new Config();
     // TODO Do not forget to change the version number every git commit.
-    public static final String version = "4.6.8";
+    public static final String version = "4.7.1";
     public static final String modid = "essentialcraft";
     public static final String name = "EssentialCraft3.5 Patched";
     public static ModMetadata metadata;
     public static SimpleNetworkWrapper network;
+
+    public static final CreativeTabs modTabBlocks = new CreativePageBlocks("EssentialCraft");
+    public static final CreativeTabs modTabItems = new CreativePageItems("EssentialCraft");
     // ============================================CORE FUNCTIONS=============================================//
 
     public static boolean isThaumcraftLoaded() {
@@ -86,19 +93,22 @@ public class EssentialCraftCore {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         CoreInitializer.preInit(event);
+
+        Logger.getLogger("TEXTURE ERRORS").setLevel(Level.OFF);
+
         metadata = event.getModMetadata();
 
         core = this;
-        try {
-            Core.registerModAbsolute(
-                getClass(),
-                "Essential Craft 3",
-                event.getModConfigurationDirectory()
-                    .getAbsolutePath(),
-                cfg);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Core.registerModAbsolute(
+//                getClass(),
+//                "Essential Craft 3",
+//                event.getModConfigurationDirectory()
+//                    .getAbsolutePath(),
+//                cfg);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         Check.checkerCommit();
         WailaInitializer.sendIMC();

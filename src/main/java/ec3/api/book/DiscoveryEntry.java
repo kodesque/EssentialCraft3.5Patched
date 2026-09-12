@@ -56,7 +56,7 @@ public class DiscoveryEntry {
         return this;
     }
 
-    public DiscoveryEntry apendPage(PageEntry page) {
+    public DiscoveryEntry appendPage(PageEntry page) {
         pages.add(page);
         return this;
     }

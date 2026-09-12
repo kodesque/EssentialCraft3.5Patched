@@ -2,12 +2,13 @@ package ec3.utils.dummycore.init;
 
 import java.util.Hashtable;
 
+import ec3.root.EssentialCraftCore;
 import net.minecraft.item.Item;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import ec3.utils.dummycore.core.Core;
+import tv.twitch.Core;
 
 /**
  *
@@ -36,11 +37,10 @@ public class ItemRegistry {
         Side s = FMLCommonHandler.instance()
             .getEffectiveSide();
         if (s == Side.CLIENT) {
-            i.setCreativeTab(Core.getItemTabForMod(modClass));
+            i.setCreativeTab(EssentialCraftCore.modTabItems);
             itemsList.put(
                 i,
-                Core.getItemTabForMod(modClass)
-                    .getTabLabel());
+                EssentialCraftCore.modTabItems.getTabLabel());
         }
         GameRegistry.registerItem(i, name);
     }
@@ -60,11 +60,10 @@ public class ItemRegistry {
         Side s = FMLCommonHandler.instance()
             .getEffectiveSide();
         if (s == Side.CLIENT) {
-            i.setCreativeTab(Core.getItemTabForMod(modClass));
+            i.setCreativeTab(EssentialCraftCore.modTabItems);
             itemsList.put(
                 i,
-                Core.getItemTabForMod(modClass)
-                    .getTabLabel());
+                EssentialCraftCore.modTabItems.getTabLabel());
         }
     }
 

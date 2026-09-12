@@ -19,7 +19,7 @@ import ec3.utils.dummycore.utils.FX.ArcFX;
 public class RenderMRUReactor extends TileEntitySpecialRenderer {
 
     public static final ResourceLocation textures = new ResourceLocation(
-        "essentialcraft:textures/special/models/flowerBurner.png");
+        "essentialcraft:textures/special/blocks/magicPlatingBlock.png");
     public static final IModelCustom model = AdvancedModelLoader
         .loadModel(new ResourceLocation("essentialcraft:textures/special/models/mruReactor_btm.obj"));
 

@@ -1,4 +1,41 @@
 # Essential Craft 3.5 Changelog
+## 4.7.1
+
+---
+
+### Added:
+- (Book of Knowledge) More specific information on various Magician's Table upgrades
+- (Book of Knowledge) Additional clarification on Mithriline Crystals: need to see sky to operate
+- (Book of Knowledge) Expanded Weapon Bench entry
+
+### Changed:
+- Tool stats:
+  - Weak elemental:
+    - (durability) 300 -> 64
+    - (efficiency) 7 -> 30
+  - Elemental:
+    - (durability) 500 -> 2068
+  - Wind:
+    - (enchantability) 1 -> 10
+- Armor stats:
+  - Wind:
+  - (enchantability) 1 -> 10
+
+- Wind mages spawn rate: 2 -> 15 (a little more often than Enderman)
+- Sorted the creative inventory
+- "Elemental/Weak Elemental" -> "Crystalline"/"Weak crystalline" (to avoid overlapping with Elemental Swords made from Embers)
+- (Weapons) "Knockback/Durability" -> "Recoil/Heat Capacity" -> "Heat capacity" (to avoid misunderstanding)
+- Chaos Fork texture: 16x16 -> 32x32
+- Plating textures (now 32x32 when connected)
+- Magical Shield/Spiked Buckler textures (removed mixels)
+- Magical Furnaces textures (removed mixels)
+
+### Fixed:
+- Clumsy wind mages (MRU Arrows having invalid speed on spawn)
+- Enrichment chamber tiling blocks ignoring chamber modules
+- Sniper scope texture offset
+- Remaining magical device models optimized/mapping fixed/partially reworked
+
 ## 4.7.0
 
 ---

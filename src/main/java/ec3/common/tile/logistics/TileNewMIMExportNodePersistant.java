@@ -10,9 +10,9 @@ import ec3.common.inventory.InventoryMagicFilter;
 import ec3.common.items.ItemFilter;
 import ec3.utils.ECUtils;
 
-public class TileNewMIMExportNode_Persistant extends TileNewMIMExportNode {
+public class TileNewMIMExportNodePersistant extends TileNewMIMExportNode {
 
-    public TileNewMIMExportNode_Persistant() {
+    public TileNewMIMExportNodePersistant() {
         super();
     }
 

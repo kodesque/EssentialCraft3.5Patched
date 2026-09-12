@@ -56,7 +56,7 @@ public class RenderWindMage extends RenderLiving {
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
     protected ResourceLocation getEntityTexture(EntityWindMage p_110775_1_) {
-        switch (p_110775_1_.getSkeletonType()) {
+        switch (p_110775_1_.getType()) {
             case 1:
                 return farmerVillagerTextures;
             case 2:

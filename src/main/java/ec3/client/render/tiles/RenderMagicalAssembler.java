@@ -22,9 +22,9 @@ import ec3.utils.player.PlayerTickHandler;
 public class RenderMagicalAssembler extends TileEntitySpecialRenderer {
 
     public static final ResourceLocation textures = new ResourceLocation(
-        "essentialcraft:textures/special/models/assembler/itemPedestal.png");
+        "essentialcraft:textures/blocks/fortifiedStone.png");
     public static final ResourceLocation texturesMRU = new ResourceLocation(
-        "essentialcraft:textures/special/models/assembler/armTextures.png");
+        "essentialcraft:textures/blocks/magicPlatingBlock.png");
     public static final IModelCustom model = AdvancedModelLoader
         .loadModel(new ResourceLocation("essentialcraft:textures/special/models/assembler/Assembler.obj"));
 
